@@ -1,8 +1,5 @@
 <?php
-// Запрет прямого доступа.
 defined('_JEXEC') or die;
-
-// Подключаем тип поля list.
 jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
 
