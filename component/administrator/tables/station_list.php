@@ -20,6 +20,6 @@ class TableStation_list extends JTable {
     var $moddate = null;
 
     public function __construct(&$db) {
-        parent::__construct('#__station_list', array('id', 'esr'), $db);
+        parent::__construct('#__station_list', 'id', $db);
     }
 }

@@ -45,9 +45,9 @@ class Railway2ViewStations extends JViewLegacy
 		// Options button.
 		if (JFactory::getUser()->authorise('core.admin', 'com_railway2'))
 		{
-		    JToolbarHelper::addNew('add');
-            JToolbarHelper::editList('edit');
-            JToolbarHelper::deleteList('delete');
+		    JToolbarHelper::addNew('station.add');
+            JToolbarHelper::editList('station.edit');
+            JToolbarHelper::deleteList('stations.delete');
 			JToolBarHelper::preferences('com_railway2');
 		}
 	}
