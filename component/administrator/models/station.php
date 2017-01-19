@@ -31,4 +31,9 @@ class Railway2ModelStation extends JModelAdmin {
 
         return $data;
     }
+
+    public function getScript()
+    {
+        return 'administrator/components/' . $this->option . '/models/forms/station.js';
+    }
 }

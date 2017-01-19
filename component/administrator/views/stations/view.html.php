@@ -48,7 +48,7 @@ class Railway2ViewStations extends JViewLegacy
 		    JToolbarHelper::addNew('station.add');
             JToolbarHelper::editList('station.edit');
             JToolbarHelper::deleteList('stations.delete');
-			JToolBarHelper::preferences('com_railway2');
+			JToolbarHelper::preferences('com_railway2');
 		}
 	}
 

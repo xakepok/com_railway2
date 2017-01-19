@@ -9,21 +9,58 @@
             name="esr"
             type="text"
             label="COM_RAILWAY2_STATION_CODE_ESR"
+            required="true"
+            class="input validate-esr"
         />
         <field
                 name="express"
                 type="text"
                 label="COM_RAILWAY2_STATION_CODE_EXPRESS"
+                required="true"
         />
         <field
             name="name"
             type="text"
             label="COM_RAILWAY2_STATION_NAME"
+            required="true"
+        />
+        <field
+                name="popularName"
+                type="text"
+                label="COM_RAILWAY2_STATION_POPULAR_NAME"
+        />
+        <field
+                name="yandexSearchName"
+                type="text"
+                label="COM_RAILWAY2_STATION_YANDEX_NAME"
+        />
+        <field
+                name="rzdName"
+                type="text"
+                label="COM_RAILWAY2_STATION_RZD_NAME"
         />
         <field
             name="type"
             type="StationType"
             label="COM_RAILWAY2_STATION_TYPE"
+            required="true"
+        />
+        <field
+                name="railway"
+                type="Road"
+                label="COM_RAILWAY2_RAILWAY_PART"
+                required="true"
+        />
+        <field
+            name="region"
+            type="Region"
+            label="COM_RAILWAY2_REGION"
+            required="true"
+        />
+        <field
+                name="vkid"
+                type="text"
+                label="COM_RAILWAY2_STATION_VKID"
         />
     </fieldset>
 </form>

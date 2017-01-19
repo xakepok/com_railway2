@@ -3,15 +3,17 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.view');
 
 class Railway2ViewStation extends JViewLegacy {
-    protected $item, $form;
+    protected $item, $form, $script;
 
     public function display($tmp = null) {
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
+        $this->script = $this->get('Script');
 
         $this->addToolbar();
 
         parent::display($tpl);
+        $this->setDocument();
     }
 
     protected function addToolbar() {
@@ -20,8 +22,14 @@ class Railway2ViewStation extends JViewLegacy {
         $title = $isNew ? JText::_('COM_RAILWAY2_ADDING_STATION') : JText::_('COM_RAILWAY2_EDITION_STATION');
 
         JToolbarHelper::title($title, 'station');
-        JToolBarHelper::apply('helloworld.apply', 'JTOOLBAR_APPLY');
-        JToolBarHelper::save('helloworld.save');
-        JToolBarHelper::cancel('helloworld.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
+        JToolbarHelper::apply('station.apply', 'JTOOLBAR_APPLY');
+        JToolbarHelper::save('station.save');
+        JToolbarHelper::cancel('station.cancel', 'JTOOLBAR_CLOSE');
+        JToolbarHelper::back();
+    }
+
+    protected function setDocument() {
+        $document = JFactory::getDocument();
+        $document->addScript(JURI::root() . $this->script);
     }
 }
