@@ -3,8 +3,8 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_railway2&layout=edit&id=' . (int)$this->item->id); ?>"
-      method="post" name="adminForm" id="railway2-form" xmlns="http://www.w3.org/1999/html" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_railway2&view=station&layout=edit&id=' . (int)$this->item->id); ?>"
+      method="post" name="adminForm" id="station-form" xmlns="http://www.w3.org/1999/html" class="form-validate">
     <fieldset>
         <legend><?php echo JText::_('COM_RAILWAY2_STATION'); ?></legend>
             <?php foreach ($this->form->getFieldset() as $field) : ?>

@@ -9,7 +9,9 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_railway2'))
 // Require the helper
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/helpers/railway2.php';
 
+jimport('joomla.application.component.controller');
+
 // Execute the task
 $controller = JControllerLegacy::getInstance('Railway2');
-$controller->execute(JFactory::getApplication()->input->get('task'));
+$controller->execute(JFactory::getApplication()->input->getCmd('task','display'));
 $controller->redirect();

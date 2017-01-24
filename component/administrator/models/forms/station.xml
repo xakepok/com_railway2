@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form>
+<form addrulepath="/administrator/components/com_railway2/models/rules">
     <fieldset>
         <field
             name="id"
@@ -11,33 +11,40 @@
             label="COM_RAILWAY2_STATION_CODE_ESR"
             required="true"
             class="input validate-esr"
+            validate="esr"
         />
         <field
                 name="express"
                 type="text"
                 label="COM_RAILWAY2_STATION_CODE_EXPRESS"
                 required="true"
+                class="input validate-express"
+                validate="express"
         />
         <field
             name="name"
             type="text"
             label="COM_RAILWAY2_STATION_NAME"
             required="true"
+            class="input validate-name"
         />
         <field
                 name="popularName"
                 type="text"
                 label="COM_RAILWAY2_STATION_POPULAR_NAME"
+                class="input validate-popularName"
         />
         <field
                 name="yandexSearchName"
                 type="text"
                 label="COM_RAILWAY2_STATION_YANDEX_NAME"
+                class="input validate-popularName"
         />
         <field
                 name="rzdName"
                 type="text"
                 label="COM_RAILWAY2_STATION_RZD_NAME"
+                class="input validate-popularName"
         />
         <field
             name="type"
@@ -61,6 +68,7 @@
                 name="vkid"
                 type="text"
                 label="COM_RAILWAY2_STATION_VKID"
+                class="input validate-vkid"
         />
     </fieldset>
 </form>

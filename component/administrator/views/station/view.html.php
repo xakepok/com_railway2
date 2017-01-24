@@ -19,7 +19,7 @@ class Railway2ViewStation extends JViewLegacy {
     protected function addToolbar() {
         JFactory::getApplication()->input->set('hidemainmenu', true);
         $isNew = ($this->item->id == 0);
-        $title = $isNew ? JText::_('COM_RAILWAY2_ADDING_STATION') : JText::_('COM_RAILWAY2_EDITION_STATION');
+        $title = $isNew ? JText::_('COM_RAILWAY2_ADDING_STATION') : JText::_('COM_RAILWAY2_EDITION_STATION').' '.$this->item->name;
 
         JToolbarHelper::title($title, 'station');
         JToolbarHelper::apply('station.apply', 'JTOOLBAR_APPLY');
@@ -29,7 +29,10 @@ class Railway2ViewStation extends JViewLegacy {
     }
 
     protected function setDocument() {
+        JHtml::_('jquery.framework');
         $document = JFactory::getDocument();
         $document->addScript(JURI::root() . $this->script);
+        $document->addScript(JUri::root().'administrator/components/com_railway2/views/station/submitbutton.js');
+        JText::script('COM_RAILWAY2_ERROR_UNACCEPTABLE');
     }
 }
