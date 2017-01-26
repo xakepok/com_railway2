@@ -1,7 +1,7 @@
 jQuery(function() {
     document.formvalidator.setHandler('esr',
         function (value) {
-            regex=/^[0-9]{5}$/;
+            regex=/^[0-9]{5,6}$/;
             return regex.test(value);
         });
     document.formvalidator.setHandler('express',
@@ -21,7 +21,7 @@ jQuery(function() {
         });
     document.formvalidator.setHandler('vkid',
         function (value) {
-            regex=/^[0-9]{3,}$/;
+            regex=/^[0-9]{1,}$/;
             return value == '' ? true : regex.test(value);
         });
 });

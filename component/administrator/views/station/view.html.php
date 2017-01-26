@@ -25,11 +25,11 @@ class Railway2ViewStation extends JViewLegacy {
         JToolbarHelper::apply('station.apply', 'JTOOLBAR_APPLY');
         JToolbarHelper::save('station.save');
         JToolbarHelper::cancel('station.cancel', 'JTOOLBAR_CLOSE');
-        JToolbarHelper::back();
     }
 
     protected function setDocument() {
         JHtml::_('jquery.framework');
+        JHtml::_('bootstrap.framework');
         $document = JFactory::getDocument();
         $document->addScript(JURI::root() . $this->script);
         $document->addScript(JUri::root().'administrator/components/com_railway2/views/station/submitbutton.js');

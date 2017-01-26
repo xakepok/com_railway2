@@ -15,7 +15,8 @@ Joomla.submitbutton = function(task) {
         }
 
         if (isValid) {
-            Joomla.submitform(task);
+            console.log(task);
+            Joomla.submitform(task, document.forms.adminForm);
             return true;
         } else {
             alert(Joomla.JText._('COM_RAILWAY2_ERROR_UNACCEPTABLE', 'Некоторые значения не валидны'));
