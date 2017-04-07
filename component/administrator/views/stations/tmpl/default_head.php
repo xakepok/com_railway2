@@ -4,8 +4,11 @@ $listOrder    = $this->escape($this->state->get('list.ordering'));
 $listDirn    = $this->escape($this->state->get('list.direction'));
 ?>
 <tr>
-    <th width="1%">
+    <th width="1%" class="hidden-phone">
         <input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
+    </th>
+    <th width="1%">
+        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_ID', 'id', $listDirn, $listOrder); ?>
     </th>
     <th class="esr-table">
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_CODE_ESR', 'esr', $listDirn, $listOrder); ?>
@@ -17,6 +20,9 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION', 'name', $listDirn, $listOrder); ?>
     </th>
     <th>
+        <?php echo JText::_('COM_RAILWAY2_DIRECTION'); ?>
+    </th>
+    <th>
         <?php echo JText::_('COM_RAILWAY2_STATION_TYPE'); ?>
     </th>
     <th>
@@ -24,8 +30,5 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
     </th>
     <th>
         <?php echo JText::_('COM_RAILWAY2_RAILWAY'); ?>
-    </th>
-    <th width="1%">
-        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_ID', 'id', $listDirn, $listOrder); ?>
     </th>
 </tr>

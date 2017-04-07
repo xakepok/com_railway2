@@ -7,6 +7,9 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo JHtml::_('grid.id', $i, $station->id); ?>
         </td>
         <td>
+            <?php echo $station->id; ?>
+        </td>
+        <td>
             <?php echo $station->esr; ?>
         </td>
         <td>
@@ -16,6 +19,9 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $station->name; ?>
         </td>
         <td>
+            <?php echo $station->direction; ?>
+        </td>
+        <td>
             <?php echo $station->type; ?>
         </td>
         <td>
@@ -23,9 +29,6 @@ foreach ($this->items as $i => $station) : ?>
         </td>
         <td>
             <?php echo $station->road; ?>
-        </td>
-        <td>
-            <?php echo $station->id; ?>
         </td>
     </tr>
 <?php endforeach; ?>

@@ -1,12 +1,14 @@
 <?php defined('_JEXEC') or die;
 jimport('joomla.database.table');
 
-class TableStation_list extends JTable {
+class TableRw2_stations extends JTable {
     var $id = null;
     var $esr = null;
     var $express = null;
     var $dup_esr = null;
     var $railway = null;
+    var $direction_main = null;
+    var $direction_two = null;
     var $control = null;
     var $region = null;
     var $iso3166 = null;
@@ -20,6 +22,6 @@ class TableStation_list extends JTable {
     var $moddate = null;
 
     public function __construct(&$db) {
-        parent::__construct('#__station_list', 'id', $db);
+        parent::__construct('#__rw2_stations', 'id', $db);
     }
 }

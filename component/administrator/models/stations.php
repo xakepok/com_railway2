@@ -22,12 +22,13 @@ class Railway2ModelStations extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('s.id, s.esr, s.express, s.popularName, t.type, s.yandexSearchName, s.rzdName, reg.region, road.road, road.division, s.name')
-            ->from('#__station_list as s')
+            ->select('s.id, s.esr, s.express, s.popularName, t.title as `type`, s.yandexSearchName, s.rzdName, reg.region, road.road, road.division, s.name, s.direction_main, cat.title as `direction`')
+            ->from('#__rw2_stations as s')
             ->where('s.railway<>0 AND express<>0')
+            ->leftJoin('#__categories as cat ON `cat`.`id`=`s`.`direction_main`')
+            ->leftJoin('#__categories as t ON `t`.`id`=`s`.`type`')
             ->leftJoin('#__regions as reg ON `reg`.`id`=`s`.`region`')
-            ->leftJoin('#__railways as road ON `road`.`id`=`s`.`railway`')
-            ->leftJoin('#__station_types as t ON `t`.`id`=`s`.`type`');
+            ->leftJoin('#__railways as road ON `road`.`id`=`s`.`railway`');
 
         /* Фильтр */
         $search = $this->getState('filter.search');

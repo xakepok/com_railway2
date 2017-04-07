@@ -3,7 +3,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.modeladmin');
 
 class Railway2ModelStation extends JModelAdmin {
-    public function getTable($name = 'Station_list', $prefix = 'Table', $options = array())
+    public function getTable($name = 'Rw2_stations', $prefix = 'Table', $options = array())
     {
         return JTable::getInstance($name, $prefix, $options);
     }

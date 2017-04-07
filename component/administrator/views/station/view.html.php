@@ -32,7 +32,5 @@ class Railway2ViewStation extends JViewLegacy {
         JHtml::_('bootstrap.framework');
         $document = JFactory::getDocument();
         $document->addScript(JURI::root() . $this->script);
-        $document->addScript(JUri::root().'administrator/components/com_railway2/views/station/submitbutton.js');
-        JText::script('COM_RAILWAY2_ERROR_UNACCEPTABLE');
     }
 }
