@@ -19,7 +19,6 @@ JHtml::_('formbehavior.chosen', 'select');
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_STATION_NAMES');?></a></li>
                 <li><a href="#params-codes" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_STATION_CODES');?></a></li>
-                <li><a href="#params-directions" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_DIRECTIONS');?></a></li>
             </ul>
 
             <div class="tab-content">
@@ -38,17 +37,6 @@ JHtml::_('formbehavior.chosen', 'select');
                     <fieldset class="adminform">
                         <div class="control-group form-inline">
                             <?php foreach ($this->form->getFieldset('codes') as $field) : ?>
-                                <div class="control-label"><?php echo $field->label; ?></div>
-                                <div class="controls"><?php echo $field->input; ?></div>
-                                <br>
-                            <?php endforeach; ?>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="tab-pane" id="params-directions">
-                    <fieldset class="adminform">
-                        <div class="control-group form-inline">
-                            <?php foreach ($this->form->getFieldset('directions') as $field) : ?>
                                 <div class="control-label"><?php echo $field->label; ?></div>
                                 <div class="controls"><?php echo $field->input; ?></div>
                                 <br>

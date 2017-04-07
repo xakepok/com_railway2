@@ -7,11 +7,8 @@ class TableRw2_stations extends JTable {
     var $express = null;
     var $dup_esr = null;
     var $railway = null;
-    var $direction_main = null;
-    var $direction_two = null;
     var $control = null;
     var $region = null;
-    var $iso3166 = null;
     var $type = null;
     var $name = null;
     var $popularName = null;

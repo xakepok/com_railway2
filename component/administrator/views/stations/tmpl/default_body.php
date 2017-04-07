@@ -16,7 +16,10 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $station->express; ?>
         </td>
         <td>
-            <?php echo $station->name; ?>
+            <?php
+            $link = JRoute::_('index.php?option=com_railway2&view=station&layout=edit&id='.$station->id);
+            ?>
+            <a href="<?php echo $link;?>"><?php echo $station->name; ?></a>
         </td>
         <td>
             <?php echo $station->direction; ?>

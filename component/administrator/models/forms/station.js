@@ -24,8 +24,4 @@ jQuery(function() {
             regex=/^[0-9]{1,}$/;
             return value == '' ? true : regex.test(value);
         });
-    document.formvalidator.setHandler('dirMain',
-        function (value) {
-            return (parseInt(value, 10) > 0 && !isNaN(parseInt(value, 10)));
-        });
 });

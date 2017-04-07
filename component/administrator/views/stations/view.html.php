@@ -29,6 +29,8 @@ class Railway2ViewStations extends JViewLegacy
 		    JToolbarHelper::addNew('station.add');
             JToolbarHelper::editList('station.edit');
             JToolbarHelper::deleteList(JText::_('COM_RAILWAY2_STATION_DELETE_QUESTION').'?', 'stations.delete');
+            JToolbarHelper::divider();
+            JToolbarHelper::custom('station.direction', '', '', JText::_('COM_RAILWAY2_DIRECTIONS'));
 			JToolbarHelper::preferences('com_railway2');
 		}
 	}

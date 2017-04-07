@@ -92,4 +92,31 @@
                     labelclass="control-label"
             />
         </fieldset>
+        <fieldset name="directions" label="COM_RAILWAY2_DIRECTIONS" description="COM_RAILWAY2_DIRECTIONS_DESCRIPTION">
+            <field
+                    name="direction_main"
+                    type="category"
+                    section="40"
+                    scope="directions"
+                    label="COM_RAILWAY2_DIRECTION_MAIN"
+                    description="COM_RAILWAY2_DIRECTION_MAIN"
+                    extension="com_railway2"
+                    class="validate-dirMain"
+                    required="true"
+            >
+                <option value="0">JOPTION_SELECT_CATEGORY</option>
+            </field>
+            <field
+                    name="direction_two"
+                    type="category"
+                    section="40"
+                    scope="directions"
+                    label="COM_RAILWAY2_DIRECTION_TWO"
+                    description="COM_RAILWAY2_DIRECTION_TWO"
+                    extension="com_railway2"
+                    class=""
+            >
+                <option value="0">JOPTION_SELECT_CATEGORY</option>
+            </field>
+        </fieldset>
 </form>
