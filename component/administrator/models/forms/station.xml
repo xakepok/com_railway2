@@ -40,9 +40,7 @@
         />
         <field
                 name="type"
-                type="category"
-                extension="com_railway2"
-                section="55"
+                type="StationType"
                 label="COM_RAILWAY2_STATION_TYPE"
                 required="true"
                 class="input-xlarge"

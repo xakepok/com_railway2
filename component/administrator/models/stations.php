@@ -22,14 +22,14 @@ class Railway2ModelStations extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('s.id, s.esr, s.express, s.popularName, t.title as `type`, `dir`.`directionID` as `directionID`, cat.title as `direction`, s.yandexSearchName, s.rzdName, reg.region, road.road, road.division, s.name')
+            ->select('s.id, s.esr, s.express, s.popularName, t.title as `type`, `dir`.`directionID` as `directionID`, `isControlPoint`, cat.title as `direction`, s.yandexSearchName, s.rzdName, reg.region, road.road, road.division, s.name, `indexID`, `zoneID`')
             ->from('#__rw2_stations as s')
             ->where('s.railway<>0 AND express<>0')
             ->leftJoin('#__rw2_directions as dir ON `dir`.`stationID`=`s`.`id`')
-            ->leftJoin('#__categories as cat ON `cat`.`id`=`directionID`')
-            ->leftJoin('#__categories as t ON `t`.`id`=`s`.`type`')
+            ->leftJoin('#__rw2_directions_list as cat ON `cat`.`id`=`directionID`')
+            ->leftJoin('#__rw2_station_types as t ON `t`.`id`=`s`.`type`')
             ->leftJoin('#__regions as reg ON `reg`.`id`=`s`.`region`')
-            ->leftJoin('#__railways as road ON `road`.`id`=`s`.`railway`');
+            ->leftJoin('#__rw2_railways as road ON `road`.`id`=`s`.`railway`');
 
         /* Фильтр */
         $search = $this->getState('filter.search');

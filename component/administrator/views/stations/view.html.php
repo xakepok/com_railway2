@@ -3,7 +3,7 @@ defined('_JEXEC') or die;
 
 class Railway2ViewStations extends JViewLegacy
 {
-	protected $helper, $items, $pagination, $state, $sidebar = '';
+	protected $helper, $items, $pagination, $state, $sidebar = '', $dirs;
 	public function display($tpl = null)
 	{
 		$this->toolbar();
@@ -29,8 +29,6 @@ class Railway2ViewStations extends JViewLegacy
 		    JToolbarHelper::addNew('station.add');
             JToolbarHelper::editList('station.edit');
             JToolbarHelper::deleteList(JText::_('COM_RAILWAY2_STATION_DELETE_QUESTION').'?', 'stations.delete');
-            JToolbarHelper::divider();
-            JToolbarHelper::custom('station.direction', '', '', JText::_('COM_RAILWAY2_DIRECTIONS'));
 			JToolbarHelper::preferences('com_railway2');
 		}
 	}

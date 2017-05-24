@@ -1,21 +1,21 @@
 <?php
-/**
- * @package    railway2
- *
- * @author     Admin <your@email.com>
- * @copyright  A copyright
- * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * @link       http://your.url.com
- */
-
 defined('_JEXEC') or die;
 
-/**
- * Railway2 view.
- *
- * @package  railway2
- * @since    1.0
- */
 class Railway2ViewRailway2 extends JViewLegacy
 {
+    public $url;
+
+    public function display() {
+        $this->prepare();
+
+        $this->url = JRoute::_('index.php?option=com_railway2&view=search');
+
+        parent::display();
+    }
+
+    public function prepare() {
+        $doc = JFactory::getDocument();
+        JHtml::_('jquery.framework');
+        $doc->addStyleSheet(JRoute::_('/media/com_railway2/css/style.css'));
+    }
 }

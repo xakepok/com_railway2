@@ -12,7 +12,7 @@ class JFormFieldRoad extends JFormFieldGroupedList  {
         $query = $db->getQuery(true);
         $query
             ->select('*')
-            ->from('#__railways')
+            ->from('#__rw2_railways')
             ->order('id');
         $db->setQuery($query);
         $roads = $db->loadObjectList('division');

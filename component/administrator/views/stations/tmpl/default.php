@@ -7,7 +7,7 @@ JHtml::_('behavior.tooltip');
     <?php echo $this->sidebar; ?>
 </div>
 <div id="j-main-container" class="span10">
-    <form action="<?php echo JRoute::_('index.php?option=com_railway2'); ?>" method="post" name="adminForm" id="adminForm">
+    <form action="<?php echo JRoute::_('index.php?option=com_railway2&view=stations'); ?>" method="post" name="adminForm" id="adminForm">
         <fieldset id="filter-bar">
             <?php echo $this->loadTemplate('filter');?>
         </fieldset>

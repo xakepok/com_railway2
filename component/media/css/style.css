@@ -7,3 +7,19 @@
 .station-table {
     width: 400px;
 }
+.raspSearchField {
+    width: 320px;
+}
+.raspSearchLayer {
+    width: 320px;
+    display: none;
+    max-height: 100px;
+    overflow: auto;
+    border: 1px solid #0b4209;
+    background-color: #b9ffb4;
+    font-family: Calibri;
+    padding-left: 3px;
+}
+.searchForm {
+    vertical-align: top;
+}
