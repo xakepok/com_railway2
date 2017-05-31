@@ -8,6 +8,20 @@ class Railway2ModelStation extends JModelAdmin {
         return JTable::getInstance($name, $prefix, $options);
     }
 
+    /* Получаем название станции */
+    public function getStationName() {
+        $dbo = $this->getDbo();
+        $id = JFactory::getApplication()->input->getInt('id');
+        $query = $dbo->getQuery(true);
+        $query
+            ->select('name')
+            ->from('#__rw2_station_names')
+            ->where('id = '.$id);
+        $dbo->setQuery($query);
+        $res = $dbo->loadObject();
+        return $res->name;
+    }
+
     public function getForm($data = array(), $loadData = true)
     {
         $form = $this->loadForm(

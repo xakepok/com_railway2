@@ -8,10 +8,11 @@ class Railway2ModelStations extends JModelList
         if (empty($config['filter_fields']))
         {
             $config['filter_fields'] = array(
-                'id', 'id',
-                'esr', 'esr',
-                'express', 'express',
-                'name', 'name',
+                '`s`.`id`', '`s`.`id`',
+                '`code`.`esr`', '`code`.`esr`',
+                '`code`.`express`', '`code`.`express`',
+                '`name`.`name`', '`name`.`name`',
+                '`dir`.`title`','`dir`.`title`'
             );
         }
         parent::__construct($config);
@@ -39,11 +40,11 @@ class Railway2ModelStations extends JModelList
         if (!empty($search))
         {
             $search = $db->quote('%' . $db->escape($search, true) . '%', false);
-            $query->where('name.name LIKE ' . $search . ' OR name.popularName LIKE ' . $search);
+            $query->where('`name`.`name` LIKE ' . $search . ' OR `name`.`popularName` LIKE ' . $search);
         }
 
         /* Сортировка */
-        $orderCol  = $this->state->get('list.ordering', 'name.name');
+        $orderCol  = $this->state->get('list.ordering', '`name`.`name`');
         $orderDirn = $this->state->get('list.direction', 'asc');
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -55,7 +56,7 @@ class Railway2ModelStations extends JModelList
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-        parent::populateState('name.name', 'asc');
+        parent::populateState('`name`.`name`', 'asc');
     }
 
     protected function getStoreId($id = '')

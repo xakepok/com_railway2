@@ -6,8 +6,8 @@
                 type="hidden"
         />
         <field
-                name="name"
-                type="text"
+                name="stationID"
+                type="stationName"
                 label="COM_RAILWAY2_STATION_NAME"
                 description="COM_RAILWAY2_STATION_NAME_DESC"
                 required="true"
@@ -15,108 +15,37 @@
                 labelclass="control-label"
         />
         <field
-                name="popularName"
-                type="text"
-                label="COM_RAILWAY2_STATION_POPULAR_NAME"
-                description="COM_RAILWAY2_STATION_POPULAR_NAME_DESC"
-                class="input-xlarge validate-popularName"
+                name="directionID"
+                type="direction"
+                label="COM_RAILWAY2_DIRECTION"
+                description="COM_RAILWAY2_DIRECTION"
+                class="input-xlarge"
                 labelclass="control-label"
         />
         <field
-                name="yandexSearchName"
+                name="isControlPoint"
+                type="list"
+                label="COM_RAILWAY2_CONTROL_POINT"
+                description="COM_RAILWAY2_CONTROL_POINT"
+                class="input-xlarge">
+                <option value="0">COM_RAILWAY2_NO</option>
+                <option value="1">COM_RAILWAY2_YES</option>
+        </field>
+        <field
+                name="indexID"
                 type="text"
-                label="COM_RAILWAY2_STATION_YANDEX_NAME"
-                description="COM_RAILWAY2_STATION_YANDEX_NAME_DESC"
-                class="input-xlarge validate-popularName"
+                label="COM_RAILWAY2_STATION_INDEX"
+                description="COM_RAILWAY2_STATION_INDEX"
+                class="input-xlarge"
                 labelclass="control-label"
         />
         <field
-                name="rzdName"
+                name="zoneID"
                 type="text"
-                label="COM_RAILWAY2_STATION_RZD_NAME"
-                description="COM_RAILWAY2_STATION_RZD_NAME_DESC"
-                class="input-xlarge validate-popularName"
+                label="COM_RAILWAY2_STATION_ZONE"
+                description="COM_RAILWAY2_STATION_ZONE"
+                class="input-xlarge"
                 labelclass="control-label"
-        />
-        <field
-                name="type"
-                type="category"
-                extension="com_railway2"
-                section="55"
-                label="COM_RAILWAY2_STATION_TYPE"
-                required="true"
-                class="input-xlarge"
-        />
-        <field
-                name="railway"
-                type="Road"
-                label="COM_RAILWAY2_RAILWAY_PART"
-                required="true"
-                class="input-xlarge"
-        />
-        <field
-                name="region"
-                type="Region"
-                label="COM_RAILWAY2_REGION"
-                required="true"
-                class="input-xlarge"
         />
     </fieldset>
-        <fieldset name="codes" label="COM_RAILWAY2_STATION_CODES" description="COM_RAILWAY2_STATION_CODES_DESCRIPTION">
-            <field
-                    name="express"
-                    type="text"
-                    label="COM_RAILWAY2_STATION_CODE_EXPRESS"
-                    description="COM_RAILWAY2_STATION_CODE_EXPRESS_DESC"
-                    required="true"
-                    class="input validate-express"
-                    validate="express"
-                    labelclass="control-label"
-            />
-            <field
-                    name="esr"
-                    type="text"
-                    label="COM_RAILWAY2_STATION_CODE_ESR"
-                    description="COM_RAILWAY2_STATION_CODE_ESR_DESC"
-                    required="true"
-                    class="input validate-esr"
-                    validate="esr"
-                    labelclass="control-label"
-            />
-            <field
-                    name="vkid"
-                    type="text"
-                    label="COM_RAILWAY2_STATION_VKID"
-                    description="COM_RAILWAY2_STATION_VKID_DESC"
-                    class="input validate-vkid"
-                    labelclass="control-label"
-            />
-        </fieldset>
-        <fieldset name="directions" label="COM_RAILWAY2_DIRECTIONS" description="COM_RAILWAY2_DIRECTIONS_DESCRIPTION">
-            <field
-                    name="direction_main"
-                    type="category"
-                    section="40"
-                    scope="directions"
-                    label="COM_RAILWAY2_DIRECTION_MAIN"
-                    description="COM_RAILWAY2_DIRECTION_MAIN"
-                    extension="com_railway2"
-                    class="validate-dirMain"
-                    required="true"
-            >
-                <option value="0">JOPTION_SELECT_CATEGORY</option>
-            </field>
-            <field
-                    name="direction_two"
-                    type="category"
-                    section="40"
-                    scope="directions"
-                    label="COM_RAILWAY2_DIRECTION_TWO"
-                    description="COM_RAILWAY2_DIRECTION_TWO"
-                    extension="com_railway2"
-                    class=""
-            >
-                <option value="0">JOPTION_SELECT_CATEGORY</option>
-            </field>
-        </fieldset>
 </form>

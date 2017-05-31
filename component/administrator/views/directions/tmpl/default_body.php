@@ -10,7 +10,8 @@ foreach ($this->items as $i => $svyaz) : ?>
             <?php echo $svyaz->id; ?>
         </td>
         <td>
-            <?php echo $svyaz->station; ?>
+            <?php $link = JRoute::_('index.php?option=com_railway2&view=direction&layout=edit&id='.$svyaz->id); ?>
+            <a href="<?php echo $link;?>"><?php echo $svyaz->station; ?></a>
         </td>
         <td>
             <?php echo $svyaz->direction; ?>

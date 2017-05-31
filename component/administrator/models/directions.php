@@ -8,8 +8,8 @@ class Railway2ModelDirections extends JModelList
         {
             $config['filter_fields'] = array(
                 'id', 'id',
-                'stationID', 'stationID',
-                'directionID', 'directionID'
+                '`s`.`name`', '`s`.`name`',
+                '`l`.`title`', '`l`.`title`'
             );
         }
         parent::__construct($config);
@@ -33,7 +33,7 @@ class Railway2ModelDirections extends JModelList
         }
 
         /* Сортировка */
-        $orderCol  = $this->state->get('list.ordering', 'ststionID');
+        $orderCol  = $this->state->get('list.ordering', '`s`.`name`');
         $orderDirn = $this->state->get('list.direction', 'asc');
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -46,7 +46,7 @@ class Railway2ModelDirections extends JModelList
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-        parent::populateState('id', 'asc');
+        parent::populateState('`s`.`name`', 'asc');
     }
 
     protected function getStoreId($id = '')

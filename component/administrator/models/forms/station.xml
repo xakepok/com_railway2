@@ -6,39 +6,6 @@
                 type="hidden"
         />
         <field
-                name="name"
-                type="text"
-                label="COM_RAILWAY2_STATION_NAME"
-                description="COM_RAILWAY2_STATION_NAME_DESC"
-                required="true"
-                class="input-xlarge validate-name"
-                labelclass="control-label"
-        />
-        <field
-                name="popularName"
-                type="text"
-                label="COM_RAILWAY2_STATION_POPULAR_NAME"
-                description="COM_RAILWAY2_STATION_POPULAR_NAME_DESC"
-                class="input-xlarge validate-popularName"
-                labelclass="control-label"
-        />
-        <field
-                name="yandexSearchName"
-                type="text"
-                label="COM_RAILWAY2_STATION_YANDEX_NAME"
-                description="COM_RAILWAY2_STATION_YANDEX_NAME_DESC"
-                class="input-xlarge validate-popularName"
-                labelclass="control-label"
-        />
-        <field
-                name="rzdName"
-                type="text"
-                label="COM_RAILWAY2_STATION_RZD_NAME"
-                description="COM_RAILWAY2_STATION_RZD_NAME_DESC"
-                class="input-xlarge validate-popularName"
-                labelclass="control-label"
-        />
-        <field
                 name="type"
                 type="StationType"
                 label="COM_RAILWAY2_STATION_TYPE"
@@ -60,34 +27,4 @@
                 class="input-xlarge"
         />
     </fieldset>
-        <fieldset name="codes" label="COM_RAILWAY2_STATION_CODES" description="COM_RAILWAY2_STATION_CODES_DESCRIPTION">
-            <field
-                    name="express"
-                    type="text"
-                    label="COM_RAILWAY2_STATION_CODE_EXPRESS"
-                    description="COM_RAILWAY2_STATION_CODE_EXPRESS_DESC"
-                    required="true"
-                    class="input validate-express"
-                    validate="express"
-                    labelclass="control-label"
-            />
-            <field
-                    name="esr"
-                    type="text"
-                    label="COM_RAILWAY2_STATION_CODE_ESR"
-                    description="COM_RAILWAY2_STATION_CODE_ESR_DESC"
-                    required="true"
-                    class="input validate-esr"
-                    validate="esr"
-                    labelclass="control-label"
-            />
-            <field
-                    name="vkid"
-                    type="text"
-                    label="COM_RAILWAY2_STATION_VKID"
-                    description="COM_RAILWAY2_STATION_VKID_DESC"
-                    class="input validate-vkid"
-                    labelclass="control-label"
-            />
-        </fieldset>
 </form>

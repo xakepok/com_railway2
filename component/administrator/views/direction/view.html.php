@@ -2,14 +2,13 @@
 defined('_JEXEC') or die;
 jimport('joomla.application.component.view');
 
-class Railway2ViewStation extends JViewLegacy {
+class Railway2ViewDirection extends JViewLegacy {
     protected $item, $form, $script, $stationName;
 
     public function display($tmp = null) {
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
-        $this->stationName = $this->get('StationName');
 
         $this->addToolbar();
 
@@ -19,13 +18,12 @@ class Railway2ViewStation extends JViewLegacy {
 
     protected function addToolbar() {
         JFactory::getApplication()->input->set('hidemainmenu', true);
-        $isNew = ($this->item->id == 0);
-        $title = $isNew ? JText::_('COM_RAILWAY2_ADDING_STATION') : JText::_('COM_RAILWAY2_EDITION_STATION').' '.$this->stationName;
+        $title = JText::_('COM_RAILWAY2_DIRECTIONS_DESCRIPTION');
 
-        JToolbarHelper::title($title, 'station');
-        JToolbarHelper::apply('station.apply', 'JTOOLBAR_APPLY');
-        JToolbarHelper::save('station.save');
-        JToolbarHelper::cancel('station.cancel', 'JTOOLBAR_CLOSE');
+        JToolbarHelper::title($title, 'direction');
+        JToolbarHelper::apply('direction.apply', 'JTOOLBAR_APPLY');
+        JToolbarHelper::save('direction.save');
+        JToolbarHelper::cancel('direction.cancel', 'JTOOLBAR_CLOSE');
     }
 
     protected function setDocument() {
