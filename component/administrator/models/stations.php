@@ -22,25 +22,28 @@ class Railway2ModelStations extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('s.id, s.esr, s.express, s.popularName, t.title as `type`, `dir`.`directionID` as `directionID`, `isControlPoint`, cat.title as `direction`, s.yandexSearchName, s.rzdName, reg.region, road.road, road.division, s.name, `indexID`, `zoneID`')
-            ->from('#__rw2_stations as s')
-            ->where('s.railway<>0 AND express<>0')
-            ->leftJoin('#__rw2_directions as dir ON `dir`.`stationID`=`s`.`id`')
-            ->leftJoin('#__rw2_directions_list as cat ON `cat`.`id`=`directionID`')
-            ->leftJoin('#__rw2_station_types as t ON `t`.`id`=`s`.`type`')
-            ->leftJoin('#__regions as reg ON `reg`.`id`=`s`.`region`')
-            ->leftJoin('#__rw2_railways as road ON `road`.`id`=`s`.`railway`');
+            ->select('`s`.`id`, `code`.`esr`, `code`.`express`, `name`.`name`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`')
+            ->from('#__rw2_stations as `s`')
+            ->where('`code`.`express` != 0 AND `railway` != 0')
+            ->leftJoin('#__rw2_station_codes as `code` ON `code`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_station_names as `name` ON `name`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_station_types as `t` ON `t`.`id` = `s`.`type`')
+            ->leftJoin('#__rw2_regions as `reg` ON `reg`.`id` = `s`.`region`')
+            ->leftJoin('#__rw2_railways as `rw` ON `rw`.`id` = `s`.`railway`')
+            ->leftJoin('#__rw2_directions as `d` ON `d`.`stationID` = `s`.`id`')
+            ->leftJoin('#__rw2_directions_list as `dir` ON `dir`.`id` = `d`.`directionID`')
+        ;
 
         /* Фильтр */
         $search = $this->getState('filter.search');
         if (!empty($search))
         {
             $search = $db->quote('%' . $db->escape($search, true) . '%', false);
-            $query->where('s.name LIKE ' . $search . ' OR s.popularName LIKE ' . $search);
+            $query->where('name.name LIKE ' . $search . ' OR name.popularName LIKE ' . $search);
         }
 
         /* Сортировка */
-        $orderCol  = $this->state->get('list.ordering', 'name');
+        $orderCol  = $this->state->get('list.ordering', 'name.name');
         $orderDirn = $this->state->get('list.direction', 'asc');
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -52,7 +55,7 @@ class Railway2ModelStations extends JModelList
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
-        parent::populateState('name', 'asc');
+        parent::populateState('name.name', 'asc');
     }
 
     protected function getStoreId($id = '')
