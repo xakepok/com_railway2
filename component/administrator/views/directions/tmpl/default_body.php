@@ -10,7 +10,7 @@ foreach ($this->items as $i => $svyaz) : ?>
             <?php echo $svyaz->id; ?>
         </td>
         <td>
-            <?php $link = JRoute::_('index.php?option=com_railway2&view=direction&layout=edit&id='.$svyaz->id); ?>
+            <?php $link = JRoute::_('index.php?option=com_railway2&view=direction&layout=edit&id='.$svyaz->id.'&stationID='.$svyaz->stationID); ?>
             <a href="<?php echo $link;?>"><?php echo $svyaz->station; ?></a>
         </td>
         <td>
@@ -24,6 +24,9 @@ foreach ($this->items as $i => $svyaz) : ?>
         </td>
         <td>
             <?php echo $svyaz->zoneID; ?>
+        </td>
+        <td>
+            <?php echo ($svyaz->distance != null) ? $svyaz->distance.' '.JText::_('COM_RAILWAY2_KM') : JText::_('COM_RAILWAY2_UNKNOWN'); ?>
         </td>
     </tr>
 <?php endforeach; ?>

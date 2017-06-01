@@ -9,13 +9,13 @@ class JFormFieldStationName extends JFormFieldList  {
     protected function getOptions()
     {
         $db = JFactory::getDbo();
-        $id = JFactory::getApplication()->input->getInt('id', 0);
+        $stationID = JFactory::getApplication()->input->getInt('stationID', 0);
         $query = $db->getQuery(true);
         $query
             ->select('id, name')
             ->from('#__rw2_station_names')
             ->order('name');
-        //if ($id != 0) $query->where('id = '.$id);
+        if ($stationID != 0) $query->where('id = '.$stationID);
         $db->setQuery($query);
         $names = $db->loadObjectList();
 

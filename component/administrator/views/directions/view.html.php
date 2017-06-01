@@ -25,7 +25,7 @@ class Railway2ViewDirections extends JViewLegacy
 
 	private function toolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_RAILWAY2_DIRECTIONS'), 'directions');
+		JToolBarHelper::title(JText::_('COM_RAILWAY2_DIRECTIONS_CONNECTIONS'), 'directions');
 
 		// Options button.
 		if (JFactory::getUser()->authorise('core.admin', 'com_railway2'))

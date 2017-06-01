@@ -8,6 +8,8 @@ class TableRw2_directions extends JTable {
     var $isControlPoint = null;
     var $indexID = null;
     var $zoneID = null;
+    var $level = null;
+    var $distance = null;
 
     public function __construct(&$db) {
         parent::__construct('#__rw2_directions', 'id', $db);

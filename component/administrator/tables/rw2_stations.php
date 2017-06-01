@@ -6,8 +6,6 @@ class TableRw2_stations extends JTable {
     var $railway = null;
     var $region = null;
     var $type = null;
-    var $user = null;
-    var $moddate = null;
 
     public function __construct(&$db) {
         parent::__construct('#__rw2_stations', 'id', $db);

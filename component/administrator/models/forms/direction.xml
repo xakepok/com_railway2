@@ -38,6 +38,7 @@
                 description="COM_RAILWAY2_STATION_INDEX"
                 class="input-xlarge"
                 labelclass="control-label"
+                autocomplete="off"
         />
         <field
                 name="zoneID"
@@ -46,6 +47,28 @@
                 description="COM_RAILWAY2_STATION_ZONE"
                 class="input-xlarge"
                 labelclass="control-label"
+                autocomplete="off"
+        />
+        <field
+                name="level"
+                type="list"
+                label="COM_RAILWAY2_LEVEL"
+                description="COM_RAILWAY2_LEVEL"
+                class="input-xlarge">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </field>
+        <field
+                name="distance"
+                type="text"
+                label="COM_RAILWAY2_DISTANCE_KM"
+                description="COM_RAILWAY2_DISTANCE_KM"
+                class="input-xlarge"
+                labelclass="control-label"
+                autocomplete="off"
         />
     </fieldset>
 </form>
