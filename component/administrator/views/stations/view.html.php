@@ -3,7 +3,7 @@ defined('_JEXEC') or die;
 
 class Railway2ViewStations extends JViewLegacy
 {
-	protected $helper, $items, $pagination, $state, $sidebar = '', $dirs;
+	protected $helper, $items, $pagination, $state, $sidebar = '', $dirs, $timeQuery;
 	public function display($tpl = null)
 	{
 		$this->toolbar();
@@ -14,6 +14,7 @@ class Railway2ViewStations extends JViewLegacy
 		$this->sidebar = JHtmlSidebar::render();
 
         $this->items = $this->get('Items');
+        $this->timeQuery = time() - $tStart;
         $this->pagination = $this->get('Pagination');
         $this->state = $this->get('State');
 

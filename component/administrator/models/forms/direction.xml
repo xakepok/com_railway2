@@ -36,7 +36,7 @@
                 type="text"
                 label="COM_RAILWAY2_STATION_INDEX"
                 description="COM_RAILWAY2_STATION_INDEX"
-                class="input-xlarge"
+                class="input-xlarge validate-index"
                 labelclass="control-label"
                 autocomplete="off"
         />
@@ -45,7 +45,7 @@
                 type="text"
                 label="COM_RAILWAY2_STATION_ZONE"
                 description="COM_RAILWAY2_STATION_ZONE"
-                class="input-xlarge"
+                class="input-xlarge validate-zone"
                 labelclass="control-label"
                 autocomplete="off"
         />
@@ -67,7 +67,7 @@
                 label="COM_RAILWAY2_DISTANCE_KM"
                 description="COM_RAILWAY2_DISTANCE_KM"
                 class="input-xlarge"
-                labelclass="control-label"
+                labelclass="control-label validate-distance"
                 autocomplete="off"
         />
     </fieldset>

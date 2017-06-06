@@ -1,18 +1,21 @@
 <?php
 defined('_JEXEC') or die;
 
-class Railway2ModelStations extends JModelList
+class Railway2ModelSynonyms extends JModelList
 {
     public function __construct(array $config)
     {
         if (empty($config['filter_fields']))
         {
             $config['filter_fields'] = array(
-                '`s`.`id`', '`s`.`id`',
-                '`code`.`esr`', '`code`.`esr`',
-                '`code`.`express`', '`code`.`express`',
-                '`s`.`name`', '`s`.`name`',
-                '`dir`.`title`','`dir`.`title`'
+                '`s`.`id`',
+                '`s`.`name`',
+                '`c`.`esr`',
+                '`c`.`express`',
+                '`n`.`popularName`',
+                '`n`.`yandexName`',
+                '`n`.`rzdName`',
+                '`dir`.`title`'
             );
         }
         parent::__construct($config);
@@ -23,16 +26,14 @@ class Railway2ModelStations extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`s`.`id`, `s`.`name`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`')
-            ->from('#__rw2_stations as `s`')
-            ->where('`code`.`express` != 0 AND `railway` != 0')
-            ->leftJoin('#__rw2_station_codes as `code` ON `code`.`id` = `s`.`id`')
-            ->leftJoin('#__rw2_station_names as `name` ON `name`.`id` = `s`.`id`')
-            ->leftJoin('#__rw2_station_types as `t` ON `t`.`id` = `s`.`type`')
-            ->leftJoin('#__rw2_regions as `reg` ON `reg`.`id` = `s`.`region`')
-            ->leftJoin('#__rw2_railways as `rw` ON `rw`.`id` = `s`.`railway`')
-            ->leftJoin('#__rw2_directions as `d` ON `d`.`stationID` = `s`.`id`')
-            ->leftJoin('#__rw2_directions_list as `dir` ON `dir`.`id` = `d`.`directionID`')
+           ->select('`s`.`id`, `s`.`name`, `c`.`esr`, `c`.`express`, `n`.`popularName`, `n`.`yandexName`, `n`.`rzdName`, `r`.`region`, `dir`.`title` as `direction`')
+            ->from('#__rw2_stations AS `s`')
+            ->where('`s`.`railway` != 0 AND `c`.`express` != 0')
+            ->innerJoin('#__rw2_station_names AS `n` ON `n`.`id` = `s`.`id`')
+            ->innerJoin('#__rw2_station_codes AS `c` ON `c`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_directions AS `d` ON `d`.`stationID` = `s`.`id`')
+            ->leftJoin('#__rw2_directions_list AS `dir` ON `dir`.`id` = `d`.`directionID`')
+            ->leftJoin('#__rw2_regions AS `r` ON `r`.`id` = `s`.`region`')
         ;
 
         /* Фильтр */
@@ -40,7 +41,7 @@ class Railway2ModelStations extends JModelList
         if (!empty($search))
         {
             $search = $db->quote('%' . $db->escape($search, true) . '%', false);
-            $query->where('`s`.`name` LIKE ' . $search . ' OR `name`.`popularName` LIKE ' . $search);
+            $query->where('`s`.`name` LIKE ' . $search . ' OR `n`.`popularName` LIKE ' . $search);
         }
 
         /* Сортировка */

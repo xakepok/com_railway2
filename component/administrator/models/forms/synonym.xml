@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_railway2/models/rules">
+    <fieldset name="names">
+        <field
+                name="id"
+                type="stationName"
+                label="COM_RAILWAY2_STATION_NAME_DESC"
+                required="true"
+                class="input-xlarge"
+        />
+        <field
+                name="popularName"
+                type="text"
+                label="COM_RAILWAY2_STATION_POPULAR_NAME"
+                required="true"
+                class="input-xlarge validate-name"
+                autocomplete="off"
+        />
+        <field
+                name="yandexName"
+                type="text"
+                label="COM_RAILWAY2_STATION_YANDEX_NAME"
+                class="input-xlarge validate-name"
+                autocomplete="off"
+        />
+        <field
+                name="rzdName"
+                type="text"
+                label="COM_RAILWAY2_STATION_RZD_NAME"
+                class="input-xlarge validate-name"
+                autocomplete="off"
+        />
+    </fieldset>
+</form>

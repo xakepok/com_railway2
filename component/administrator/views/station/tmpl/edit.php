@@ -3,7 +3,6 @@ defined('_JEXEC') or die;
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
-//$params = $this->form->getFieldsets('params');
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function(task) {

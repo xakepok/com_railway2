@@ -2,8 +2,8 @@
 defined('_JEXEC') or die;
 jimport('joomla.application.component.modeladmin');
 
-class Railway2ModelStation extends JModelAdmin {
-    public function getTable($name = 'Rw2_stations', $prefix = 'Table', $options = array())
+class Railway2ModelSynonym extends JModelAdmin {
+    public function getTable($name = 'Rw2_station_names', $prefix = 'Table', $options = array())
     {
         return JTable::getInstance($name, $prefix, $options);
     }
@@ -11,7 +11,7 @@ class Railway2ModelStation extends JModelAdmin {
     public function getForm($data = array(), $loadData = true)
     {
         $form = $this->loadForm(
-            $this->option.'.station', 'station', array('control' => 'jform', 'load_data' => $loadData)
+            $this->option.'.synonym', 'synonym', array('control' => 'jform', 'load_data' => $loadData)
         );
         if (empty($form))
         {
@@ -23,7 +23,7 @@ class Railway2ModelStation extends JModelAdmin {
 
     protected function loadFormData()
     {
-        $data = JFactory::getApplication()->getUserState($this->option.'.edit.station.data', array());
+        $data = JFactory::getApplication()->getUserState($this->option.'.edit.synonym.data', array());
         if (empty($data))
         {
             $data = $this->getItem();
@@ -34,6 +34,6 @@ class Railway2ModelStation extends JModelAdmin {
 
     public function getScript()
     {
-        return 'administrator/components/' . $this->option . '/models/forms/station.js';
+        return 'administrator/components/' . $this->option . '/models/forms/synonym.js';
     }
 }

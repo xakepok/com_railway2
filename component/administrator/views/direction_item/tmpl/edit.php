@@ -6,17 +6,17 @@ JHtml::_('formbehavior.chosen', 'select');
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function(task) {
-        /*if (task == 'direction.cancel' || document.formvalidator.isValid(document.id('direction-form'))) {*/
-            Joomla.submitform(task, document.getElementById('direction-form'));
-        //}
+        if (task == 'direction_item.cancel' || document.formvalidator.isValid(document.id('direction_item-form'))) {
+            Joomla.submitform(task, document.getElementById('direction_item-form'));
+        }
     }
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_railway2&view=direction&layout=edit&id=' . (int)$this->item->id); ?>"
-      method="post" name="adminForm" id="direction-form" xmlns="http://www.w3.org/1999/html" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_railway2&view=direction_item&layout=edit&id=' . (int)$this->item->id); ?>"
+      method="post" name="adminForm" id="direction_item-form" xmlns="http://www.w3.org/1999/html" class="form-validate">
     <div class="row-fluid">
         <div class="span12 form-horizontal">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_DIRECTIONS_DESCRIPTION');?></a></li>
+                <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_DIRECTION');?></a></li>
             </ul>
 
             <div class="tab-content">

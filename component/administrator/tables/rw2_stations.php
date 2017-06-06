@@ -4,6 +4,7 @@ jimport('joomla.database.table');
 class TableRw2_stations extends JTable {
     var $id = null;
     var $railway = null;
+    var $name = null;
     var $region = null;
     var $type = null;
 

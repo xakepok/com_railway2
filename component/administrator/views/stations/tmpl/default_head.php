@@ -17,7 +17,7 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_CODE_EXPRESS', '`code`.`express`', $listDirn, $listOrder); ?>
     </th>
     <th class="station-table">
-        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION', '`name`.`name`', $listDirn, $listOrder); ?>
+        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION', '`s`.`name`', $listDirn, $listOrder); ?>
     </th>
     <th>
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_DIRECTION', '`dir`.`title`', $listDirn, $listOrder); ?>

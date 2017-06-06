@@ -6,17 +6,17 @@ JHtml::_('formbehavior.chosen', 'select');
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function(task) {
-        /*if (task == 'direction.cancel' || document.formvalidator.isValid(document.id('direction-form'))) {*/
-            Joomla.submitform(task, document.getElementById('direction-form'));
-        //}
+        if (task == 'synonym.cancel' || document.formvalidator.isValid(document.id('synonym-form'))) {
+            Joomla.submitform(task, document.getElementById('synonym-form'));
+        }
     }
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_railway2&view=direction&layout=edit&id=' . (int)$this->item->id); ?>"
-      method="post" name="adminForm" id="direction-form" xmlns="http://www.w3.org/1999/html" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_railway2&view=synonym&layout=edit&id=' . (int)$this->item->id); ?>"
+      method="post" name="adminForm" id="synonym-form" xmlns="http://www.w3.org/1999/html" class="form-validate">
     <div class="row-fluid">
         <div class="span12 form-horizontal">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_DIRECTIONS_DESCRIPTION');?></a></li>
+                <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_SYNONYMS');?></a></li>
             </ul>
 
             <div class="tab-content">

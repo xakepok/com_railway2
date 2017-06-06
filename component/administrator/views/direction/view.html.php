@@ -3,7 +3,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.view');
 
 class Railway2ViewDirection extends JViewLegacy {
-    protected $item, $form, $script, $stationName;
+    protected $item, $form, $script;
 
     public function display($tmp = null) {
         $this->form = $this->get('Form');
@@ -11,9 +11,9 @@ class Railway2ViewDirection extends JViewLegacy {
         $this->script = $this->get('Script');
 
         $this->addToolbar();
+        $this->setDocument();
 
         parent::display($tpl);
-        $this->setDocument();
     }
 
     protected function addToolbar() {

@@ -2,14 +2,13 @@
 defined('_JEXEC') or die;
 jimport('joomla.application.component.view');
 
-class Railway2ViewStation extends JViewLegacy {
+class Railway2ViewDirection_item extends JViewLegacy {
     protected $item, $form, $script, $stationName;
 
     public function display($tmp = null) {
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
-        $this->stationName = $this->item->name;
 
         $this->addToolbar();
 
@@ -19,13 +18,13 @@ class Railway2ViewStation extends JViewLegacy {
 
     protected function addToolbar() {
         JFactory::getApplication()->input->set('hidemainmenu', true);
-        $isNew = ($this->item->id == 0);
-        $title = $isNew ? JText::_('COM_RAILWAY2_ADDING_STATION') : JText::_('COM_RAILWAY2_EDITION_STATION').' '.$this->stationName;
+        //$isNew = ($this->item->id == 0);
+        $title = JText::_('COM_RAILWAY2_DIRECTION_LIST');
 
-        JToolbarHelper::title($title, 'station');
-        JToolbarHelper::apply('station.apply', 'JTOOLBAR_APPLY');
-        JToolbarHelper::save('station.save');
-        JToolbarHelper::cancel('station.cancel', 'JTOOLBAR_CLOSE');
+        JToolbarHelper::title($title, 'direction_list');
+        JToolbarHelper::apply('direction_item.apply', 'JTOOLBAR_APPLY');
+        JToolbarHelper::save('direction_item.save');
+        JToolbarHelper::cancel('direction_item.cancel', 'JTOOLBAR_CLOSE');
     }
 
     protected function setDocument() {

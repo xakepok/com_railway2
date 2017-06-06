@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class Railway2ViewDirections extends JViewLegacy
+class Railway2ViewDirection_list extends JViewLegacy
 {
 	protected $helper, $items, $pagination, $sidebar = '';
 	public function display($tpl = null)
@@ -12,7 +12,7 @@ class Railway2ViewDirections extends JViewLegacy
 
 		// Show the sidebar
 		$this->helper = new Railway2Helper;
-		$this->helper->addSubmenu('directions');
+		$this->helper->addSubmenu('direction_list');
 		$this->sidebar = JHtmlSidebar::render();
 
         $this->items = $this->get('Items');
@@ -25,14 +25,14 @@ class Railway2ViewDirections extends JViewLegacy
 
 	private function toolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_RAILWAY2_DIRECTIONS_CONNECTIONS'), 'directions');
+		JToolBarHelper::title(JText::_('COM_RAILWAY2_DIRECTION_LIST'), 'direction_list');
 
 		// Options button.
 		if (JFactory::getUser()->authorise('core.admin', 'com_railway2'))
 		{
-		    JToolbarHelper::addNew('direction.add');
-            JToolbarHelper::editList('direction.edit');
-            JToolbarHelper::deleteList('', 'directions.delete');
+		    JToolbarHelper::addNew('direction_item.add');
+            JToolbarHelper::editList('direction_item.edit');
+            JToolbarHelper::deleteList('direction_list.delete');
 			JToolBarHelper::preferences('com_railway2');
 		}
 	}
