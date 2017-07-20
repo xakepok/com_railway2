@@ -24,6 +24,16 @@
                 autocomplete="off"
         />
         <field
+                name="telegram"
+                type="list"
+                label="COM_RAILWAY2_TELEGRAM"
+                class="input-xlarge"
+                description="COM_RAILWAY2_TELEGRAM_AVALIBLE"
+                >
+                <option value="0">COM_RAILWAY2_TELEGRAM_NOAVALIBLE</option>
+                <option value="1">COM_RAILWAY2_TELEGRAM_AVALIBLE</option>
+        </field>
+        <field
                 name="color"
                 type="color"
                 label="COM_RAILWAY2_COLOR"

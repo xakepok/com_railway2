@@ -9,6 +9,27 @@ class Railway2Helper
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_DIRECTIONS_CONNECTIONS'), 'index.php?option=com_railway2&view=directions', $vName == 'directions');
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_SYNONYMS'), 'index.php?option=com_railway2&view=synonyms', $vName == 'synonyms');
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_DIRECTION_LIST'), 'index.php?option=com_railway2&view=direction_list', $vName == 'direction_list');
+        JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_STATION_DESC_TIME'), 'index.php?option=com_railway2&view=tickets', $vName == 'tickets');
         //JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_railway2', $vName == 'categories');
 	}
+
+	/* Рузультат времени работы касс на направлении приводим в читабельный вид */
+	static function parseCashDesc($result) {
+        $stations = array();
+        $str = "";
+        foreach ($result as $res) {
+            if (!isset($stations[$res['name']])) $stations[$res['name']] = array();
+            if ($res['time_1'] == null && $res['time_2'] == null) {
+                $stations[$res['name']][] = JText::_('COM_RAILWAY2_STATION_DESC_NO');
+            } else {
+                $start = explode(':', $res['time_1']);
+                $end = explode(':', $res['time_2']);
+                $stations[$res['name']][] = $start[0].'.'.$start[1].' - '.$end[0].'.'.$end[1];
+            }
+        }
+        foreach ($stations as $st => $desc) {
+            $str .= "<b>".$st."</b>: ".implode(', ', $desc)."\n";
+        }
+        return $str;
+    }
 }

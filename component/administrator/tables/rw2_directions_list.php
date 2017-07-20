@@ -5,6 +5,8 @@ class TableRw2_directions_list extends JTable {
     var $id = null;
     var $alias = null;
     var $title = null;
+    var $parity = null;
+    var $telegram = null;
     var $color = null;
 
     public function __construct(&$db) {
