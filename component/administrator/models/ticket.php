@@ -36,11 +36,13 @@ class Railway2ModelTicket extends JModelAdmin {
     {
         if (!strlen($table->time_1)) $table->time_1 = NULL;
         if (!strlen($table->time_2)) $table->time_2 = NULL;
+        if (!strlen($table->turnstiles)) $table->turnstiles = NULL;
+        if (!strlen($table->detour)) $table->detour = NULL;
         parent::prepareTable($table);
     }
 
     public function getScript()
     {
-        return 'administrator/components/' . $this->option . '/models/forms/station.js';
+        return 'administrator/components/' . $this->option . '/models/forms/ticket.js';
     }
 }

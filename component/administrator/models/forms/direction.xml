@@ -18,7 +18,7 @@
                 name="directionID"
                 type="direction"
                 label="COM_RAILWAY2_DIRECTION"
-                description="COM_RAILWAY2_DIRECTION"
+                description="COM_RAILWAY2_DIRECTION_DESCIPTION"
                 class="input-xlarge"
                 labelclass="control-label"
         />
@@ -26,7 +26,7 @@
                 name="isControlPoint"
                 type="list"
                 label="COM_RAILWAY2_CONTROL_POINT"
-                description="COM_RAILWAY2_CONTROL_POINT"
+                description="COM_RAILWAY2_CONTROL_POINT_DESCRIPTION"
                 class="input-xlarge">
                 <option value="0">COM_RAILWAY2_NO</option>
                 <option value="1">COM_RAILWAY2_YES</option>
@@ -35,7 +35,7 @@
                 name="indexID"
                 type="text"
                 label="COM_RAILWAY2_STATION_INDEX"
-                description="COM_RAILWAY2_STATION_INDEX"
+                description="COM_RAILWAY2_STATION_INDEX_DESCRIPTION"
                 class="input-xlarge validate-index"
                 labelclass="control-label"
                 autocomplete="off"
@@ -44,7 +44,7 @@
                 name="zoneID"
                 type="text"
                 label="COM_RAILWAY2_STATION_ZONE"
-                description="COM_RAILWAY2_STATION_ZONE"
+                description="COM_RAILWAY2_STATION_ZONE_DESCRIPTION"
                 class="input-xlarge validate-zone"
                 labelclass="control-label"
                 autocomplete="off"
@@ -53,7 +53,7 @@
                 name="level"
                 type="list"
                 label="COM_RAILWAY2_LEVEL"
-                description="COM_RAILWAY2_LEVEL"
+                description="COM_RAILWAY2_LEVEL_DESCRIPTION"
                 class="input-xlarge">
             <option value="0">0</option>
             <option value="1">1</option>
@@ -65,7 +65,7 @@
                 name="distance"
                 type="text"
                 label="COM_RAILWAY2_DISTANCE_KM"
-                description="COM_RAILWAY2_DISTANCE_KM"
+                description="COM_RAILWAY2_DISTANCE_KM_EDSCRIPTION"
                 class="input-xlarge"
                 labelclass="control-label validate-distance"
                 autocomplete="off"

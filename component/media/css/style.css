@@ -23,3 +23,11 @@
 .searchForm {
     vertical-align: top;
 }
+.station-title {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.station-info-title {
+    font-weight: bold;
+    font-size: 1.1em;
+}

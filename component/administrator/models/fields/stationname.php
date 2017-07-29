@@ -15,10 +15,11 @@ class JFormFieldStationName extends JFormFieldList  {
 
         $query = $db->getQuery(true);
         $query
-            ->select('`s`.`id`, `s`.`name`, `rw`.`road`, `c`.`express`')
+            ->select('`s`.`id`, `s`.`name`, `rw`.`road`, `c`.`express`, `r`.`region`')
             ->from('#__rw2_stations as `s`')
             ->leftJoin('#__rw2_railways AS `rw` ON `rw`.`id` = `s`.`railway`')
             ->leftJoin('#__rw2_station_codes AS `c` ON `c`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_regions AS `r` ON `r`.`id`=`s`.`region`')
             ->where('`c`.`express` != 0 AND `s`.`railway` != 0')
             ->order('`s`.`name`');
         if ($stationID != 0) $query->where('`s`.`id` = '.$stationID);
@@ -33,7 +34,7 @@ class JFormFieldStationName extends JFormFieldList  {
 
         if ($names) {
             foreach ($names as $name) {
-                $options[] = JHtml::_('select.option', $name->id, $name->name.' ('.$name->road.' '.JText::_('COM_RAILWAY2_ZD').') '.$name->express);
+                $options[] = JHtml::_('select.option', $name->id, $name->name.' ('.$name->road.' '.JText::_('COM_RAILWAY2_ZD').', '.$name->region.') '.$name->express);
             }
         }
 

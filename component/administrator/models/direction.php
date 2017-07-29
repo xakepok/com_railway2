@@ -32,6 +32,12 @@ class Railway2ModelDirection extends JModelAdmin {
         return $data;
     }
 
+    protected function prepareTable($table)
+    {
+        if (!strlen($table->zoneID)) $table->zoneID = NULL;
+        parent::prepareTable($table);
+    }
+
     public function getScript()
     {
         return 'administrator/components/' . $this->option . '/models/forms/direction.js';

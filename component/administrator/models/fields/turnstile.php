@@ -12,7 +12,7 @@ class JFormFieldTurnstile extends JFormFieldList  {
         $query = $db->getQuery(true);
         $query
             ->select('*')
-            ->from('#__rw2_station_types')
+            ->from('#__rw2_turnstile_variants')
             ->order('id');
         $db->setQuery($query);
         $regions = $db->loadObjectList();

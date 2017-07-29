@@ -23,10 +23,19 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $station->direction; ?>
         </td>
         <td>
-            <?php echo ($station->time_1 != null) ? $station->time_1 : JText::_('COM_RAILWAY2_STATION_DESC_NO'); ?>
+            <?php
+            $text_1 = $text_2 = "";
+            if ($station->turnstiles != null) {
+                $text_1 = $text_2 = JText::_('COM_RAILWAY2_STATION_TURNSTILE');
+            } else {
+                $text_1 = ($station->time_1 != null) ? $station->time_1 : JText::_('COM_RAILWAY2_STATION_DESC_NO');
+                $text_2 = ($station->time_2 != null) ? $station->time_2 : JText::_('COM_RAILWAY2_STATION_DESC_NO');
+            }
+            ?>
+            <?php echo $text_1; ?>
         </td>
         <td>
-            <?php echo ($station->time_2 != null) ? $station->time_2 : JText::_('COM_RAILWAY2_STATION_DESC_NO'); ?>
+            <?php echo $text_2; ?>
         </td>
         <td>
             <?php echo $station->region; ?>

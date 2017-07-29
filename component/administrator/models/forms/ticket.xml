@@ -13,6 +13,13 @@
                 class="input-xlarge"
         />
         <field
+                name="turnstiles"
+                type="Turnstile"
+                label="COM_RAILWAY2_STATION_TURNSTILE"
+                description="COM_RAILWAY2_STATION_TURNSTILE_DESC"
+                class="input-xlarge"
+        />
+        <field
                 name="time_1"
                 type="text"
                 label="COM_RAILWAY2_STATION_DESC_START"
@@ -28,6 +35,14 @@
                 description="COM_RAILWAY2_STATION_DESC_TIME_DESC"
                 hint="COM_RAILWAY2_STATION_DESC_TIME_HINT"
                 class="input-xlarge validate-desctime"
+                autocomplete="off"
+        />
+        <field
+                name="detour"
+                type="editor"
+                label="COM_RAILWAY2_DETOUR"
+                description="COM_RAILWAY2_DETOUR_DESCRIPTION"
+                filter="raw"
                 autocomplete="off"
         />
     </fieldset>

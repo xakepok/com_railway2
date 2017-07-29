@@ -14,4 +14,9 @@ class TableRw2_directions extends JTable {
     public function __construct(&$db) {
         parent::__construct('#__rw2_directions', 'id', $db);
     }
+
+    public function store($updateNulls = false)
+    {
+        return parent::store(true);
+    }
 }
