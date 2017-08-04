@@ -9,8 +9,17 @@ class Railway2ModelStation extends JModelList {
         parent::__construct($config);
     }
 
+    public function getRasp() {
+        $modelRasp = JModelLegacy::getInstance('Yandexrasp', 'Railway2Model');
+        $modelRasp->setESR(60800);
+        return $modelRasp->getESR();
+    }
+
     /* Ближайшая станция без касс */
     public function getNearSafe() {
+        if ($this->stationID == 0) {
+            return false;
+        }
         $result = array();
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
@@ -20,6 +29,7 @@ class Railway2ModelStation extends JModelList {
             ->where("`stationID` = {$this->stationID}");
         $db->setQuery($query, 0, 1);
         $station = $db->loadObject();
+        if (empty($station)) return false;
         $query = $db->getQuery(true);
         $query
             ->select('`dir`.`stationID`, `st`.`name`')
@@ -29,7 +39,8 @@ class Railway2ModelStation extends JModelList {
             ->where("`dir`.`indexID` > {$station->indexID}")
             ->where("`dir`.`directionID` = {$station->directionID}")
             ->where('`t`.`time_1` IS NULL')
-            ->where('`t`.`turnstiles` IS NULL');
+            ->where('`t`.`turnstiles` IS NULL')
+            ->order('`dir`.`indexID` ASC');
         $db->setQuery($query, 0, 1);
         $tmp = $db->loadObjectList();
         if (!empty($tmp[0])) array_push($result, $tmp[0]);
@@ -42,7 +53,8 @@ class Railway2ModelStation extends JModelList {
             ->where("`dir`.`indexID` < {$station->indexID}")
             ->where("`dir`.`directionID` = {$station->directionID}")
             ->where('`t`.`time_1` IS NULL')
-            ->where('`t`.`turnstiles` IS NULL');
+            ->where('`t`.`turnstiles` IS NULL')
+            ->order('`dir`.`indexID` DESC');
         $db->setQuery($query, 0, 1);
         $tmp = $db->loadObjectList();
         if (!empty($tmp[0])) array_push($result, $tmp[0]);
@@ -51,6 +63,9 @@ class Railway2ModelStation extends JModelList {
 
     /* Кассы */
     public function getDesc() {
+        if ($this->stationID == 0) {
+            return false;
+        }
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query

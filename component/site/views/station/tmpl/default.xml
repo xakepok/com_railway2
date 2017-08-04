@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_RAILWAY2_RAILWAY2">
+	<layout title="COM_RAILWAY2_STATION">
 		<message>
-			<![CDATA[COM_RAILWAY2_RAILWAY2_DESC_MENU]]>
+			<![CDATA[COM_RAILWAY2_STATION_DESCRIPTION]]>
 		</message>
 	</layout>
 </metadata>

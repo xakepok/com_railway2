@@ -1,22 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
+	<fieldset name="yandex" label="COM_RAILWAY2_YANDEXAPI" description="COM_RAILWAY2_YANDEXAPI">
+		<field
+			name="yandex-rasp-api-key"
+			type="text"
+			label="COM_RAILWAY2_YANDEX_API_RASP_KEY"
+			description="COM_RAILWAY2_YANDEX_API_RASP_KEY_DESC"
+			component="com_railway2"
+			section="component">
+		</field>
+		<field
+			name="yandex-rasp-api-url"
+			type="text"
+			label="COM_RAILWAY2_YANDEX_API_RASP_URL"
+			description="COM_RAILWAY2_YANDEX_API_RASP_URL_DESC"
+			component="com_railway2"
+			section="component">
+		</field>
+		<field
+			name="yandex-rasp-api-format"
+			type="list"
+			label="COM_RAILWAY2_YANDEX_API_RASP_FORMAT"
+			description="COM_RAILWAY2_YANDEX_API_RASP_FORMAT_DESC"
+			component="com_railway2"
+			section="component">
+			<option value="json">JSON</option>
+			<option value="xml">XML</option>
+		</field>
+		<field
+			name="yandex-rasp-api-lang"
+			type="list"
+			label="COM_RAILWAY2_YANDEX_API_RASP_LANG"
+			description="COM_RAILWAY2_YANDEX_API_RASP_LANG_DESC"
+			component="com_railway2"
+			section="component">
+			<option value="ru">COM_RAILWAY2_YANDEX_API_RASP_LANG_RU</option>
+			<option value="uk">COM_RAILWAY2_YANDEX_API_RASP_LANG_UK</option>
+			<option value="tr">COM_RAILWAY2_YANDEX_API_RASP_LANG_TR</option>
+		</field>
+	</fieldset>
 	<fieldset name="telegram" label="COM_RAILWAY2_TELEGRAM" description="COM_RAILWAY2_TELEGRAM_DESC">
-		<field name="API-key"
-			   type="text"
-			   label="COM_RAILWAY2_TELEGRAM_API_KEY"
-			   description="COM_RAILWAY2_TELEGRAM_API_KEY_DESC"
-			   hint="COM_RAILWAY2_TELEGRAM_API_KEY_PLACEHOLDER"
-			   component="com_railway2"
-			   section="component">
+		<field
+			name="API-key"
+			type="text"
+			label="COM_RAILWAY2_TELEGRAM_API_KEY"
+			description="COM_RAILWAY2_TELEGRAM_API_KEY_DESC"
+			hint="COM_RAILWAY2_TELEGRAM_API_KEY_PLACEHOLDER"
+			component="com_railway2"
+			section="component">
 		</field>
 	</fieldset>
 	<fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
 		<field name="rules"
-			   type="rules"
-			   label="JCONFIG_PERMISSIONS_LABEL"
-			   filter="rules"
-			   component="com_railway2"
-			   section="component">
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			filter="rules"
+			component="com_railway2"
+			section="component">
 		</field>
 	</fieldset>
 </config>

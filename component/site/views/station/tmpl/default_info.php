@@ -3,6 +3,7 @@ defined('_JEXEC') or die;
 ?>
 <span style="background-color: <?php echo $this->info->color; ?>" class="station-title"><?php echo $this->info->tip, ' ', $this->info->name; ?></span><br>
 <table>
+    <?php if (!empty($this->info->direction)) : ?>
     <tr>
         <td>
             <?php echo JText::_('COM_RAILWAY2_DIRECTION'); ?>
@@ -11,6 +12,7 @@ defined('_JEXEC') or die;
             <?php echo $this->info->direction; ?>
         </td>
     </tr>
+    <?php endif; ?>
     <tr>
         <td>
             <?php echo JText::_('COM_RAILWAY2_RAILWAY'); ?>
@@ -42,7 +44,7 @@ defined('_JEXEC') or die;
             <?php echo JText::_('COM_RAILWAY2_STATION_CODE_ESR'); ?>
         </td>
         <td>
-            <?php echo $this->info->esr; ?>
+            <?php echo Railway2HelperCodes::getValidEsr($this->info->esr); ?>
         </td>
     </tr>
     <tr>
