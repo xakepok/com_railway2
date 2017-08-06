@@ -10,9 +10,12 @@ class Railway2ModelStation extends JModelList {
     }
 
     public function getRasp() {
+        if ($this->stationID == 0) {
+            return false;
+        }
         $modelRasp = JModelLegacy::getInstance('Yandexrasp', 'Railway2Model');
-        $modelRasp->setESR(60800);
-        return $modelRasp->getESR();
+        $modelRasp->setESR(Railway2HelperCodes::getEsrById($this->stationID));
+        return $modelRasp->query();
     }
 
     /* Ближайшая станция без касс */
@@ -98,8 +101,8 @@ class Railway2ModelStation extends JModelList {
             ->leftJoin('#__rw2_station_codes as `code` on `code`.`id` = `s`.`id`')
             ->where('`s`.`id` = '.$this->stationID);
         $db->setQuery($query, 0, 1);
-        $result = $db->loadObjectList();
-        if (count($result) < 1) return false;
-        return $result[0];
+        $result = $db->loadObject();
+        if (!isset($result->esr)) return false;
+        return $result;
     }
 }

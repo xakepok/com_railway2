@@ -11,7 +11,7 @@ class Railway2ViewStation extends JViewLegacy
         if (!$this->info) $this->error = JText::_('COM_RAILWAY2_ERROR_BAD_STATION');
         if ($this->error === false) {
             $this->rasp = $this->get('Rasp');
-            //echo 'ESR: '.$this->rasp;
+            //echo 'URL: '.$this->rasp;
             $this->desc = $this->get('Desc');
             $this->near = $this->get('NearSafe');
         }
