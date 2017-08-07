@@ -11,7 +11,7 @@ class Railway2ViewStation extends JViewLegacy
         if (!$this->info) $this->error = JText::_('COM_RAILWAY2_ERROR_BAD_STATION');
         if ($this->error === false) {
             $this->rasp = $this->get('Rasp');
-            //echo 'URL: '.$this->rasp;
+            //var_dump($this->rasp);
             $this->desc = $this->get('Desc');
             $this->near = $this->get('NearSafe');
         }
@@ -23,7 +23,8 @@ class Railway2ViewStation extends JViewLegacy
     public function prepare() {
         $doc = JFactory::getDocument();
         $config = JFactory::getConfig();
-        $stationName = ($this->error === false) ? $this->info->tip.' '.$this->info->name : $this->error;
+        $name = (!empty($this->info->popularName)) ? $this->info->popularName : $this->info->name;
+        $stationName = ($this->error === false) ? $this->info->tip.' '.$name : $this->error;
         $siteName = $stationName.' - '.$config->get('sitename');
         JHtml::_('jquery.framework');
         $doc->addStyleSheet(JRoute::_('/media/com_railway2/css/style.css'));

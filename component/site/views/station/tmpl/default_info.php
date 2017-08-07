@@ -1,7 +1,8 @@
 <?php
 defined('_JEXEC') or die;
+$stationName = (!empty($this->info->popularName)) ? $this->info->popularName : $this->info->name;
 ?>
-<span style="background-color: <?php echo $this->info->color; ?>" class="station-title"><?php echo $this->info->tip, ' ', $this->info->name; ?></span><br>
+<span style="background-color: <?php echo $this->info->color; ?>" class="station-title"><?php echo $this->info->tip, ' ', $stationName; ?></span><br>
 <table>
     <?php if (!empty($this->info->direction)) : ?>
     <tr>

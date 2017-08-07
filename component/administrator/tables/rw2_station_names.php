@@ -3,6 +3,7 @@ jimport('joomla.database.table');
 
 class TableRw2_station_names extends JTable {
     var $id = null;
+    var $stationID = null;
     var $popularName = null;
     var $yandexName = null;
     var $rzdName = null;

@@ -10,7 +10,7 @@ class JFormFieldStationName extends JFormFieldList  {
     {
         $db = JFactory::getDbo();
         $view = JFactory::getApplication()->input->getString('view');
-        $param =  ($view == 'direction' || $view == 'ticket') ? 'stationID' : 'id';
+        $param =  ($view == 'direction' || $view == 'ticket' || $view == 'synonym') ? 'stationID' : 'id';
         $stationID = JFactory::getApplication()->input->getInt($param, 0);
 
         $query = $db->getQuery(true);

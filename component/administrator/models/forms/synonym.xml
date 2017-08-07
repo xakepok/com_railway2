@@ -3,6 +3,10 @@
     <fieldset name="names">
         <field
                 name="id"
+                type="hidden"
+        />
+        <field
+                name="stationID"
                 type="stationName"
                 label="COM_RAILWAY2_STATION_NAME_DESC"
                 required="true"

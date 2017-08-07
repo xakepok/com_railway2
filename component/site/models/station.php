@@ -15,7 +15,15 @@ class Railway2ModelStation extends JModelList {
         }
         $modelRasp = JModelLegacy::getInstance('Yandexrasp', 'Railway2Model');
         $modelRasp->setESR(Railway2HelperCodes::getEsrById($this->stationID));
-        return $modelRasp->query();
+        $modelRasp->page = 1;
+        $tmp = $modelRasp->query();
+        $result = $tmp->schedule;
+        while ($tmp->pagination->has_next == true) {
+            $modelRasp->page++;
+            $tmp = $modelRasp->query();
+            $result = array_merge($result, $tmp->schedule);
+        }
+        return $result;
     }
 
     /* Ближайшая станция без касс */
@@ -91,7 +99,7 @@ class Railway2ModelStation extends JModelList {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`s`.`name`, `type`.`title` as `tip`, `reg`.`region`, `rail`.`road`, `rail`.`division`, `dir`.`title` as `direction`, `dir`.`color`, `d`.`zoneID`, `d`.`indexID`, `code`.`esr`, `code`.`express`')
+            ->select('`s`.`name`,`n`.`popularName`, `type`.`title` as `tip`, `reg`.`region`, `rail`.`road`, `rail`.`division`, `dir`.`title` as `direction`, `dir`.`color`, `d`.`zoneID`, `d`.`indexID`, `code`.`esr`, `code`.`express`')
             ->from('#__rw2_stations as `s`')
             ->leftJoin('#__rw2_station_types as `type` ON `type`.`id` = `s`.`type`')
             ->leftJoin('#__rw2_regions as `reg` ON `reg`.`id` = `s`.`region`')
@@ -99,6 +107,7 @@ class Railway2ModelStation extends JModelList {
             ->leftJoin('#__rw2_directions as `d` ON `d`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_directions_list as `dir` ON `dir`.`id` = `d`.`directionID`')
             ->leftJoin('#__rw2_station_codes as `code` on `code`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`')
             ->where('`s`.`id` = '.$this->stationID);
         $db->setQuery($query, 0, 1);
         $result = $db->loadObject();

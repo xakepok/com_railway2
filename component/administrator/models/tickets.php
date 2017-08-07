@@ -27,7 +27,7 @@ class Railway2ModelTickets extends JModelList
             ->from('#__rw2_stations as `s`')
             ->where('`code`.`express` != 0 AND `railway` != 0')
             ->leftJoin('#__rw2_station_codes as `code` ON `code`.`id` = `s`.`id`')
-            ->leftJoin('#__rw2_station_names as `name` ON `name`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_station_names as `name` ON `name`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_station_types as `t` ON `t`.`id` = `s`.`type`')
             ->leftJoin('#__rw2_regions as `reg` ON `reg`.`id` = `s`.`region`')
             ->leftJoin('#__rw2_railways as `rw` ON `rw`.`id` = `s`.`railway`')

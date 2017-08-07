@@ -11,7 +11,7 @@ JHtml::_('formbehavior.chosen', 'select');
         }
     }
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_railway2&view=synonym&layout=edit&id=' . (int)$this->item->id); ?>"
+<form action="<?php echo JRoute::_('index.php?option=com_railway2&view=synonym&layout=edit&id=' . (int)$this->item->id).'&stationID='.$this->item->stationID; ?>"
       method="post" name="adminForm" id="synonym-form" xmlns="http://www.w3.org/1999/html" class="form-validate">
     <div class="row-fluid">
         <div class="span12 form-horizontal">
