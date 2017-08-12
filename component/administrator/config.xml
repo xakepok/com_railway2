@@ -39,6 +39,16 @@
 			<option value="tr">COM_RAILWAY2_YANDEX_API_RASP_LANG_TR</option>
 		</field>
 	</fieldset>
+	<fieldset name="rzd" label="COM_RAILWAY2_RZD" description="COM_RAILWAY2_RZD_SITE">
+		<field
+			name="rzd-rasp-station"
+			type="text"
+			label="COM_RAILWAY2_RZD_RASP_URL_STATION"
+			description="COM_RAILWAY2_RZD_RASP_URL_STATION_DESC"
+			section="component"
+			component="com_railway2">
+		</field>
+	</fieldset>
 	<fieldset name="telegram" label="COM_RAILWAY2_TELEGRAM" description="COM_RAILWAY2_TELEGRAM_DESC">
 		<field
 			name="API-key"

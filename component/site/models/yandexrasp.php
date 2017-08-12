@@ -41,7 +41,7 @@ class Railway2ModelYandexrasp extends JModelLegacy {
                 $this->params['transport_types'] = 'suburban';
                 $this->params['system'] = 'esr';
                 $this->params['show_systems'] = 'all';
-                $this->params['date'] = $this->getDate();
+                $this->params['date'] = Railway2HelperCodes::getDateFromUrl();
                 $this->params['page'] = $this->page;
                 break;
             }
@@ -51,12 +51,6 @@ class Railway2ModelYandexrasp extends JModelLegacy {
         }
 
         return http_build_query($this->params);
-    }
-
-    /* Получаем дату для запроса */
-    private function getDate() {
-        $dat = JFactory::getApplication()->input->getString('date', false);
-        return (!$dat || !Railway2HelperCodes::isDate($dat)) ? Railway2HelperCodes::getCurrentDate("Y-m-d") : $dat;
     }
 
     /* Получаем метод для запроса */

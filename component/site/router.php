@@ -10,6 +10,11 @@ class Railway2Router extends JComponentRouterBase
             $segments[] = $query['id'];
             unset($query['view'], $query['id']);
         }
+        if ($query['view'] == 'direction') {
+            $segments[] = 'direction';
+            $segments[] = $query['id'];
+            unset($query['view'], $query['id']);
+        }
         $query['Itemid'] = '235';
         return $segments;
     }
@@ -20,6 +25,11 @@ class Railway2Router extends JComponentRouterBase
         switch ($segments[0]) {
             case 'station': {
                 $vars['view'] = 'station';
+                $vars['id'] = $segments[1];
+                break;
+            }
+            case 'direction': {
+                $vars['view'] = 'direction';
                 $vars['id'] = $segments[1];
                 break;
             }

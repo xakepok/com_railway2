@@ -9,6 +9,7 @@ class Railway2ModelStation extends JModelList {
         parent::__construct($config);
     }
 
+    /* Расписание по станции */
     public function getRasp() {
         if ($this->stationID == 0) {
             return false;
@@ -99,7 +100,7 @@ class Railway2ModelStation extends JModelList {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`s`.`name`,`n`.`popularName`, `type`.`title` as `tip`, `reg`.`region`, `rail`.`road`, `rail`.`division`, `dir`.`title` as `direction`, `dir`.`color`, `d`.`zoneID`, `d`.`indexID`, `code`.`esr`, `code`.`express`')
+            ->select('`s`.`name`,`n`.`popularName`, `type`.`title` as `tip`, `reg`.`region`, `rail`.`road`, `rail`.`division`, `dir`.`id` as `directionID`, `dir`.`title` as `direction`, `dir`.`color`, `d`.`zoneID`, `d`.`indexID`, `code`.`esr`, `code`.`express`')
             ->from('#__rw2_stations as `s`')
             ->leftJoin('#__rw2_station_types as `type` ON `type`.`id` = `s`.`type`')
             ->leftJoin('#__rw2_regions as `reg` ON `reg`.`id` = `s`.`region`')
