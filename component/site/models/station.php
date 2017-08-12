@@ -53,8 +53,8 @@ class Railway2ModelStation extends JModelList {
             ->where('`t`.`turnstiles` IS NULL')
             ->order('`dir`.`indexID` ASC');
         $db->setQuery($query, 0, 1);
-        $tmp = $db->loadObjectList();
-        if (!empty($tmp[0])) array_push($result, $tmp[0]);
+        $tmp = $db->loadObject();
+        if (!empty($tmp)) array_push($result, $tmp);
         $query = $db->getQuery(true);
         $query
             ->select('`dir`.`stationID`, `st`.`name`')
@@ -67,8 +67,8 @@ class Railway2ModelStation extends JModelList {
             ->where('`t`.`turnstiles` IS NULL')
             ->order('`dir`.`indexID` DESC');
         $db->setQuery($query, 0, 1);
-        $tmp = $db->loadObjectList();
-        if (!empty($tmp[0])) array_push($result, $tmp[0]);
+        $tmp = $db->loadObject();
+        if (!empty($tmp)) array_push($result, $tmp);
         return $result;
     }
 

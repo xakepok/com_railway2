@@ -31,3 +31,24 @@
     font-weight: bold;
     font-size: 1.1em;
 }
+.station-rasp-font {
+    font-size: 0.8em;
+    cursor: default;
+}
+.express {
+    color: rgba(191, 9, 0, 0.73)
+}
+.noexpress {
+    color: #0b4209;
+}
+.rasp-table {
+    border: none;
+    border-spacing: 0px;
+}
+.rasp-table-th {
+    background-color: white;
+}
+.rasp-list-item {
+    border: none;
+    border-bottom: 1px solid black;
+}
