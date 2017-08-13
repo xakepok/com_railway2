@@ -42,12 +42,14 @@ class Railway2ModelDirection extends JModelList {
         $db =& JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `dir`.`level`, `s`.`name`, `n`.`popularName`')
+            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `dir`.`level`, `s`.`name`, `n`.`popularName`, `t`.`turnstiles`, `t`.`time_1` as `desc`')
             ->from('#__rw2_directions as `dir`')
             ->leftJoin("#__rw2_stations as `s` ON `s`.`id` = `dir`.`stationID`")
             ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `dir`.`stationID`')
+            ->leftJoin('#__rw2_station_tickets as `t` ON `t`.`stationID` = `s`.`id`')
             ->where("`dir`.`directionID` = {$this->dir}")
-            ->order('`dir`.`indexID`, `dir`.`level`, `dir`.`zoneID`');
+            ->order('`dir`.`indexID`, `dir`.`level`, `dir`.`zoneID`')
+            ->group('`dir`.`stationID`');
         $db->setQuery($query);
         $result = $db->loadObjectList();
         if (empty($result)) return false;

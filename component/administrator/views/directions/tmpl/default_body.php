@@ -1,6 +1,7 @@
 <?php
 // Запрет прямого доступа.
 defined('_JEXEC') or die;
+
 foreach ($this->items as $i => $svyaz) : ?>
     <tr class="row0">
         <td class="center">

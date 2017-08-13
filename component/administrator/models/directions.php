@@ -23,7 +23,6 @@ class Railway2ModelDirections extends JModelList
             ->select('`d`.`id` as `id`, `s`.`name` as `station`, `stationID`, `directionID`, `l`.`title` as `direction`, `isControlPoint`, `indexID`, `zoneID`, `distance`')
             ->from('#__rw2_directions as `d`')
             ->leftJoin('#__rw2_stations as `s` on `s`.`id` = `d`.`stationID`')
-            ->leftJoin('#__rw2_station_names as `name` ON `name`.`id` = `d`.`stationID`')
             ->leftJoin('#__rw2_directions_list as `l` on `l`.`id` = `d`.`directionID`');
         /* Фильтр */
         $search = $this->getState('filter.search');
