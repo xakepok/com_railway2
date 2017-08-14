@@ -23,6 +23,19 @@ class Railway2ModelDirection extends JModelList {
         return $db->loadObject();
     }
 
+    /* Получаем максимальное количество станций */
+    public function getStationsCount() {
+        if ($this->dir == 0) return false;
+        $db =& JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select('MAX(`indexID`)')
+            ->from('#__rw2_directions')
+            ->where("`directionID` = {$this->dir}");
+        $db->setQuery($query);
+        return $db->loadResult();
+    }
+
     /* Получаем кол-во уровней на направлении */
     public function getLevels() {
         if ($this->dir == 0) return false;
@@ -42,7 +55,7 @@ class Railway2ModelDirection extends JModelList {
         $db =& JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `dir`.`level`, `s`.`name`, `n`.`popularName`, `t`.`turnstiles`, `t`.`time_1` as `desc`')
+            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `dir`.`level`, `s`.`name`, `n`.`popularName`, `t`.`turnstiles`, `t`.`time_1` as `desc`, `dir`.`startLevel`')
             ->from('#__rw2_directions as `dir`')
             ->leftJoin("#__rw2_stations as `s` ON `s`.`id` = `dir`.`stationID`")
             ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `dir`.`stationID`')

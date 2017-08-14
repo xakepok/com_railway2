@@ -9,6 +9,7 @@ class TableRw2_directions extends JTable {
     var $indexID = null;
     var $zoneID = null;
     var $level = null;
+    var $startLevel = null;
     var $distance = null;
 
     public function __construct(&$db) {

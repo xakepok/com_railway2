@@ -31,6 +31,11 @@
     font-weight: bold;
     font-size: 1.1em;
 }
+.direction-info-title {
+    font-weight: bold;
+    font-size: 1.4em;
+    color: white;
+}
 .station-rasp-font {
     font-size: 0.8em;
     cursor: default;
@@ -51,4 +56,28 @@
 .rasp-list-item {
     border: none;
     border-bottom: 1px solid black;
+}
+.direction-table {
+    border: none;
+    border-spacing: 0px;
+}
+.direction-level-main {
+    border-left: 1px solid black;
+}
+.direction-level {
+    border-bottom: 1px solid black;
+}
+.zone-1 {
+    background-color: rgba(168,191,165,0.73);
+}
+.zone-2 {
+    background-color: rgba(180,235,255,0.73);
+}
+.zone-0 {
+    background-color: white;
+}
+.hint-zone {
+    font-size: 0.7em;
+    padding-left: 3px;
+    font-style: italic;
 }

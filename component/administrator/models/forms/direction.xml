@@ -62,6 +62,15 @@
             <option value="4">4</option>
         </field>
         <field
+                name="startLevel"
+                type="list"
+                label="COM_RAILWAY2_STATION_START_LEVEL"
+                description="COM_RAILWAY2_STATION_START_LEVEL_DESC"
+                class="input-xlarge">
+            <option value="0">COM_RAILWAY2_NO</option>
+            <option value="1">COM_RAILWAY2_YES</option>
+        </field>
+        <field
                 name="distance"
                 type="text"
                 label="COM_RAILWAY2_DISTANCE_KM"
