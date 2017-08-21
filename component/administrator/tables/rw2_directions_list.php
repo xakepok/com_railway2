@@ -8,6 +8,7 @@ class TableRw2_directions_list extends JTable {
     var $parity = null;
     var $telegram = null;
     var $color = null;
+    var $active = null;
 
     public function __construct(&$db) {
         parent::__construct('#__rw2_directions_list', 'id', $db);

@@ -18,9 +18,10 @@ class Railway2ModelDirection extends JModelList {
         $query
             ->select('*')
             ->from('#__rw2_directions_list')
-            ->where("`id` = {$this->dir}");
+            ->where("`id` = {$this->dir} AND `active` = 1");
         $db->setQuery($query, 0, 1);
-        return $db->loadObject();
+        $result = $db->loadObject();
+        return (!empty($result->id)) ? $db->loadObject() : false;
     }
 
     /* Получаем максимальное количество станций */

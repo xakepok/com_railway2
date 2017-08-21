@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 $stationName = (!empty($this->info->popularName)) ? $this->info->popularName : $this->info->name;
 ?>
-<span style="background-color: <?php echo $this->info->color; ?>" class="station-title"><?php echo $this->info->tip, ' ', $stationName; ?></span><br>
+<span style="background-color: <?php echo $this->info->color; ?>" class="direction-info-title"><?php echo $this->info->tip, ' ', $stationName; ?></span><br>
 <table>
     <?php if (!empty($this->info->direction)) : ?>
     <tr>
@@ -10,8 +10,8 @@ $stationName = (!empty($this->info->popularName)) ? $this->info->popularName : $
             <?php echo JText::_('COM_RAILWAY2_DIRECTION'); ?>
         </td>
         <td>
-            <!--<a href="<?php echo JRoute::_('index.php?option=com_railway2&view=direction&id='.$this->info->directionID); ?>"><?php echo $this->info->direction; ?></a>-->
-            <?php echo $this->info->direction; ?>
+            <a href="<?php echo JRoute::_('index.php?option=com_railway2&view=direction&id='.$this->info->directionID); ?>"><?php echo $this->info->direction; ?></a>
+            <?php //echo $this->info->direction; ?>
         </td>
     </tr>
     <?php endif; ?>

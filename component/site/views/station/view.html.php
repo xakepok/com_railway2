@@ -1,6 +1,5 @@
 <?php
 defined('_JEXEC') or die;
-
 class Railway2ViewStation extends JViewLegacy
 {
     public $info, $desc, $near, $error, $rasp;

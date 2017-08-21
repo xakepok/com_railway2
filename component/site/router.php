@@ -15,7 +15,6 @@ class Railway2Router extends JComponentRouterBase
             $segments[] = $query['id'];
             unset($query['view'], $query['id']);
         }
-        $query['Itemid'] = '235';
         return $segments;
     }
 

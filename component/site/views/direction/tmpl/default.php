@@ -1,4 +1,7 @@
 <?php
 defined('_JEXEC') or die;
-
-echo $this->loadTemplate('scheme');
+if ($this->error !== false) {
+    echo $this->loadTemplate('error');
+} else {
+    echo $this->loadTemplate('scheme');
+}

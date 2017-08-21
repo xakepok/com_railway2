@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
         $icon['turnstiles'] = '/media/com_railway2/images/turnstiles_18.png';
         $icon['desc'] = '/media/com_railway2/images/desc_18.png';
         $currentZone = 0; //Текущая зона
+        $currentLevel = 0; //Текущий уровень ответвления
         for ($i = 0; $i < $this->cnt+1; $i++) {
             ?>
             <tr>
@@ -34,9 +35,10 @@ defined('_JEXEC') or die;
                                 <a href="<?php echo $stationLink; ?>" target="_blank"><?php echo $stationName; ?></a>
                                 <?php if ($item->turnstiles != NULL) echo "<img src='{$icon['turnstiles']}' alt='turnstiles' />";
                                 if ($item->desc != NULL && $item->turnstiles == NULL) echo "<img src='{$icon['desc']}' alt='desc' />";
-                                if (($currentZone != $item->zoneID && $item->zoneID !== NULL) || $item->zoneID === 0) {
+                                if ($currentZone != $item->zoneID && $item->zoneID !== NULL) {
                                     echo "<span class='hint-zone'>({$item->zoneID} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE')).")</span>";
                                     $currentZone++;
+                                    $currentLevel = $item->level;
                                 }
                                 ?>
                             </td>
