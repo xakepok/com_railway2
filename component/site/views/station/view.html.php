@@ -10,7 +10,6 @@ class Railway2ViewStation extends JViewLegacy
         if (!$this->info) $this->error = JText::_('COM_RAILWAY2_ERROR_BAD_STATION');
         if ($this->error === false) {
             $this->rasp = $this->get('Rasp');
-            //var_dump($this->rasp);
             $this->desc = $this->get('Desc');
             $this->near = $this->get('NearSafe');
         }
@@ -19,14 +18,35 @@ class Railway2ViewStation extends JViewLegacy
         parent::display();
     }
 
-    public function prepare() {
+    private function prepare() {
         $doc = JFactory::getDocument();
-        $config = JFactory::getConfig();
-        $name = (!empty($this->info->popularName)) ? $this->info->popularName : $this->info->name;
-        $stationName = ($this->error === false) ? $this->info->tip.' '.$name : $this->error;
-        $siteName = $stationName.' - '.$config->get('sitename');
+        $title = ($this->error === false) ? $this->makeTitle() : $this->error;
         JHtml::_('jquery.framework');
         $doc->addStyleSheet(JRoute::_('/media/com_railway2/css/style.css'));
-        $doc->setTitle($siteName);
+        $doc->setTitle($title);
+    }
+
+    private function makeTitle() {
+        $config = JFactory::getConfig();
+        $siteName = $config->get('sitename');
+        $sitename_pagetitles = $config->get('sitename_pagetitles');
+
+        $name = (!empty($this->info->popularName)) ? $this->info->popularName : $this->info->name;
+        $title = $this->info->tip.' '.$name;
+
+        switch ($sitename_pagetitles) {
+            case '1': {
+                $title = $siteName.' - '.$title;
+                break;
+            }
+            case '2': {
+                $title .= ' - '. $siteName;
+                break;
+            }
+            default: {
+
+            }
+        }
+        return $title;
     }
 }

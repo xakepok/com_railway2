@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 class Railway2ViewDirection extends JViewLegacy {
-    public $items, $cnt, $info, $levels, $error;
+    public $items, $cnt, $info, $levels, $error, $desc, $wiki;
 
     public function display() {
         $this->error = false;
@@ -11,6 +11,8 @@ class Railway2ViewDirection extends JViewLegacy {
             $this->items = $this->get('Items');
             $this->levels = $this->get('Levels'); //Количество уровней на направлении
             $this->cnt = $this->get('StationsCount'); //Количество строк в таблице со станциями
+            $this->desc = $this->get('DescTime'); //Время работы касс
+            $this->wiki = $this->get('Wiki');
         }
         $this->prepare();
         parent::display();

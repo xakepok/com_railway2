@@ -1,0 +1,16 @@
+<?php
+defined('_JEXEC') or die;
+?>
+<div><h3><?php echo JText::_('COM_RAILWAY2_DIRECTION_INFO');?></h3></div>
+<p>
+    <h4><?php echo JText::_('COM_RAILWAY2_INSPECTIONS');?></h4><br>
+    <?php echo $this->wiki->inspection;?>
+</p>
+<p>
+<h4><?php echo JText::_('COM_RAILWAY2_INSPECTIONS_COCON');?></h4><br>
+    <?php echo ($this->wiki->cocon != '1') ? JText::_('COM_RAILWAY2_INSPECTIONS_COCON_NO') : JText::_('COM_RAILWAY2_INSPECTIONS_COCON_YES');?>
+</p>
+<p>
+<h4><?php echo JText::_('COM_RAILWAY2_INSPECTIONS_INFO_DESC');?></h4><br>
+    <?php echo $this->wiki->info;?>
+</p>

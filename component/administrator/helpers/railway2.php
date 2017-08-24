@@ -10,6 +10,7 @@ class Railway2Helper
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_SYNONYMS'), 'index.php?option=com_railway2&view=synonyms', $vName == 'synonyms');
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_DIRECTION_LIST'), 'index.php?option=com_railway2&view=direction_list', $vName == 'direction_list');
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_STATION_DESC_TIME'), 'index.php?option=com_railway2&view=tickets', $vName == 'tickets');
+        JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_INSPECTIONS'), 'index.php?option=com_railway2&view=inspections', $vName == 'inspections');
         //JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_railway2', $vName == 'categories');
 	}
 

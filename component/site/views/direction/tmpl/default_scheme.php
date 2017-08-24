@@ -5,12 +5,12 @@ defined('_JEXEC') or die;
     <span style="background-color: <?php echo $this->info->color; ?>"><?php echo $this->info->title, ' ', mb_strtolower(JText::_('COM_RAILWAY2_DIRECTION')); ?></span>
 </div>
 <br>
-<div class="center" align="center">
+<div class="center dir-scheme">
     <table class="direction-table">
         <?php
         $icon['turnstiles'] = '/media/com_railway2/images/turnstiles_18.png';
         $icon['desc'] = '/media/com_railway2/images/desc_18.png';
-        $currentZone = 0; //Текущая зона
+        $currentZone = array('0' => '0');
         $currentLevel = 0; //Текущий уровень ответвления
         for ($i = 0; $i < $this->cnt+1; $i++) {
             ?>
@@ -33,12 +33,13 @@ defined('_JEXEC') or die;
                             ?>
                             <td class="<?php echo $class; ?> zone-<?php echo $zone; ?>">
                                 <a href="<?php echo $stationLink; ?>" target="_blank"><?php echo $stationName; ?></a>
-                                <?php if ($item->turnstiles != NULL) echo "<img src='{$icon['turnstiles']}' alt='turnstiles' />";
-                                if ($item->desc != NULL && $item->turnstiles == NULL) echo "<img src='{$icon['desc']}' alt='desc' />";
-                                if ($currentZone != $item->zoneID && $item->zoneID !== NULL) {
+                                <?php if ($item->turnstiles != NULL) echo "<a class='jutooltip' title='".JText::_('COM_RAILWAY2_TURNSTILES')."'><img src='{$icon['turnstiles']}' alt='turnstiles' /></a>";
+                                if ($item->desc != NULL && $item->turnstiles == NULL) echo "<a class='jutooltip' title='".JText::_('COM_RAILWAY2_DESC')."'><img src='{$icon['desc']}' alt='desc' /></a>";
+                                $currentLevel = $item->level;
+                                if (!isset($currentZone[$currentLevel])) $currentZone[$currentLevel] = $item->zoneID;
+                                if ($currentZone[$currentLevel] != $item->zoneID && $item->zoneID !== NULL) {
                                     echo "<span class='hint-zone'>({$item->zoneID} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE')).")</span>";
-                                    $currentZone++;
-                                    $currentLevel = $item->level;
+                                    $currentZone[$currentLevel]++;
                                 }
                                 ?>
                             </td>

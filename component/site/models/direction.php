@@ -10,6 +10,48 @@ class Railway2ModelDirection extends JModelList {
         $this->dir = JFactory::getApplication()->input->getInt('id', 0);
     }
 
+    /* Информация из вики */
+    public function getWiki() {
+        if ($this->dir == 0) return false;
+        $db =& JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select('*')
+            ->from('#__rw2_direction_info')
+            ->where("`directionID` = {$this->dir} AND `inspection` IS NOT NULL");
+        $db->setQuery($query);
+        $result = $db->loadObject();
+        return (!$result) ? false : $result;
+    }
+
+    /* Время работы касс на направлении */
+    public function getDescTime() {
+        if ($this->dir == 0) return false;
+        $db =& JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select('`s`.`id` as `stationID`, `s`.`name` as `name`, `n`.`popularName` as `popularName`, `t`.`time_1`, `t`.`time_2`, `t`.`turnstiles`')
+            ->from('#__rw2_station_tickets as `t`')
+            ->leftJoin('#__rw2_directions as `d` ON `d`.`stationID` = `t`.`stationID`')
+            ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `t`.`stationID`')
+            ->leftJoin('#__rw2_stations as `s` ON `s`.`id` = `t`.`stationID`')
+            ->where("`d`.`directionID` = {$this->dir} AND `t`.`time_1` IS NOT NULL AND `t`.`time_2` IS NOT NULL")
+            ->order('`d`.`indexID`')
+        ;
+        $db->setQuery($query);
+        $result = $db->loadObjectList();
+        $stations = array(); //Результирующий массив
+        foreach ($result as $item) {
+            $sname = (!empty($item->popularName)) ? $item->popularName : $item->name;
+            $stations[$sname][] = ($item->time_1 == '00:00:00' && $item->time_2 == '23:59:59') ? JText::_('COM_RAILWAY2_EVERYTIME') : date("H.i", strtotime(date("Y-m-d ").$item->time_1)).'-'.date("H.i", strtotime(date("Y-m-d ").$item->time_2));
+        }
+        $result = array();
+        foreach ($stations as $name => $value) {
+            $result[$name] = implode(', ', $value);
+        }
+        return $result;
+    }
+
     /* Информация о направлении */
     public function getInfo() {
         if ($this->dir == 0) return false;
