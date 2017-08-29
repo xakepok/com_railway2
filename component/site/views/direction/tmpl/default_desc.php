@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 ?>
 <div class="dir-info-title">
-    <?php echo JText::_('COM_RAILWAY2_STATION_DESC_TIME'),':'; ?>
+    <h3><?php echo JText::_('COM_RAILWAY2_STATION_DESC_TIME'),':'; ?></h3>
 </div>
 <br>
 <table align="left">

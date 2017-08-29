@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 class Railway2ViewStation extends JViewLegacy
 {
-    public $info, $desc, $near, $error, $rasp;
+    public $info, $desc, $near, $error, $rasp, $crosses;
 
     public function display() {
         $this->error = false;
@@ -12,6 +12,7 @@ class Railway2ViewStation extends JViewLegacy
             $this->rasp = $this->get('Rasp');
             $this->desc = $this->get('Desc');
             $this->near = $this->get('NearSafe');
+            $this->crosses = $this->get('Crosses');
         }
 
         $this->prepare();

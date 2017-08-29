@@ -10,7 +10,7 @@ class JFormFieldStationName extends JFormFieldList  {
     {
         $db = JFactory::getDbo();
         $view = JFactory::getApplication()->input->getString('view');
-        $param =  ($view == 'direction' || $view == 'ticket' || $view == 'synonym') ? 'stationID' : 'id';
+        $param =  ($view == 'direction' || $view == 'ticket' || $view == 'synonym' || $view == 'cross') ? 'stationID' : 'id';
         $stationID = JFactory::getApplication()->input->getInt($param, 0);
 
         $query = $db->getQuery(true);
@@ -23,7 +23,7 @@ class JFormFieldStationName extends JFormFieldList  {
             ->where('`c`.`express` != 0 AND `s`.`railway` != 0')
             ->order('`s`.`name`');
         if ($stationID != 0) $query->where('`s`.`id` = '.$stationID);
-        if ($view == 'ticket') {
+        if ($view == 'ticket' || $view == 'cross') {
             $query
                 ->rightJoin('#__rw2_directions as `d` ON `d`.`stationID` = `s`.`id`');
         }

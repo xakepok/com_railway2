@@ -15,4 +15,5 @@ if ($this->error !== false) {
         </div>
     <?php endif; ?>
     <?php
+    //var_dump($this->crosses);
 }

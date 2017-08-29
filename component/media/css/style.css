@@ -82,12 +82,9 @@
     font-style: italic;
 }
 .dir-scheme {
-    float: left;
     width: 460px;
 }
 .dir-info {
-    float: left;
-    width: 150px;
     vertical-align: top;
 }
 .dir-desc {
@@ -99,4 +96,8 @@
 }
 .wiki {
     clear: left;
+}
+.jutooltip {
+    text-decoration: none;
+    cursor: default;
 }

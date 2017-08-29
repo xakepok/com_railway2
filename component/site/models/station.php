@@ -27,6 +27,28 @@ class Railway2ModelStation extends JModelList {
         return $result;
     }
 
+    /* Пересадки на метро */
+    public function getCrosses() {
+        if ($this->stationID == 0) return false;
+        $db =& JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select('`m`.`title_ru` as `metroStation`, `l`.`title_ru` as `metroLine`, `l`.`color`')
+            ->from('#__rw2_cross_metro as `c`')
+            ->leftJoin('#__rw2_metro_stations as `m` ON `m`.`id` = `c`.`metroID`')
+            ->leftJoin('#__rw2_metro_lines as `l` ON `l`.`id` = `m`.`line`')
+            ->where("`c`.`stationID` = {$this->stationID} AND `m`.`active` = 1 AND `l`.`active` = 1");
+        $db->setQuery($query);
+        $result = $db->loadObjectList();
+        if (empty($result)) return false;
+        $crosses = array();
+        foreach ($result as $cross) {
+            $line = $cross->metroLine.' '.mb_strtolower(JText::_('COM_RAILWAY2_METRO_LINE'));
+            $crosses[] = "<a class='jutooltip' title='{$line}'><span style='color: {$cross->color}'>{$cross->metroStation}</span></a>";
+        }
+        return implode(', ', $crosses);
+    }
+
     /* Ближайшая станция без касс */
     public function getNearSafe() {
         if ($this->stationID == 0) {

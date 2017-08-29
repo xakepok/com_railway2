@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
         <?php
         $icon['turnstiles'] = '/media/com_railway2/images/turnstiles_18.png';
         $icon['desc'] = '/media/com_railway2/images/desc_18.png';
+        $icon['metro'] = '/media/com_railway2/images/Subway_18px.png';
         $currentZone = array('0' => '0');
         $currentLevel = 0; //Текущий уровень ответвления
         for ($i = 0; $i < $this->cnt+1; $i++) {
@@ -35,6 +36,9 @@ defined('_JEXEC') or die;
                                 <a href="<?php echo $stationLink; ?>" target="_blank"><?php echo $stationName; ?></a>
                                 <?php if ($item->turnstiles != NULL) echo "<a class='jutooltip' title='".JText::_('COM_RAILWAY2_TURNSTILES')."'><img src='{$icon['turnstiles']}' alt='turnstiles' /></a>";
                                 if ($item->desc != NULL && $item->turnstiles == NULL) echo "<a class='jutooltip' title='".JText::_('COM_RAILWAY2_DESC')."'><img src='{$icon['desc']}' alt='desc' /></a>";
+                                if (!empty($this->crosses[$item->stationID])) {
+                                    echo "<a class='jutooltip' title='".$this->crosses[$item->stationID]."'><img src='{$icon['metro']}' alt='".JText::_('COM_RAILWAY2_METRO_CROSSES')."' /></a>";
+                                }
                                 $currentLevel = $item->level;
                                 if (!isset($currentZone[$currentLevel])) $currentZone[$currentLevel] = $item->zoneID;
                                 if ($currentZone[$currentLevel] != $item->zoneID && $item->zoneID !== NULL) {

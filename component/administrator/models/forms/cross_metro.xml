@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_railway2/models/rules">
+    <fieldset name="names">
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="stationID"
+                type="StationName"
+                label="COM_RAILWAY2_METRO_STATION_RW"
+                description="COM_RAILWAY2_METRO_STATION_RW"
+                required="true"
+                class="input-xlarge"
+        />
+        <field
+                name="metroID"
+                type="Metro"
+                label="COM_RAILWAY2_METRO_STATION"
+                description="COM_RAILWAY2_METRO_STATION"
+                required="true"
+        />
+    </fieldset>
+</form>
