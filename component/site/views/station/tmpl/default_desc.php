@@ -5,7 +5,7 @@ defined('_JEXEC') or die;
 <?php
 $bezkass = array();
 foreach ($this->near as $free) {
-    $url = JRoute::_("index.php?option=com_railway2&view=station&id={$free->stationID}");
+    $url = JRoute::_("index.php?option=com_railway2&view=station&id={$free->stationID}&Itemid=236");
     array_push($bezkass, "<a href='{$url}'>{$free->name}</a>");
 }
 if ($this->desc[0]->time_1 == null && $this->desc[0]->time_2 == null && $this->desc[0]->turnstiles == null) echo JText::_('COM_RAILWAY2_STATION_DESC_NO');

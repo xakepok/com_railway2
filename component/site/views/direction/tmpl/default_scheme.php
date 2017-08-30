@@ -23,7 +23,7 @@ defined('_JEXEC') or die;
                         if ($item->level == $j && $item->indexID == $i) {
                             $td++;
                             $stationName = (!empty($item->popularName)) ? $item->popularName : $item->name;
-                            $stationLink = JRoute::_('index.php?option=com_railway2&view=station&id=' . $item->stationID);
+                            $stationLink = JRoute::_('index.php?option=com_railway2&view=station&id=' . $item->stationID.'&Itemid=236');
                             /* Рисуем цвет зоны */
                             $zone = '';
                             $zone = ($item->zoneID % 2 == 1) ? '1' : '2';

@@ -10,7 +10,7 @@ $stationName = (!empty($this->info->popularName)) ? $this->info->popularName : $
             <?php echo JText::_('COM_RAILWAY2_DIRECTION'); ?>
         </td>
         <td>
-            <a href="<?php echo JRoute::_('index.php?option=com_railway2&view=direction&id='.$this->info->directionID); ?>"><?php echo $this->info->direction; ?></a>
+            <a href="<?php echo JRoute::_('index.php?option=com_railway2&view=direction&id='.$this->info->directionID.'&Itemid=243'); ?>"><?php echo $this->info->direction; ?></a>
             <?php //echo $this->info->direction; ?>
         </td>
     </tr>
