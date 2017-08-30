@@ -1,6 +1,10 @@
 <?php
 defined('_JEXEC') or die;
 class Railway2HelperCodes {
+	/* Запрос прав */
+	static function canDo($p) {
+		return JFactory::getUser()->authorise($p, 'com_railway2');
+	}
 
     /* Получение даты из УРЛ */
     static function getDateFromUrl() {

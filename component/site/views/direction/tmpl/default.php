@@ -1,5 +1,10 @@
 <?php
 defined('_JEXEC') or die;
+if (Railway2HelperCodes::canDo('core.admin') && $this->info->active != '1') {
+    ?>
+    <div class="onlyAdmin"><?php echo JText::_('COM_RAILWAY2_ONLY_FOR_ADMIN_DIRECTION');?></div>
+    <?php
+}
 if ($this->error !== false) {
     echo $this->loadTemplate('error');
 } else {

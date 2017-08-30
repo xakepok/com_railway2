@@ -15,6 +15,11 @@ class Railway2Helper
         //JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_railway2', $vName == 'categories');
 	}
 
+	/* Запрос прав */
+	static function canDo($p) {
+		return JFactory::getUser()->authorise($p, 'com_railway2');
+	}
+
 	/* Рузультат времени работы касс на направлении приводим в читабельный вид */
 	static function parseCashDesc($result) {
         $stations = array();

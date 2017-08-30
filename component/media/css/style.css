@@ -101,3 +101,12 @@
     text-decoration: none;
     cursor: default;
 }
+.onlyAdmin {
+    background-color: #ff6259;
+    color: #ff1c2b;
+    border: 1px solid #ff1c2b;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    margin: 5px;
+}
