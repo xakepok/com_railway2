@@ -15,7 +15,7 @@ class JFormFieldStationName extends JFormFieldList  {
 
         $query = $db->getQuery(true);
         $query
-            ->select('`s`.`id`, `s`.`name`, `n`.`popularName`, `rw`.`road`, `c`.`express`, `r`.`region`, `l`.`title` as `direction`')
+            ->select('`s`.`id`, `s`.`name`, `n`.`popularName`, `rw`.`road`, `c`.`express`, `r`.`region`')
             ->from('#__rw2_stations as `s`')
             ->leftJoin('#__rw2_railways AS `rw` ON `rw`.`id` = `s`.`railway`')
             ->leftJoin('#__rw2_station_codes AS `c` ON `c`.`id` = `s`.`id`')
@@ -23,8 +23,9 @@ class JFormFieldStationName extends JFormFieldList  {
 	        ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`')
             ->where('`c`.`express` != 0 AND `s`.`railway` != 0')
             ->order('`s`.`name`');
+        if ($view != 'direction') $query->select('`l`.`title` as `direction`');
         if ($stationID != 0) $query->where('`s`.`id` = '.$stationID);
-        if ($view == 'ticket' || $view == 'cross') {
+        if ($view == 'ticket' || $view == 'cross' || $view == 'synonym') {
             $query
                 ->rightJoin('#__rw2_directions as `d` ON `d`.`stationID` = `s`.`id`')
                 ->leftJoin('#__rw2_directions_list as `l` ON `l`.`id` = `d`.`directionID`');

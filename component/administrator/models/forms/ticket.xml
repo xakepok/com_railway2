@@ -8,7 +8,8 @@
         <field
                 name="stationID"
                 type="stationname"
-                label="COM_RAILWAY2_STATION_NAME_DESC"
+                label="COM_RAILWAY2_STATION_NAME"
+                description="COM_RAILWAY2_STATION_NAME_DESC"
                 required="true"
                 class="input-xlarge"
         />

@@ -9,7 +9,7 @@ class Railway2ViewTicket extends JViewLegacy {
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
-        //$this->stationName = $this->item->name;
+        $this->stationName = Railway2Helper::getStationName($this->item->stationID);
 
         $this->addToolbar();
 
@@ -21,6 +21,7 @@ class Railway2ViewTicket extends JViewLegacy {
         JFactory::getApplication()->input->set('hidemainmenu', true);
         //$isNew = ($this->item->id == 0);
         $title = JText::_('COM_RAILWAY2_STATION_DESC_TIME');
+        if ($this->item->stationID != 0) $title .= ': '.$this->stationName;
 
         JToolbarHelper::title($title, 'ticket');
         JToolbarHelper::apply('ticket.apply', 'JTOOLBAR_APPLY');

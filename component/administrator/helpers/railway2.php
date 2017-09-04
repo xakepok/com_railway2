@@ -15,6 +15,36 @@ class Railway2Helper
         //JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_railway2', $vName == 'categories');
 	}
 
+	/* Название станции по ИД */
+	static function getStationName($id)
+    {
+        $id = (int) $id;
+        if ($id == 0) return false;
+        $db =& JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select('`s`.`name`, `n`.`popularName`')
+            ->from('#__rw2_stations as `s`')
+            ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`')
+            ->where("`s`.`id` = {$id}");
+        $db->setQuery($query, 0, 1);
+        $result = $db->loadObject();
+        if (empty($result)) return false;
+        return (!empty($result->popularName)) ? $result->popularName : $result->name;
+    }
+
+	/* Получаем директории */
+	static function getDirections() {
+	    $db =& JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    $query
+            ->select('id, title')
+            ->from('#__rw2_directions_list')
+            ->order('title');
+	    $db->setQuery($query);
+	    return $db->loadObjectList();
+    }
+
 	/* Запрос прав */
 	static function canDo($p) {
 		return JFactory::getUser()->authorise($p, 'com_railway2');

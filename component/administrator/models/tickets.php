@@ -38,10 +38,15 @@ class Railway2ModelTickets extends JModelList
 
         /* Фильтр */
         $search = $this->getState('filter.search');
+        $direction = $this->getState('filter.direction');
         if (!empty($search))
         {
             $search = $db->quote('%' . $db->escape($search, true) . '%', false);
             $query->where('`s`.`name` LIKE ' . $search . ' OR `name`.`popularName` LIKE ' . $search);
+        }
+
+        if (is_numeric($direction)) {
+            $query->where('`d`.`directionID` = '. (int) $direction);
         }
 
         /* Сортировка */
@@ -56,13 +61,16 @@ class Railway2ModelTickets extends JModelList
     protected function populateState($ordering = null, $direction = null)
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+        $direction = $this->getUserStateFromRequest($this->context . '.filter.direction', 'filter_direction');
         $this->setState('filter.search', $search);
+        $this->setState('filter.direction', $direction);
         parent::populateState('`s`.`name`, `desc`.`time_1`', 'asc');
     }
 
     protected function getStoreId($id = '')
     {
         $id .= ':' . $this->getState('filter.search');
+        $id .= ':'.$this->getState('filter.direction');
         return parent::getStoreId($id);
     }
 }

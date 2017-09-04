@@ -20,12 +20,12 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JText::_('COM_RAILWAY2_CONTROL_POINT'); ?>
     </th>
     <th>
-        <?php echo JText::_('COM_RAILWAY2_STATION_INDEX'); ?>
+        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_INDEX', '`d`.`indexID`', $listDirn, $listOrder); ?>
     </th>
     <th>
         <?php echo JText::_('COM_RAILWAY2_STATION_ZONE'); ?>
     </th>
     <th>
-        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_DISTANCE_KM', '`distance`', $listName, $listOrder); ?>
+        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_DISTANCE_KM', '`distance`', $listDirn, $listOrder); ?>
     </th>
 </tr>

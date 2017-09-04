@@ -32,7 +32,7 @@ class Railway2ViewSynonyms extends JViewLegacy
 		{
 		    JToolbarHelper::addNew('synonym.add');
             JToolbarHelper::editList('synonym.edit');
-            JToolbarHelper::deleteList('railway2.delete');
+            JToolbarHelper::deleteList('synonyms.delete');
 			JToolBarHelper::preferences('com_railway2');
 		}
 	}

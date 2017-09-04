@@ -8,6 +8,7 @@ class Railway2ModelDirections extends JModelList
         {
             $config['filter_fields'] = array(
                 'id',
+                '`d`.`indexID',
                 '`s`.`name`',
                 '`l`.`title`',
             );
@@ -59,6 +60,7 @@ class Railway2ModelDirections extends JModelList
     protected function getStoreId($id = '')
     {
         $id .= ':' . $this->getState('filter.search');
+        $id .= ':'.$this->getState('filter.direction');
         return parent::getStoreId($id);
     }
 

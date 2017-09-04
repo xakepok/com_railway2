@@ -8,6 +8,7 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_railway2'))
 
 // Require the helper
 require_once JPATH_COMPONENT_ADMINISTRATOR . '/helpers/railway2.php';
+JLoader::register('Railway2HtmlFilters', JPATH_COMPONENT_ADMINISTRATOR.'/helpers/filters.php');
 
 jimport('joomla.application.component.controller');
 

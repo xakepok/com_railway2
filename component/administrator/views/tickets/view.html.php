@@ -6,11 +6,6 @@ class Railway2ViewTickets extends JViewLegacy
 	protected $helper, $items, $pagination, $sidebar = '';
 	public function display($tpl = null)
 	{
-		// Show the toolbar
-		$this->toolbar();
-		$this->prepare();
-
-		// Show the sidebar
 		$this->helper = new Railway2Helper;
 		$this->helper->addSubmenu('tickets');
 		$this->sidebar = JHtmlSidebar::render();
@@ -19,7 +14,8 @@ class Railway2ViewTickets extends JViewLegacy
         $this->pagination = $this->get('Pagination');
         $this->state = $this->get('State');
 
-		// Display it all
+        $this->toolbar();
+        $this->prepare();
 		parent::display($tpl);
 	}
 
