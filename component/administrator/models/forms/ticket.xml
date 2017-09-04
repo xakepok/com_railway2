@@ -20,6 +20,16 @@
                 class="input-xlarge"
         />
         <field
+                name="tpd"
+                type="list"
+                label="COM_RAILWAY2_TPDS"
+                description="COM_RAILWAY2_TPDS_DESC"
+                class="input-xlarge"
+                >
+            <option value="0">COM_RAILWAY2_NO</option>
+            <option value="1">COM_RAILWAY2_YES</option>
+        </field>
+        <field
                 name="time_1"
                 type="text"
                 label="COM_RAILWAY2_STATION_DESC_START"

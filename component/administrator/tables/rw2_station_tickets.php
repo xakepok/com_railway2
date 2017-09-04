@@ -5,6 +5,7 @@ class TableRw2_station_tickets extends JTable {
     var $id = null;
     var $stationID = null;
     var $turnstiles = null;
+    var $tpd = null;
     var $time_1 = null;
     var $time_2 = null;
     var $detour = null;
