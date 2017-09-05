@@ -5,8 +5,8 @@ defined('_JEXEC') or die;
     <span style="background-color: <?php echo $this->info->color; ?>"><?php echo $this->info->title, ' ', mb_strtolower(JText::_('COM_RAILWAY2_DIRECTION')); ?></span>
 </div>
 <br>
-<div class="center dir-scheme">
-    <table class="direction-table">
+<div class="center dir-scheme" align="center">
+    <table class="direction-table" align="center">
         <?php
         $icon['turnstiles'] = '/media/com_railway2/images/turnstiles_18.png';
         $icon['desc'] = '/media/com_railway2/images/desc_18.png';

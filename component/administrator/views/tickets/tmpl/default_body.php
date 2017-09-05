@@ -41,6 +41,9 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $text_2; ?>
         </td>
         <td>
+            <?php echo JText::_('COM_RAILWAY2_TIMEMASK_'.$station->timemask);?>
+        </td>
+        <td>
             <?php echo $station->region; ?>
         </td>
     </tr>

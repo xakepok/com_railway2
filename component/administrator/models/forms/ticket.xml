@@ -49,6 +49,22 @@
                 autocomplete="off"
         />
         <field
+                name="timemask"
+                type="list"
+                label="COM_RAILWAY2_TIMEMASK"
+                description="COM_RAILWAY2_TIMEMASK_DESC"
+                class="input-xlarge validate-desctime"
+                >
+            <option value="1111111">COM_RAILWAY2_TIMEMASK_1111111</option>
+            <option value="1111100">COM_RAILWAY2_TIMEMASK_1111100</option>
+            <option value="0000011">COM_RAILWAY2_TIMEMASK_0000011</option>
+            <option value="1111000">COM_RAILWAY2_TIMEMASK_1111000</option>
+            <option value="0000110">COM_RAILWAY2_TIMEMASK_0000110</option>
+            <option value="1111110">COM_RAILWAY2_TIMEMASK_1111110</option>
+            <option value="0000010">COM_RAILWAY2_TIMEMASK_0000010</option>
+            <option value="0000001">COM_RAILWAY2_TIMEMASK_0000001</option>
+        </field>
+        <field
                 name="detour"
                 type="editor"
                 label="COM_RAILWAY2_DETOUR"

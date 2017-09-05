@@ -23,7 +23,7 @@ class Railway2ModelTickets extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `s`.`name`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`')
+            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `s`.`name`, `desc`.`timemask`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`')
             ->from('#__rw2_stations as `s`')
             ->where('`code`.`express` != 0 AND `railway` != 0')
             ->leftJoin('#__rw2_station_codes as `code` ON `code`.`id` = `s`.`id`')

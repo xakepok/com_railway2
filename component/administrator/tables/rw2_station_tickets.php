@@ -8,6 +8,7 @@ class TableRw2_station_tickets extends JTable {
     var $tpd = null;
     var $time_1 = null;
     var $time_2 = null;
+    var $timemask = null;
     var $detour = null;
 
     public function __construct(&$db) {

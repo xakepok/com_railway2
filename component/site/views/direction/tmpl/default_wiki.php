@@ -7,10 +7,6 @@ defined('_JEXEC') or die;
     <?php echo $this->wiki->inspection;?>
 </p>
 <p>
-<h4><?php echo JText::_('COM_RAILWAY2_INSPECTIONS_COCON');?></h4><br>
-    <?php echo ($this->wiki->cocon != '1') ? JText::_('COM_RAILWAY2_INSPECTIONS_COCON_NO') : JText::_('COM_RAILWAY2_INSPECTIONS_COCON_YES');?>
-</p>
-<p>
 <h4><?php echo JText::_('COM_RAILWAY2_INSPECTIONS_INFO_DESC');?></h4><br>
     <?php echo $this->wiki->info;?>
 </p>

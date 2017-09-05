@@ -32,6 +32,9 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JText::_('COM_RAILWAY2_STATION_DESC_TIME_END'); ?>
     </th>
     <th>
+		<?php echo JText::_('COM_RAILWAY2_TIMEMASK'); ?>
+    </th>
+    <th>
         <?php echo JText::_('COM_RAILWAY2_REGION'); ?>
     </th>
 </tr>
