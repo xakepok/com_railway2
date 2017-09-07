@@ -65,6 +65,13 @@
             <option value="0000001">COM_RAILWAY2_TIMEMASK_0000001</option>
         </field>
         <field
+                name="time_check"
+                type="calendar"
+                label="COM_RAILWAY2_ACTUAL_BEFORE"
+                description="COM_RAILWAY2_ACTUAL_BEFORE_DESC"
+                translateformat="true"
+        />
+        <field
                 name="detour"
                 type="editor"
                 label="COM_RAILWAY2_DETOUR"

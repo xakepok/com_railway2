@@ -7,4 +7,10 @@ class Railway2ControllerTickets extends JControllerAdmin {
     {
         return parent::getModel($name, $prefix, array('ignore_request' => true));
     }
+
+    public function setChecked() {
+	    $model = $this->getModel();
+	    $model->setChecked();
+	    $this->setRedirect('index.php?option=com_railway2&view=tickets');
+    }
 }

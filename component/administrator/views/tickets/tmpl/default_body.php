@@ -27,24 +27,42 @@ foreach ($this->items as $i => $station) : ?>
         </td>
         <td>
             <?php
-            $text_1 = $text_2 = "";
+            $text = "";
             if ($station->turnstiles != null) {
-                $text_1 = $text_2 = JText::_('COM_RAILWAY2_STATION_TURNSTILE');
+                $text = JText::_('COM_RAILWAY2_STATION_TURNSTILE');
             } else {
-                $text_1 = ($station->time_1 != null) ? $station->time_1 : JText::_('COM_RAILWAY2_STATION_DESC_NO');
-                $text_2 = ($station->time_2 != null) ? $station->time_2 : JText::_('COM_RAILWAY2_STATION_DESC_NO');
+                $text_1 = date("H.i", strtotime(date("Y-m-d").$station->time_1));
+                $text_2 = date("H.i", strtotime(date("Y-m-d").$station->time_2));
+                $text = $text_1.' - '.$text_2;
+            }
+            if ($station->time_1 == null && $station->time_2 == null && $station->turnstiles == null) {
+                $text = JText::_('COM_RAILWAY2_STATION_DESC_NO');
             }
             ?>
-            <?php echo $text_1; ?>
-        </td>
-        <td>
-            <?php echo $text_2; ?>
+            <?php echo $text; ?>
         </td>
         <td>
             <?php echo JText::_('COM_RAILWAY2_TIMEMASK_'.$station->timemask);?>
         </td>
         <td>
             <?php echo $station->region; ?>
+        </td>
+        <td>
+            <?php
+            $act = JText::_('COM_RAILWAY2_CHECKED');
+            $class = 'check-ok';
+            if (!empty($station->time_check)) {
+                if (date("Y-m-d") < $station->time_check) {
+	                $dat = date("d.m.Y", strtotime($station->time_check.' 00:00:00'));
+	                $act = JText::_('COM_RAILWAY2_ACTUAL_BEFORE').' '.$dat;
+	                $class = 'check-yellow';
+                } else {
+                    $act = JText::_('COM_RAILWAY2_NEED_CHECK');
+                    $class = 'check-need';
+                }
+            }
+            echo "<span class='{$class}'>{$act}</span>";
+            ?>
         </td>
     </tr>
 <?php endforeach; ?>

@@ -10,6 +10,8 @@ class TableRw2_station_tickets extends JTable {
     var $time_2 = null;
     var $timemask = null;
     var $detour = null;
+    var $time_check = null;
+    var $mod_date = null;
 
     public function __construct(&$db) {
         parent::__construct('#__rw2_station_tickets', 'id', $db);

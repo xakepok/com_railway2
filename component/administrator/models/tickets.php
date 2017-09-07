@@ -23,7 +23,7 @@ class Railway2ModelTickets extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `s`.`name`, `desc`.`timemask`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`')
+            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `s`.`name`, `desc`.`timemask`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`, `desc`.`time_check`')
             ->from('#__rw2_stations as `s`')
             ->where('`code`.`express` != 0 AND `railway` != 0')
             ->leftJoin('#__rw2_station_codes as `code` ON `code`.`id` = `s`.`id`')
@@ -39,6 +39,7 @@ class Railway2ModelTickets extends JModelList
         /* Фильтр */
         $search = $this->getState('filter.search');
         $direction = $this->getState('filter.direction');
+	    $actuality = $this->getState('filter.actuality');
         if (!empty($search))
         {
             $search = $db->quote('%' . $db->escape($search, true) . '%', false);
@@ -47,6 +48,21 @@ class Railway2ModelTickets extends JModelList
 
         if (is_numeric($direction)) {
             $query->where('`d`.`directionID` = '. (int) $direction);
+        }
+
+        if (is_numeric($actuality)) {
+        	$txt = '';
+        	switch ($actuality) {
+		        case '1': {
+			        $txt = '`desc`.`time_check` > CURRENT_DATE()';
+			        break;
+		        }
+		        case '2': {
+			        $txt = '`desc`.`time_check` <= CURRENT_DATE()';
+			        break;
+		        }
+	        }
+        	$query->where($txt);
         }
 
         /* Сортировка */
@@ -62,8 +78,10 @@ class Railway2ModelTickets extends JModelList
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $direction = $this->getUserStateFromRequest($this->context . '.filter.direction', 'filter_direction');
+	    $actuality = $this->getUserStateFromRequest($this->context . '.filter.actuality', 'filter_actuality');
         $this->setState('filter.search', $search);
         $this->setState('filter.direction', $direction);
+	    $this->setState('filter.actuality', $actuality);
         parent::populateState('`s`.`name`, `desc`.`time_1`', 'asc');
     }
 
@@ -71,6 +89,7 @@ class Railway2ModelTickets extends JModelList
     {
         $id .= ':' . $this->getState('filter.search');
         $id .= ':'.$this->getState('filter.direction');
+	    $id .= ':'.$this->getState('filter.actuality');
         return parent::getStoreId($id);
     }
 }

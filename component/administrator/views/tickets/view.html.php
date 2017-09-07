@@ -29,6 +29,7 @@ class Railway2ViewTickets extends JViewLegacy
 		    JToolbarHelper::addNew('ticket.add');
             JToolbarHelper::editList('ticket.edit');
             JToolbarHelper::deleteList(JText::_('COM_RAILWAY2_DESC_DELETE_QUESTION').'?', 'tickets.delete');
+            JToolbarHelper::custom('tickets.setChecked', '', '', JText::_('COM_RAILWAY2_CHECKED'));
 			JToolBarHelper::preferences('com_railway2');
 		}
 	}

@@ -34,11 +34,30 @@ class Railway2ModelTicket extends JModelAdmin {
 
     protected function prepareTable($table)
     {
-        if (!strlen($table->time_1)) $table->time_1 = NULL;
-        if (!strlen($table->time_2)) $table->time_2 = NULL;
-        if (!strlen($table->turnstiles)) $table->turnstiles = NULL;
-        if (!strlen($table->detour)) $table->detour = NULL;
+    	$nulls = array('time_1', 'time_2', 'turnstiles', 'detour', 'time_check'); //Поля, которые NULL
+	    foreach ($nulls as $field)
+	    {
+		    if (!strlen($table->$field)) $table->$field = NULL;
+    	}
+    	$table->mod_date = date("Y-m-d H:i:s");
         parent::prepareTable($table);
+    }
+
+    /* Делаем обход проверенным */
+    public function setChecked() {
+    	$ids = JFactory::getApplication()->input->get('cid');
+	    $db =& JFactory::getDbo();
+	    foreach ($ids as $id)
+	    {
+		    $query = $db->getQuery(true);
+		    $query
+			    ->update('#__rw2_station_tickets')
+			    ->set('`time_check` = NULL ')
+			    ->where("`id` = {$id}");
+		    $db->setQuery($query);
+		    $db->query();
+    	}
+    	return true;
     }
 
     public function getScript()

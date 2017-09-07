@@ -3,6 +3,8 @@ defined('_JEXEC') or die;
 JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
+jimport('joomla.form.helper');
+JFormHelper::loadFieldClass('calendar');
 ?>
 <script type="text/javascript">
     Joomla.submitbutton = function(task) {
@@ -23,11 +25,14 @@ JHtml::_('formbehavior.chosen', 'select');
                 <div class="tab-pane active" id="general">
                     <fieldset class="adminform">
                         <div class="control-group form-inline">
-                            <?php foreach ($this->form->getFieldset('names') as $field) : ?>
+                            <?php foreach ($this->form->getFieldset('names') as $field) :
+                                if (($field->name == "jform[time_check]" && empty($field->value)) || $field->name != "jform[time_check]")
+                                ?>
                                 <div class="control-label"><?php echo $field->label; ?></div>
                                 <div class="controls"><?php echo $field->input; ?></div>
                                 <br>
-                            <?php endforeach; ?>
+                            <?php
+                            endforeach; ?>
                         </div>
                     </fieldset>
                 </div>

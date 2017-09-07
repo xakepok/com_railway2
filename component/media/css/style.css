@@ -110,3 +110,20 @@
     font-style: italic;
     margin: 5px;
 }
+.check-ok {
+    color: #0b4209;
+}
+.check-yellow {
+    color: #beb803;
+    font-weight: bold;
+}
+.check-need {
+    color: #ff2525;
+    font-weight: bold;
+}
+.updated {
+    width: 100%;
+    padding: 2px;
+    text-align: right;
+    color: #276e42;
+}
