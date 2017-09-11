@@ -11,7 +11,7 @@ class Railway2ModelStation extends JModelList {
 
     /* Расписание по станции */
     public function getRasp() {
-        if ($this->stationID == 0) {
+        if ($this->stationID == 0 || JComponentHelper::getParams('com_railway2')->get('page_station_show_rasp', '0') == '0') {
             return false;
         }
         $modelRasp = JModelLegacy::getInstance('Yandexrasp', 'Railway2Model');
@@ -29,7 +29,7 @@ class Railway2ModelStation extends JModelList {
 
     /* Пересадки на метро */
     public function getCrosses() {
-        if ($this->stationID == 0) return false;
+        if ($this->stationID == 0 || JComponentHelper::getParams('com_railway2')->get('page_station_show_cross', '0') == '0') return false;
         $db =& JFactory::getDbo();
         $query = $db->getQuery(true);
         $query

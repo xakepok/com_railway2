@@ -39,6 +39,48 @@
 			<option value="tr">COM_RAILWAY2_YANDEX_API_RASP_LANG_TR</option>
 		</field>
 	</fieldset>
+	<fieldset name="page_station" label="COM_RAILWAY2_STATION" description="COM_RAILWAY2_SETTINGS_PAGE_STATION">
+		<field
+				name="page_station_show_wayout"
+				type="radio"
+				label="COM_RAILWAY2_SETTINGS_WAYOUT"
+				description="COM_RAILWAY2_SETTINGS_SHOW_WAYOUT"
+				section="component"
+				component="com_railway2">
+			<option value="0">COM_RAILWAY2_SETTINGS_HIDE</option>
+			<option value="1">COM_RAILWAY2_SETTINGS_SHOW</option>
+		</field>
+		<field
+				name="page_station_show_cross_metro"
+				type="radio"
+				label="COM_RAILWAY2_SETTINGS_CROSS_METRO"
+				description="COM_RAILWAY2_SETTINGS_SHOW_CROSS_METRO"
+				section="component"
+				component="com_railway2">
+			<option value="0">COM_RAILWAY2_SETTINGS_HIDE</option>
+			<option value="1">COM_RAILWAY2_SETTINGS_SHOW</option>
+		</field>
+		<field
+				name="page_station_show_rasp"
+				type="radio"
+				label="COM_RAILWAY2_SETTINGS_RASP"
+				description="COM_RAILWAY2_SETTINGS_SHOW_RASP"
+				section="component"
+				component="com_railway2">
+			<option value="0">COM_RAILWAY2_SETTINGS_HIDE</option>
+			<option value="1">COM_RAILWAY2_SETTINGS_SHOW</option>
+		</field>
+		<field
+				name="page_station_show_updatetime"
+				type="radio"
+				label="COM_RAILWAY2_SETTINGS_UPDATETIME"
+				description="COM_RAILWAY2_SETTINGS_SHOW_UPDATETIME"
+				section="component"
+				component="com_railway2">
+			<option value="0">COM_RAILWAY2_SETTINGS_HIDE</option>
+			<option value="1">COM_RAILWAY2_SETTINGS_SHOW</option>
+		</field>
+	</fieldset>
 	<fieldset name="rzd" label="COM_RAILWAY2_RZD" description="COM_RAILWAY2_RZD_SITE">
 		<field
 			name="rzd-rasp-station"

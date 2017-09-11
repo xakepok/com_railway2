@@ -6,5 +6,5 @@ defined('_JEXEC') or die;
 echo $this->desc[0]->detour;
 ?>
 <p class="updated">
-    <?php echo JText::_('COM_RAILWAY2_UPDATED'), ' ', date("d.m.Y", strtotime($this->desc[0]->mod_date));?>
+    <?php if (JComponentHelper::getParams('com_railway2')->get('page_station_show_updatetime', '0') != '0') echo JText::_('COM_RAILWAY2_UPDATED'), ' ', date("d.m.Y", strtotime($this->desc[0]->mod_date));?>
 </p>
