@@ -10,6 +10,11 @@ class Railway2ModelDirection extends JModelList {
         $this->dir = JFactory::getApplication()->input->getInt('id', 0);
     }
 
+    /* ID направления */
+    public function getDir() {
+        return $this->dir;
+    }
+
     /* Информация из вики */
     public function getWiki() {
         if ($this->dir == 0) return false;

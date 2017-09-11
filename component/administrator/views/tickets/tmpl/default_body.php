@@ -13,6 +13,10 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $station->sid; ?>
         </td>
         <td>
+            <?php $link = "http://elektrichking.ru/railway2/station/{$station->sid}/?from=wiki"; ?>
+            <a href="<?php echo $link;?>" target="_blank"><?php echo JText::_('COM_RAILWAY2_STATION_LINK_FOR_MANUAL');?></a>
+        </td>
+        <td>
             <?php $link = JRoute::_('index.php?option=com_railway2&view=ticket&layout=edit&stationID='.$station->sid.'&id='.$station->id); ?>
             <a href="<?php echo $link;?>"><?php echo $station->name; ?></a>
         </td>

@@ -7,6 +7,7 @@ class Railway2ViewStation extends JViewLegacy
     public function display() {
         $this->error = false;
         $this->info = $this->get('Items');
+
         if (!$this->info) $this->error = JText::_('COM_RAILWAY2_ERROR_BAD_STATION');
         if ($this->error === false) {
             $this->rasp = $this->get('Rasp');
