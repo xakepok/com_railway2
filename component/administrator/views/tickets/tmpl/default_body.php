@@ -18,7 +18,7 @@ foreach ($this->items as $i => $station) : ?>
         </td>
         <td>
             <?php $link = JRoute::_('index.php?option=com_railway2&view=ticket&layout=edit&stationID='.$station->sid.'&id='.$station->id); ?>
-            <a href="<?php echo $link;?>"><?php echo $station->name; ?></a>
+            <a href="<?php echo $link;?>"><?php echo Railway2Helper::getPopularName($station->name, $station->popularName); ?></a>
         </td>
         <td>
             <?php echo $station->esr; ?>
@@ -42,6 +42,7 @@ foreach ($this->items as $i => $station) : ?>
             if ($station->time_1 == null && $station->time_2 == null && $station->turnstiles == null) {
                 $text = JText::_('COM_RAILWAY2_STATION_DESC_NO');
             }
+            if ($station->time_1 == '00:00:00' && $station->time_2 == '23:59:59') $text = JText::_('COM_RAILWAY2_DESC_EVERYTIME');
             ?>
             <?php echo $text; ?>
         </td>

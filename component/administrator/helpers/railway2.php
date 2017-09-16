@@ -15,6 +15,12 @@ class Railway2Helper
         //JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_railway2', $vName == 'categories');
 	}
 
+	/* Вывод популярного имени станции */
+	static function getPopularName($name, $popularName)
+    {
+        return (!empty($popularName)) ? $popularName : $name;
+    }
+
 	/* Название станции по ИД */
 	static function getStationName($id)
     {
