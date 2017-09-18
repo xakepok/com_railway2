@@ -8,7 +8,7 @@ if (Railway2HelperCodes::canDo('core.admin') && $this->info->active != '1') {
 if ($this->error !== false) {
     echo $this->loadTemplate('error');
 } else {
-    echo $this->loadTemplate('scheme');
+    echo ($this->info->id == '2') ? $this->loadTemplate('msk-gor') : $this->loadTemplate('scheme');
     ?>
     <?php if ($this->wiki !== false): ?>
         <div class="wiki">

@@ -11,6 +11,9 @@ foreach ($this->items as $i => $svyaz) : ?>
             <?php echo $svyaz->id; ?>
         </td>
         <td>
+		    <?php echo $svyaz->stationID; ?>
+        </td>
+        <td>
             <?php $link = JRoute::_('index.php?option=com_railway2&view=direction&layout=edit&id='.$svyaz->id.'&stationID='.$svyaz->stationID); ?>
             <a href="<?php echo $link;?>"><?php echo $svyaz->station; ?></a>
         </td>

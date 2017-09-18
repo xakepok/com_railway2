@@ -34,7 +34,7 @@ class Railway2ModelTicket extends JModelAdmin {
 
     protected function prepareTable($table)
     {
-    	$nulls = array('time_1', 'time_2', 'turnstiles', 'detour', 'time_check'); //Поля, которые NULL
+    	$nulls = array('time_1', 'time_2', 'turnstiles', 'detour', 'thanks', 'time_check'); //Поля, которые NULL
 	    foreach ($nulls as $field)
 	    {
 		    if (!strlen($table->$field)) $table->$field = NULL;

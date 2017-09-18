@@ -79,5 +79,12 @@
                 filter="raw"
                 autocomplete="off"
         />
+        <field
+                name="thanks"
+                type="user"
+                label="COM_RAILWAY2_THANKS"
+                description="COM_RAILWAY2_THANKS_DESC"
+                class="input-xlarge validate-desctime"
+        />
     </fieldset>
 </form>

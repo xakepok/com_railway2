@@ -16,6 +16,8 @@ defined('_JEXEC') or die;
         for ($i = 0; $i < $this->cnt+1; $i++) {
 	        $rowspan = array('level' => '0', 'row' => 0);
 	        $currentRowspan = array('level' => '0', 'i' => 0);
+	        $stationName = (!empty($item->popularName)) ? $item->popularName : $item->name;
+	        $stationLink = JRoute::_('index.php?option=com_railway2&view=station&id=' . $item->stationID.'&Itemid=236');
             ?>
             <tr>
                 <?php
@@ -33,11 +35,12 @@ defined('_JEXEC') or die;
                             /* Определяем границу ячейки */
                             $class = 'direction-level-main';
                             if ($item->startLevel == '1') $class .= ' direction-level';
-                            if ($item->stationID == '5871') {
-                                $check = 3;
+                            if ($item->stationID == '5859') {
+                                $rowspan['level'] = 1;
+                                $rowspan['row'] = 3;
                             }
                             ?>
-                            <td class="<?php echo $class; ?> zone-<?php echo $zone; ?>" <?php if ($check != 0) echo "rowspan='{$check}'"; ?>>
+                            <td class="<?php echo $class; ?> zone-<?php echo $zone; ?>" <?php //if ($colspan != 0) echo "rowspan='{$colspan}'"; ?>>
                                 <a href="<?php echo $stationLink; ?>" target="_blank"><?php echo $stationName; ?></a>
                                 <?php if ($item->turnstiles != NULL) echo "<a class='jutooltip' title='".JText::_('COM_RAILWAY2_TURNSTILES')."'><img src='{$icon['turnstiles']}' alt='turnstiles' /></a>";
                                 if ($item->desc != NULL && $item->turnstiles == NULL) echo "<a class='jutooltip' title='".JText::_('COM_RAILWAY2_DESC')."'><img src='{$icon['desc']}' alt='desc' /></a>";

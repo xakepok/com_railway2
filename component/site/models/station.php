@@ -11,7 +11,7 @@ class Railway2ModelStation extends JModelList {
 
     /* Расписание по станции */
     public function getRasp() {
-        if ($this->stationID == 0 || JComponentHelper::getParams('com_railway2')->get('page_station_show_rasp', '0') == '0') {
+        if ($this->stationID == 0) {
             return false;
         }
         $modelRasp = JModelLegacy::getInstance('Yandexrasp', 'Railway2Model');
@@ -29,7 +29,7 @@ class Railway2ModelStation extends JModelList {
 
     /* Пересадки на метро */
     public function getCrosses() {
-        if ($this->stationID == 0 || JComponentHelper::getParams('com_railway2')->get('page_station_show_cross', '0') == '0') return false;
+        if ($this->stationID == 0) return false;
         $db =& JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
@@ -103,10 +103,11 @@ class Railway2ModelStation extends JModelList {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('*')
+            ->select('`t`.*, `u`.`name` as `user`, `v`.`variant`')
             ->from('#__rw2_station_tickets as `t`')
             ->where('stationID = '.$this->stationID)
-            ->leftJoin('#__rw2_turnstile_variants as `v` ON `v`.`id` = `t`.`turnstiles`');
+            ->leftJoin('#__rw2_turnstile_variants as `v` ON `v`.`id` = `t`.`turnstiles`')
+            ->leftJoin('#__users as `u` ON `u`.`id` = `t`.`thanks`');
         $db->setQuery($query);
         $result = $db->loadObjectList();
         if (count($result) < 1) return false;
@@ -122,7 +123,7 @@ class Railway2ModelStation extends JModelList {
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`s`.`name`,`n`.`popularName`, `type`.`title` as `tip`, `reg`.`region`, `rail`.`road`, `rail`.`division`, `dir`.`id` as `directionID`, `dir`.`active` as `directionActive`, `dir`.`title` as `direction`, `dir`.`color`, `d`.`zoneID`, `d`.`indexID`, `code`.`esr`, `code`.`express`')
+            ->select('`s`.`name`,`n`.`popularName`, `type`.`title` as `tip`, `reg`.`region`, `rail`.`road`, `rail`.`division`, `dir`.`id` as `directionID`, `dir`.`title` as `direction`, `dir`.`color`, `dir`.`font`, `d`.`zoneID`, `d`.`indexID`, `code`.`esr`, `code`.`express`')
             ->from('#__rw2_stations as `s`')
             ->leftJoin('#__rw2_station_types as `type` ON `type`.`id` = `s`.`type`')
             ->leftJoin('#__rw2_regions as `reg` ON `reg`.`id` = `s`.`region`')

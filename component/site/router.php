@@ -13,6 +13,9 @@ class Railway2Router extends JComponentRouterBase
             $segments[] = $query['id'];
 	        unset($query['view'], $query['id']);
         }
+	    if ($query['view'] == 'help') {
+		    unset($query['view']);
+	    }
         return $segments;
     }
 
@@ -31,6 +34,10 @@ class Railway2Router extends JComponentRouterBase
                 $vars['id'] = $segments[0];
                 break;
             }
+	        case 'help': {
+		        $vars['view'] = 'help';
+		        break;
+	        }
         }
         return $vars;
     }

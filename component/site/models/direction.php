@@ -128,6 +128,29 @@ class Railway2ModelDirection extends JModelList {
         return $result;
     }
 
+	public function getNewItems()
+	{
+		if ($this->dir == 0) return false;
+		$db =& JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query
+			->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `dir`.`level`, `s`.`name`, `n`.`popularName`, `t`.`turnstiles`, `t`.`time_1` as `desc`, `dir`.`startLevel`, `m`.`title_ru` as `metroStation`, `l`.`title_ru` as `metroLine`')
+			->from('#__rw2_directions as `dir`')
+			->leftJoin("#__rw2_stations as `s` ON `s`.`id` = `dir`.`stationID`")
+			->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `dir`.`stationID`')
+			->leftJoin('#__rw2_station_tickets as `t` ON `t`.`stationID` = `s`.`id`')
+			->leftJoin('#__rw2_cross_metro as `c` ON `c`.`stationID` = `dir`.`stationID`')
+			->leftJoin('#__rw2_metro_stations as `m` ON `m`.`id` = `c`.`stationID`')
+			->leftJoin('#__rw2_metro_lines as `l` ON `l`.`id` = `m`.`line`')
+			->where("`dir`.`directionID` = {$this->dir}")
+			->order('`dir`.`indexID`, `dir`.`level`, `dir`.`zoneID`')
+			->group('`dir`.`stationID`');
+		$db->setQuery($query);
+		$result = $db->loadObjectList();
+		if (empty($result)) return false;
+		return $result;
+	}
+
     public function getItems()
     {
         if ($this->dir == 0) return false;
