@@ -24,6 +24,7 @@ class JFormFieldStationName extends JFormFieldList  {
             ->where('`c`.`express` != 0 AND `s`.`railway` != 0')
             ->order('`s`.`name`');
         if ($view != 'direction') $query->select('`l`.`title` as `direction`');
+        if ($view == 'direction' && $stationID == 0) $query->where('`r`.`id` IN (173, 208, 150, 200, 210, 161, 205)');
         if ($stationID != 0) $query->where('`s`.`id` = '.$stationID);
         if ($view == 'ticket' || $view == 'cross' || $view == 'synonym') {
             $query

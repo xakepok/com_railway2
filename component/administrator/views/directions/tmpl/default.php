@@ -8,11 +8,10 @@ JHtml::_('behavior.tooltip');
 </div>
 <div id="j-main-container" class="span10">
     <form action="<?php echo JRoute::_('index.php?option=com_railway2&view=directions'); ?>" method="post" name="adminForm" id="adminForm">
-        <p>
-            <fieldset>
-                <?php echo $this->loadTemplate('filter');?>
-            </fieldset>
-        </p><br>
+        <fieldset>
+            <?php echo $this->loadTemplate('filter');?>
+        </fieldset>
+        <br>
         <p>
             <table class="table table-striped">
                 <thead><?php echo $this->loadTemplate('head');?></thead>

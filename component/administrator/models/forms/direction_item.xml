@@ -38,6 +38,16 @@
                 type="color"
                 label="COM_RAILWAY2_COLOR"
                 class="input-xlarge validate-name"
+                required="true"
+                autocomplete="off"
+        />
+        <field
+                name="font"
+                type="color"
+                label="COM_RAILWAY2_COLOR_TEXT"
+                description="COM_RAILWAY2_COLOR_TEXT_DESC"
+                class="input-xlarge validate-name"
+                required="true"
                 autocomplete="off"
         />
         <field
