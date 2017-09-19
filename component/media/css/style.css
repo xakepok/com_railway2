@@ -127,3 +127,9 @@
     text-align: right;
     color: #276e42;
 }
+.zone-hint {
+    width: 100px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 0.9em;
+}
