@@ -2,8 +2,7 @@
 defined('_JEXEC') or die;
 
 class Railway2ModelYandexrasp extends JModelLegacy {
-    public $page;
-
+	public $offset = 0;
     public function __construct(array $config = array())
     {
         parent::__construct($config);
@@ -41,15 +40,20 @@ class Railway2ModelYandexrasp extends JModelLegacy {
                 $this->params['transport_types'] = 'suburban';
                 $this->params['system'] = 'esr';
                 $this->params['show_systems'] = 'all';
+	            $this->params['offset'] = $this->offset;
                 $this->params['date'] = Railway2HelperCodes::getDateFromUrl();
-                $this->params['page'] = $this->page;
                 break;
             }
+	        case 'thread': {
+		        $this->params['uid'] = $this->uid;
+		        $this->params['show_systems'] = 'all';
+		        $this->params['date'] = Railway2HelperCodes::getDateFromUrl();
+		        break;
+	        }
             default: {
                 return false;
             }
         }
-
         return http_build_query($this->params);
     }
 
@@ -60,7 +64,15 @@ class Railway2ModelYandexrasp extends JModelLegacy {
                 return 'schedule';
                 break;
             }
+	        case 'thread': {
+		        return 'thread';
+		        break;
+	        }
         }
+    }
+
+    public function setUID($uid) {
+    	$this->uid = $uid;
     }
 
     public function setESR($code) {
@@ -75,5 +87,5 @@ class Railway2ModelYandexrasp extends JModelLegacy {
         return $this->esr;
     }
 
-    private $esr, $params;
+    private $esr, $uid, $date, $params;
 }

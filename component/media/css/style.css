@@ -133,3 +133,8 @@
     vertical-align: top;
     font-size: 0.9em;
 }
+.desc-not-work {
+    font-style: italic;
+    font-size: 0.8em;
+    color: #0b4209;
+}

@@ -51,6 +51,11 @@ class Railway2HelperCodes {
         return date($format);
     }
 
+    static function iso8601ToDate($date)
+    {
+	    return date('Y-m-d', strtotime($date));
+    }
+
     /* Получаем валидный код ЕСР */
     static function getValidEsr($esr)
     {
@@ -65,9 +70,34 @@ class Railway2HelperCodes {
         $query
             ->select('`esr`')
             ->from('#__rw2_station_codes')
-            ->where('`id` = '.$id);
-        $db->setQuery($query, 0, 1);
-        $result = $db->loadResult();
-        return self::getValidEsr($result);
+	        ->where("`id` = {$id}");
+	    $db->setQuery($query, 0, 1);
+	    $result = $db->loadResult();
+	    return self::getValidEsr($result);
+    }
+
+    /* Получение ИД станции по ЕСР */
+    static function getIdByEsr($ids)
+    {
+    	$res = '';
+	    $db =& JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    $query
+		    ->select('`id`, `esr`')
+		    ->from('#__rw2_station_codes');
+	    if (is_array($ids))
+	    {
+	    	$ids = implode(', ', $ids);
+	    	$query->where("`esr` IN ({$ids})");
+	    	$db->setQuery($query);
+	    	$res = $db->loadAssocList('esr');
+	    }
+	    if (is_numeric($ids))
+	    {
+	    	$query->where("`id` = {$ids}");
+		    $db->setQuery($query, 0, 1);
+		    $res = $db->loadResult();
+	    }
+	    return $res;
     }
 }

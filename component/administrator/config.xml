@@ -34,9 +34,9 @@
 			description="COM_RAILWAY2_YANDEX_API_RASP_LANG_DESC"
 			component="com_railway2"
 			section="component">
-			<option value="ru">COM_RAILWAY2_YANDEX_API_RASP_LANG_RU</option>
-			<option value="uk">COM_RAILWAY2_YANDEX_API_RASP_LANG_UK</option>
-			<option value="tr">COM_RAILWAY2_YANDEX_API_RASP_LANG_TR</option>
+			<option value="ru_RU">COM_RAILWAY2_YANDEX_API_RASP_LANG_RU</option>
+			<option value="uk_UA">COM_RAILWAY2_YANDEX_API_RASP_LANG_UK</option>
+			<option value="tr_TR">COM_RAILWAY2_YANDEX_API_RASP_LANG_TR</option>
 		</field>
 	</fieldset>
 	<fieldset name="page_station" label="COM_RAILWAY2_STATION" description="COM_RAILWAY2_SETTINGS_PAGE_STATION">

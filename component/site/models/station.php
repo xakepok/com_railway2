@@ -19,8 +19,8 @@ class Railway2ModelStation extends JModelList {
         $modelRasp->page = 1;
         $tmp = $modelRasp->query();
         $result = $tmp->schedule;
-        while ($tmp->pagination->has_next == true) {
-            $modelRasp->page++;
+        while (!empty($tmp->schedule)) {
+            $modelRasp->offset += 100;
             $tmp = $modelRasp->query();
             $result = array_merge($result, $tmp->schedule);
         }
