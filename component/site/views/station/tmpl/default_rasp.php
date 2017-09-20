@@ -30,10 +30,10 @@ defined('_JEXEC') or die;
                     <?php echo Railway2HelperCodes::timeRasp($showTime); ?></span>
             </td>
             <td class="rasp-list-item"><span class="station-rasp-font<?php echo ' ',$class;?>">
-                    <?php echo ($this->info->directionID != '1') ? $item->thread->title : JHtml::link(JRoute::_('index.php?option=com_railway2&view=thread&id='.$item->thread->uid.'&date='.Railway2HelperCodes::iso8601ToDate($item->departure).'&Itemid=246'), $item->thread->title, array('target' => '_blank')); ?></span>
+                    <?php echo ($this->info->directionID != '1' && $this->info->directionID != '6' && $this->info->directionID != '9') ? $item->thread->title : JHtml::link(JRoute::_('index.php?option=com_railway2&view=thread&id='.$item->thread->uid.'&date='.Railway2HelperCodes::iso8601ToDate($item->departure).'&Itemid=246'), $item->thread->title, array('target' => '_blank')); ?></span>
             </td>
             <td class="rasp-list-item"><span class="station-rasp-font<?php echo ' ',$class;?>">
-                    <?php echo $item->stops; ?></span>
+                    <span class="station-rasp-font"><?php echo $item->stops; ?></span>
             </td>
         </tr>
         <?php
