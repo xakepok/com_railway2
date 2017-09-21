@@ -138,3 +138,17 @@
     font-size: 0.8em;
     color: #0b4209;
 }
+.transform {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    text-align: left;
+    margin: -0px -0px -30px -0px;
+    font-size: 1.1em;
+}
+.scheme-hint {
+    font-size: 0.9em;
+    font-style: italic;
+}

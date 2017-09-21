@@ -2,7 +2,6 @@
 defined('_JEXEC') or die;
 
 class Railway2ModelHelp extends JModelList {
-
     public function getItems()
     {
 	    $db =& JFactory::getDbo();
@@ -21,7 +20,6 @@ class Railway2ModelHelp extends JModelList {
 	    	$arr[] = $res->sid;
 	    }
 	    $not = implode(', ', $arr);
-	    //exit(var_dump($not));
 
 	    $query = $db->getQuery(true);
 	    $query

@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 class Railway2ViewDirection extends JViewLegacy {
-    public $items, $cnt, $info, $levels, $error, $desc, $wiki, $crosses;
+    public $items, $info, $error, $desc, $wiki;
 
     public function display() {
         $this->error = false;
@@ -9,11 +9,7 @@ class Railway2ViewDirection extends JViewLegacy {
         if (!$this->info) $this->error = JText::_('COM_RAILWAY2_ERROR_BAD_DIRECTION');
         if ($this->error === false) {
             $this->items = $this->get('Items');
-            $this->levels = $this->get('Levels'); //Количество уровней на направлении
-            $this->cnt = $this->get('StationsCount'); //Количество строк в таблице со станциями
-            $this->desc = $this->get('DescTime'); //Время работы касс
             $this->wiki = $this->get('Wiki'); //Справочник
-            $this->crosses = $this->get('Crosses'); //Пересадки на метро
         }
         $this->prepare();
         parent::display();
@@ -41,9 +37,6 @@ class Railway2ViewDirection extends JViewLegacy {
             case '2': {
                 $title .= ' - '. $siteName;
                 break;
-            }
-            default: {
-                $title = $title;
             }
         }
         return $title;
