@@ -9,6 +9,7 @@
                 name="stationID"
                 type="stationName"
                 label="COM_RAILWAY2_STATION_NAME_DESC"
+                description="COM_RAILWAY2_STATION_NAME_DESC"
                 required="true"
                 class="input-xlarge"
         />
@@ -16,6 +17,7 @@
                 name="popularName"
                 type="text"
                 label="COM_RAILWAY2_STATION_POPULAR_NAME"
+                description="COM_RAILWAY2_STATION_POPULAR_NAME_DESC"
                 required="true"
                 class="input-xlarge validate-name"
                 autocomplete="off"
@@ -24,6 +26,7 @@
                 name="yandexName"
                 type="text"
                 label="COM_RAILWAY2_STATION_YANDEX_NAME"
+                description="COM_RAILWAY2_STATION_YANDEX_NAME_DESC"
                 class="input-xlarge validate-name"
                 autocomplete="off"
         />
@@ -31,8 +34,18 @@
                 name="rzdName"
                 type="text"
                 label="COM_RAILWAY2_STATION_RZD_NAME"
+                description="COM_RAILWAY2_STATION_RZD_NAME_DESC"
                 class="input-xlarge validate-name"
                 autocomplete="off"
         />
+        <field
+                name="displayBothNames"
+                type="list"
+                label="COM_RAILWAY2_STATION_DISPLAY_NAMES"
+                description="COM_RAILWAY2_STATION_DISPLAY_NAMES_DESC"
+                class="input-xlarge">
+                <option value="0">COM_RAILWAY2_STATION_DISPLAY_NAMES_POPULAR</option>
+                <option value="1">COM_RAILWAY2_STATION_DISPLAY_NAMES_ALL</option>
+        </field>
     </fieldset>
 </form>

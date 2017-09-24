@@ -1,6 +1,17 @@
 <?php
 defined('_JEXEC') or die;
 class Railway2HelperCodes {
+    /* Отображаем имя станции */
+    static function getStationName($name, $popularName = '', $displayBothNames = '0')
+    {
+        $stationName = $name;
+        if (!empty($popularName)) {
+            $stationName = $popularName;
+            if ($displayBothNames != '0') $stationName .= " ({$name})";
+        }
+        return $stationName;
+    }
+
 
 	/* Запрос прав */
 	static function canDo($p)

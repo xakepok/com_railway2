@@ -7,6 +7,7 @@ class TableRw2_station_names extends JTable {
     var $popularName = null;
     var $yandexName = null;
     var $rzdName = null;
+    var $displayBothNames = null;
 
     public function __construct(&$db) {
         parent::__construct('#__rw2_station_names', 'id', $db);

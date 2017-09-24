@@ -54,7 +54,7 @@ class Railway2ModelDirection extends JModelList {
         $where = $this->advStations();
         $query = $db->getQuery(true);
         $query
-            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `s`.`name`, `n`.`popularName`, `t`.`turnstiles`, `t`.`time_1`, `t`.`time_2`, `m`.`title_ru` as `metroStation`, `l`.`title_ru` as `metroLine`')
+            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `s`.`name`, `n`.`popularName`, `n`.`displayBothNames`, `t`.`turnstiles`, `t`.`time_1`, `t`.`time_2`, `m`.`title_ru` as `metroStation`, `l`.`title_ru` as `metroLine`')
             ->from('#__rw2_directions as `dir`')
             ->leftJoin("#__rw2_stations as `s` ON `s`.`id` = `dir`.`stationID`")
             ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `dir`.`stationID`')
@@ -73,7 +73,7 @@ class Railway2ModelDirection extends JModelList {
 
 	    foreach ($result as $item)
 	    {
-		    $stationName = (!empty($item->popularName)) ? $item->popularName : $item->name;
+            $stationName = Railway2HelperCodes::getStationName($item->name, $item->popularName, $item->displayBothNames);
 		    $icon = "";
 		    $text = "";
 		    if ($item->turnstiles != null)
