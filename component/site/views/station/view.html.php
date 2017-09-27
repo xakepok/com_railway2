@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 class Railway2ViewStation extends JViewLegacy
 {
-    public $info, $desc, $near, $error, $rasp, $crosses;
+    public $info, $error, $rasp;
 
     public function display() {
         $this->error = false;
@@ -11,9 +11,6 @@ class Railway2ViewStation extends JViewLegacy
         if (!$this->info) $this->error = JText::_('COM_RAILWAY2_ERROR_BAD_STATION');
         if ($this->error === false) {
             $this->rasp = $this->get('Rasp');
-            $this->desc = $this->get('Desc');
-            $this->near = $this->get('NearSafe');
-            $this->crosses = $this->get('Crosses');
         }
 
         $this->prepare();
@@ -33,8 +30,7 @@ class Railway2ViewStation extends JViewLegacy
         $siteName = $config->get('sitename');
         $sitename_pagetitles = $config->get('sitename_pagetitles');
 
-        $name = (!empty($this->info->popularName)) ? $this->info->popularName : $this->info->name;
-        $title = $this->info->tip.' '.$name;
+        $title = $this->info['fullName'];
 
         switch ($sitename_pagetitles) {
             case '1': {

@@ -16,6 +16,7 @@ class Railway2ModelThread extends JModelList
 		$model->setUID($this->uid);
 		$tmp = $model->query();
 		$esr = array();
+		$yandex = array();
 		$res = array();
 		if (empty($tmp)) return false;
 		$res['except_days'] = $tmp->except_days;
@@ -28,18 +29,32 @@ class Railway2ModelThread extends JModelList
 		$res['stops'] = array();
 		foreach ($tmp->stops as $item)
 		{
+			$yandex[] = $item->station->codes->yandex;
 			$esr[] = Railway2HelperCodes::getValidEsr($item->station->codes->esr);
 		}
-		$codes = Railway2HelperCodes::getIdByEsr($esr);
+		$codes = Railway2HelperCodes::getIdByEsr($esr, $yandex);
 		$desc = $this->getDescByRoute($codes);
 		foreach ($tmp->stops as $item)
 		{
 			$arr = (!empty($item->arrival)) ? date("H.i", strtotime($item->arrival)) : '';
 			$dep = (!empty($item->departure)) ? date("H.i", strtotime($item->departure)) : '';
 			$platform = $item->platform;
-			$stationID = $codes[$item->station->codes->esr]['id'];
+			$stationID = 0;
+			if (strlen($item->station->codes->esr) > 4)
+			{
+				$stationID = $codes[$item->station->codes->esr]['id'];
+			} else{
+				foreach ($codes as $esr => $c)
+				{
+					if ('s'.$c['yandex'] == $item->station->codes->yandex)
+					{
+						$stationID = $c['id'];
+						break;
+					}
+				}
+			}
 			$link = JRoute::_("index.php?option=com_railway2&view=station&id={$stationID}&Itemid=236");
-			$stationLink = JHtml::link($link, $item->station->title);
+			$stationLink = (!empty($stationID)) ? JHtml::link($link, $item->station->title) : $item->station->title;
 			$kassa = $this->checkDesc($desc[$stationID], $item->departure);
 			$k = ($kassa === false) ? "<span class='desc-not-work'>".JText::_('COM_RAILWAY2_DESC_NO_WORK')."</span>" : '';
 			if (empty($desc[$stationID])) $k = JText::_('COM_RAILWAY2_NOINFO');

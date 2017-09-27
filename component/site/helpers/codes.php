@@ -55,6 +55,21 @@ class Railway2HelperCodes {
         return (strlen($esr) == 5) ? '0'.$esr : $esr;
     }
 
+    /* Получение направления по умолчанию для расписания по станции */
+    static function getDefaultDir($id)
+    {
+    	$input = JFactory::getApplication()->input;
+	    $db =& JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    $query
+		    ->select('`schedule`')
+		    ->from('#__rw2_directions')
+		    ->where("`stationID` = {$id}");
+	    $db->setQuery($query, 0, 1);
+
+	    return $input->getString('direction', $db->loadResult());
+    }
+
     /* Получение ЕСР кода станции по её ИД */
     static function getEsrById($id)
     {
@@ -69,25 +84,31 @@ class Railway2HelperCodes {
 	    return self::getValidEsr($result);
     }
 
-    /* Получение ИД станции по ЕСР */
-    static function getIdByEsr($ids)
+    /* Получение ИД станции по ЕСР или яндексу */
+    static function getIdByEsr($ids, $yandex = '')
     {
     	$res = '';
 	    $db =& JFactory::getDbo();
 	    $query = $db->getQuery(true);
 	    $query
-		    ->select('`id`, `esr`')
+		    ->select('`id`, `esr`, `yandex`')
 		    ->from('#__rw2_station_codes');
-	    if (is_array($ids))
+	    if (is_array($ids) || is_array($yandex))
 	    {
+	    	$yandexNew = array();
+	    	foreach ($yandex as $code)
+		    {
+		    	$yandexNew[] = substr($code, 1);
+		    }
 	    	$ids = implode(', ', $ids);
-	    	$query->where("`esr` IN ({$ids})");
+	    	$yandex = implode(', ', $yandexNew);
+	    	$query->where("`esr` IN ({$ids}) OR `yandex` IN ({$yandex})");
 	    	$db->setQuery($query);
 	    	$res = $db->loadAssocList('esr');
 	    }
-	    if (is_numeric($ids))
+	    if (is_numeric($ids) || is_numeric($yandex))
 	    {
-	    	$query->where("`id` = {$ids}");
+	    	$query->where("`id` = {$ids} OR `yandex` = ".substr($yandex, 1));
 		    $db->setQuery($query, 0, 1);
 		    $res = $db->loadResult();
 	    }
