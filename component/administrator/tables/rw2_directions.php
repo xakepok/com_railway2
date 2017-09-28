@@ -11,6 +11,7 @@ class TableRw2_directions extends JTable {
     var $level = null;
     var $startLevel = null;
     var $distance = null;
+    var $schedule = null;
 
     public function __construct(&$db) {
         parent::__construct('#__rw2_directions', 'id', $db);

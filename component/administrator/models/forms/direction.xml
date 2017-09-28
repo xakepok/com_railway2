@@ -28,8 +28,8 @@
                 label="COM_RAILWAY2_CONTROL_POINT"
                 description="COM_RAILWAY2_CONTROL_POINT_DESCRIPTION"
                 class="input-xlarge">
-                <option value="0">COM_RAILWAY2_NO</option>
-                <option value="1">COM_RAILWAY2_YES</option>
+            <option value="0">COM_RAILWAY2_NO</option>
+            <option value="1">COM_RAILWAY2_YES</option>
         </field>
         <field
                 name="indexID"
@@ -47,6 +47,23 @@
                 description="COM_RAILWAY2_STATION_ZONE_DESCRIPTION"
                 class="input-xlarge validate-zone"
                 labelclass="control-label"
+                autocomplete="off"
+        />
+        <field
+                name="distance"
+                type="text"
+                label="COM_RAILWAY2_DISTANCE_KM"
+                description="COM_RAILWAY2_DISTANCE_KM_EDSCRIPTION"
+                class="input-xlarge"
+                labelclass="control-label validate-distance"
+                autocomplete="off"
+        />
+        <field
+                name="schedule"
+                type="text"
+                label="COM_RAILWAY2_DIRECTION_DEFAULT"
+                description="COM_RAILWAY2_DIRECTION_DEFAULT_DESC"
+                class="input-xlarge"
                 autocomplete="off"
         />
         <field
@@ -70,14 +87,5 @@
             <option value="0">COM_RAILWAY2_NO</option>
             <option value="1">COM_RAILWAY2_YES</option>
         </field>
-        <field
-                name="distance"
-                type="text"
-                label="COM_RAILWAY2_DISTANCE_KM"
-                description="COM_RAILWAY2_DISTANCE_KM_EDSCRIPTION"
-                class="input-xlarge"
-                labelclass="control-label validate-distance"
-                autocomplete="off"
-        />
     </fieldset>
 </form>
