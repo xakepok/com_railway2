@@ -90,7 +90,7 @@ class Railway2ModelStation extends JModelList
 		$result = array();
 		foreach ($schedule as $item)
 		{
-			$class = ($item->thread->express_type == 'express') ? 'express' : 'noexpress';
+			$class = ($item->thread->express_type == 'express' || $item->thread->express_type == 'aeroexpress') ? 'express' : 'noexpress';
 			$query           = array(
 				'option' => 'com_railway2',
 				'view'   => 'thread',
