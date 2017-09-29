@@ -40,7 +40,7 @@ class Railway2ModelStation extends JModelList
 			$modelRasp->offset += 100;
 			$tmp               = $modelRasp->query();
 			$r = $this->generateRasp($tmp->schedule);
-			array_merge($result['schedule'], $r);
+			$result['schedule'] = array_merge($result['schedule'], $r);
 		}
 		return $result;
 	}
