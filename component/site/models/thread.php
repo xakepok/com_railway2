@@ -21,9 +21,9 @@ class Railway2ModelThread extends JModelList
 		if (empty($tmp)) return false;
 		$res['except_days'] = $tmp->except_days;
 		$res['uid'] = $tmp->uid;
-		$res['title'] = $tmp->title;
+		$res['title'] = (!empty($tmp->short_title)) ? $tmp->short_title : $tmp->title;
 		$res['number'] = $tmp->number;
-		$res['days'] = $tmp->days;
+		$res['days'] = ucfirst($tmp->days);
 		$res['carrier'] = $tmp->carrier->title;
 		$res['transport_type'] = $tmp->transport_type;
 		$res['stops'] = array();
@@ -39,16 +39,18 @@ class Railway2ModelThread extends JModelList
 			$arr = (!empty($item->arrival)) ? date("H.i", strtotime($item->arrival)) : '';
 			$dep = (!empty($item->departure)) ? date("H.i", strtotime($item->departure)) : '';
 			$platform = $item->platform;
-			$stationID = 0;
+			$stationID = $zone = 0;
 			if (strlen($item->station->codes->esr) > 4)
 			{
 				$stationID = $codes[$item->station->codes->esr]['id'];
+				$zone = $codes[$item->station->codes->esr]['zoneID'];
 			} else{
 				foreach ($codes as $esr => $c)
 				{
 					if ('s'.$c['yandex'] == $item->station->codes->yandex)
 					{
 						$stationID = $c['id'];
+						$zone = $c['zoneID'];
 						break;
 					}
 				}
@@ -56,7 +58,8 @@ class Railway2ModelThread extends JModelList
 			$link = JRoute::_("index.php?option=com_railway2&view=station&id={$stationID}&Itemid=236");
 			$stationLink = (!empty($stationID)) ? JHtml::link($link, $item->station->title) : $item->station->title;
 			$kassa = $this->checkDesc($desc[$stationID], $item->departure);
-			$k = ($kassa === false) ? "<span class='desc-not-work'>".JText::_('COM_RAILWAY2_DESC_NO_WORK')."</span>" : '';
+			$class = (Railway2HelperCodes::isOdd($zone)) ? 'zone-1' : 'zone-2';
+			$k = ($kassa === false) ? "<span class='desc-not-work'>".JText::_('COM_RAILWAY2_DESC_NO_WORK')."</span>" : "<span class='desc-work'>".JText::_('COM_RAILWAY2_DESC_WORK')."</span>";
 			if (empty($desc[$stationID])) $k = JText::_('COM_RAILWAY2_NOINFO');
 			if ($arr == $dep)
 			{
@@ -69,7 +72,9 @@ class Railway2ModelThread extends JModelList
 				'dep' => $dep,
 				'platform' => $platform,
 				'station' => $stationLink,
-				'desc' => $k
+				'desc' => $k,
+				'zone' => $zone,
+				'class' => $class
 			);
 		}
 		return $res;

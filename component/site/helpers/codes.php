@@ -84,15 +84,16 @@ class Railway2HelperCodes {
 	    return self::getValidEsr($result);
     }
 
-    /* Получение ИД станции по ЕСР или яндексу */
+    /* Получение ИД станции, километража и зоны  по ЕСР или яндексу */
     static function getIdByEsr($ids, $yandex = '')
     {
     	$res = '';
 	    $db =& JFactory::getDbo();
 	    $query = $db->getQuery(true);
 	    $query
-		    ->select('`id`, `esr`, `yandex`')
-		    ->from('#__rw2_station_codes');
+		    ->select('`c`.`id`, `c`.`esr`, `c`.`yandex`, `dir`.`zoneID`, `dir`.`distance`')
+		    ->from('#__rw2_station_codes as `c`')
+		    ->leftJoin("#__rw2_directions as `dir` ON `dir`.`stationID` = `c`.`id`");
 	    if (is_array($ids) || is_array($yandex))
 	    {
 	    	$yandexNew = array();
@@ -113,5 +114,11 @@ class Railway2HelperCodes {
 		    $res = $db->loadResult();
 	    }
 	    return $res;
+    }
+
+    /* Чётность числа */
+    static function isOdd($digit)
+    {
+	    return (($digit % 2) == 1) ? true : false;
     }
 }

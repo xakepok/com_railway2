@@ -135,8 +135,23 @@
 }
 .desc-not-work {
     font-style: italic;
+    font-weight: bold;
     font-size: 0.8em;
     color: #0b4209;
+    cursor: default;
+}
+.desc-work {
+    font-style: italic;
+    font-size: 0.8em;
+    opacity: 0.4;
+    cursor: default;
+}
+.thread-time {
+    text-align: center;
+    cursor: default;
+}
+.desc-work:HOVER {
+    opacity: 1;
 }
 .transform {
     -webkit-transform: rotate(-90deg);
@@ -154,4 +169,14 @@
 }
 .thread-link {
     font-size: 0.9em;
+}
+th.thread {
+    font-size: 0.9em;
+    background-color: white;
+}
+.carrier {
+    font-size: 0.9em;
+    font-style: italic;
+    width: 100%;
+    text-align: left;
 }
