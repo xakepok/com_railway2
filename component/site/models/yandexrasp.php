@@ -7,6 +7,7 @@ class Railway2ModelYandexrasp extends JModelLegacy
 
 	public function __construct(array $config = array())
 	{
+		$this->yandex = false;
 		parent::__construct($config);
 	}
 
@@ -45,10 +46,17 @@ class Railway2ModelYandexrasp extends JModelLegacy
 		{
 			case 'station':
 			{
-				$this->params['station']         = $this->esr;
+				if (!$this->yandex)
+				{
+					$this->params['station']         = $this->esr;
+					$this->params['system']          = 'esr';
+				}
+				else
+				{
+					$this->params['station']         = $this->yandex;
+				}
 				$this->params['transport_types'] = 'suburban';
 				$this->params['direction']       = $this->dir;
-				$this->params['system']          = 'esr';
 				$this->params['show_systems']    = 'all';
 				$this->params['offset']          = $this->offset;
 				$this->params['date']            = Railway2HelperCodes::getDateFromUrl();
@@ -109,10 +117,15 @@ class Railway2ModelYandexrasp extends JModelLegacy
 		$this->dir = $dir;
 	}
 
+	public function setYandex($code)
+	{
+		$this->yandex = $code;
+	}
+
 	public function getESR()
 	{
 		return $this->esr;
 	}
 
-	private $esr, $uid, $date, $params, $dir;
+	private $esr, $uid, $date, $params, $dir, $yandex;
 }

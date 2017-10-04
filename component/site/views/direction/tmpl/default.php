@@ -18,6 +18,8 @@ if ($this->error !== false) {
         <br>
         <img src="/media/com_railway2/images/Receipt_18px.png" alt="<?php echo JText::_('COM_RAILWAY2_SCHEME_DESC_DESC')?>" /> - <?php echo JText::_('COM_RAILWAY2_SCHEME_DESC_DESC')?>
         <br>
+        <img src="/media/com_railway2/images/TPD_18px.png" alt="<?php echo JText::_('COM_RAILWAY2_SCHEME_DESC_TPD_DESC')?>" /> - <?php echo JText::_('COM_RAILWAY2_SCHEME_DESC_TPD_DESC')?>
+        <br>
         <img src="/media/com_railway2/images/Approval_18px.png" alt="<?php echo JText::_('COM_RAILWAY2_SCHEME_DESC_NO_DESC')?>" /> - <?php echo JText::_('COM_RAILWAY2_SCHEME_DESC_NO_DESC')?>
     </p>
     <?php if ($this->wiki !== false): ?>

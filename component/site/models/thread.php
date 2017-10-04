@@ -87,14 +87,14 @@ class Railway2ModelThread extends JModelList
 		$work = false;
 		foreach ($desc as $item)
 		{
-			if ($item->turnstiles != null)
+			if ($item->turnstiles != null || $item->tpd != '0')
 			{
 				$work = true;
 				break;
 			}
 			$d = substr($item->timemask, $dayOfWeek, 1);
 			if ($d == 1) {
-				if ($item->turnstiles == null && $item->time_1 == null && $item->time_2 == null)
+				if ($item->turnstiles == null && $item->time_1 == null && $item->time_2 == null && $item->tpd == '0')
 				{
 					$work = false;
 					break;

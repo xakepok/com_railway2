@@ -25,6 +25,11 @@ class Railway2ModelStation extends JModelList
 		$modelRasp->setDirection($dir);
 		$modelRasp->page      = 1;
 		$tmp                  = $modelRasp->query();
+		if (empty($tmp))
+		{
+			$modelRasp->setYandex(Railway2HelperCodes::getYandexById($this->stationID));
+			$tmp                  = $modelRasp->query();
+		}
 		$directions = array();
 		foreach ($tmp->directions as $direction)
 		{

@@ -84,6 +84,20 @@ class Railway2HelperCodes {
 	    return self::getValidEsr($result);
     }
 
+    /* Получение Яндекс кода станции по её ИД */
+    static function getYandexById($id)
+    {
+        $db =& JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select('`yandex`')
+            ->from('#__rw2_station_codes')
+	        ->where("`id` = {$id}");
+	    $db->setQuery($query, 0, 1);
+	    $result = $db->loadResult();
+	    return 's'.$result;
+    }
+
     /* Получение ИД станции, километража и зоны  по ЕСР или яндексу */
     static function getIdByEsr($ids, $yandex = '')
     {

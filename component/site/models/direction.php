@@ -54,7 +54,7 @@ class Railway2ModelDirection extends JModelList {
         $where = $this->advStations();
         $query = $db->getQuery(true);
         $query
-            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `s`.`name`, `n`.`popularName`, `n`.`displayBothNames`, `t`.`turnstiles`, `t`.`time_1`, `t`.`time_2`, `m`.`title_ru` as `metroStation`, `l`.`title_ru` as `metroLine`')
+            ->select('`dir`.`stationID`, `dir`.`indexID`, `dir`.`zoneID`, `s`.`name`, `n`.`popularName`, `n`.`displayBothNames`, `t`.`turnstiles`, `t`.`time_1`, `t`.`time_2`, `t`.`tpd`, `m`.`title_ru` as `metroStation`, `l`.`title_ru` as `metroLine`')
             ->from('#__rw2_directions as `dir`')
             ->leftJoin("#__rw2_stations as `s` ON `s`.`id` = `dir`.`stationID`")
             ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `dir`.`stationID`')
@@ -81,10 +81,15 @@ class Railway2ModelDirection extends JModelList {
 			    $text = JText::_('COM_RAILWAY2_TURNSTILES');
 		    	$icon = '/media/com_railway2/images/turnstiles_18.png';
 		    }
-		    if ($item->time_1 == null && $item->time_2 == null && $item->turnstiles == null && in_array($item->stationID, $withInfo))
+		    if ($item->time_1 == null && $item->time_2 == null && $item->turnstiles == null && in_array($item->stationID, $withInfo) && $item->tpd == '0')
 		    {
 		    	$text = JText::_('COM_RAILWAY2_STATION_DESC_NO');
 		    	$icon = '/media/com_railway2/images/Approval_18px.png';
+		    }
+		    if ($item->tpd == '1')
+		    {
+			    $text = JText::_('COM_RAILWAY2_SCHEME_DESC_TPD');
+			    $icon = '/media/com_railway2/images/TPD_18px.png';
 		    }
 		    if ($item->time_1 != null && $item->time_2 != null && $item->turnstiles == null)
 		    {
