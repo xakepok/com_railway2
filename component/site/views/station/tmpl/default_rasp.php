@@ -22,20 +22,23 @@ defined('_JEXEC') or die;
     <?php foreach ($this->rasp['schedule'] as $item) {
         ?>
         <tr>
-            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font">
                     <?php echo $item['number']; ?></span>
             </td>
-            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font">
                     <?php echo $item['time']; ?></span>
             </td>
-            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font">
                     <?php echo $item['link']; ?></span>
                     <?php if (!empty($item['type'])) {
                         echo "<br><span class=\"station-rasp-font\" style=\"color: ".$item['color']."\">", $item['type'], "</span>";
                     }?>
             </td>
-            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font">
                     <span class="station-rasp-font"><?php echo $item['stops']; ?></span>
+                    <?php if (!empty($item['platform'])) {
+                        echo "<br><span class=\"platform\">", $item['platform'], "</span>";
+                    }?>
             </td>
         </tr>
         <?php

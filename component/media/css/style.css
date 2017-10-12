@@ -180,3 +180,8 @@ th.thread {
     width: 100%;
     text-align: left;
 }
+.platform {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #ff6259;
+}

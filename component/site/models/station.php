@@ -96,7 +96,7 @@ class Railway2ModelStation extends JModelList
 		foreach ($schedule as $item)
 		{
             $color = ($item->thread->transport_subtype->code != 'suburban') ? $item->thread->transport_subtype->color : '#276E41';
-            $linkOption = array('target' => '_blank', 'class' => 'thread-link', 'style' => 'color: '.$color);
+            $linkOption = array('target' => '_blank', 'class' => 'thread-link');
 
 			$query           = array(
 				'option' => 'com_railway2',
