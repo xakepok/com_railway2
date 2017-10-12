@@ -8,6 +8,14 @@ jQuery(document).ready(function() {
                 jQuery(this).parent().addClass('direction-level');
             }
         }
+    });
+    jQuery("#rasp_station_date").bind('change', function () {
+        var query = new Date(jQuery("#rasp_station_date").val());
+        var currentDate = new Date();
+        if (query >= currentDate) {
+            var currentURL = window.location.pathname;
+            location.href = currentURL + '?date=' + query;
+        }
     })
 });
 jQuery(document).ready(function () {

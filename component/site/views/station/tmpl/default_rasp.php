@@ -1,16 +1,18 @@
 <?php
 defined('_JEXEC') or die;
 ?>
-<span class="station-info-title"><?php echo JText::_('COM_RAILWAY2_RASP_ON'), ' ',mb_strtolower(JText::_('COM_RAILWAY2_DAYS_TODAY')); ?></span><br>
+<span class="station-info-title"><?php echo $this->tableTitle; ?></span><br>
 <div>
-    <tr>
-        <td>
-            <?php echo $this->rasp['directions'];?>
-        </td>
-        <td align="right">
-
-        </td>
-    </tr>
+    <table class="no-border" width="100%">
+        <tr>
+            <td class="no-border">
+                <?php echo $this->rasp['directions'];?>
+            </td>
+            <td style="text-align: right;" class="no-border">
+                <input type="date" name="date" id="rasp_station_date" value="<?php echo $this->dat;?>" />
+            </td>
+        </tr>
+    </table>
 </div>
 <table class="rasp-table">
     <tr>

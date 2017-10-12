@@ -185,3 +185,7 @@ th.thread {
     font-style: italic;
     color: #ff6259;
 }
+.no-border {
+    border: none;
+    border-spacing: 0px;
+}
