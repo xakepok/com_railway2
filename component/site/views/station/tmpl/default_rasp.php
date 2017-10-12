@@ -22,16 +22,19 @@ defined('_JEXEC') or die;
     <?php foreach ($this->rasp['schedule'] as $item) {
         ?>
         <tr>
-            <td class="rasp-list-item"><span class="station-rasp-font<?php echo ' ',$item['class'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
                     <?php echo $item['number']; ?></span>
             </td>
-            <td class="rasp-list-item"><span class="station-rasp-font<?php echo ' ',$item['class'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
                     <?php echo $item['time']; ?></span>
             </td>
-            <td class="rasp-list-item"><span class="station-rasp-font<?php echo ' ',$item['class'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
                     <?php echo $item['link']; ?></span>
+                    <?php if (!empty($item['type'])) {
+                        echo "<br><span class=\"station-rasp-font\" style=\"color: ".$item['color']."\">", $item['type'], "</span>";
+                    }?>
             </td>
-            <td class="rasp-list-item"><span class="station-rasp-font<?php echo ' ',$item['class'];?>">
+            <td class="rasp-list-item"><span class="station-rasp-font" style="color: <?php echo $item['color'];?>">
                     <span class="station-rasp-font"><?php echo $item['stops']; ?></span>
             </td>
         </tr>

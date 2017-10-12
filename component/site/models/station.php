@@ -95,7 +95,9 @@ class Railway2ModelStation extends JModelList
 		$result = array();
 		foreach ($schedule as $item)
 		{
-			$class = ($item->thread->express_type == 'express' || $item->thread->express_type == 'aeroexpress') ? 'express' : 'noexpress';
+            $color = ($item->thread->transport_subtype->code != 'suburban') ? $item->thread->transport_subtype->color : '#276E41';
+            $linkOption = array('target' => '_blank', 'class' => 'thread-link', 'style' => 'color: '.$color);
+
 			$query           = array(
 				'option' => 'com_railway2',
 				'view'   => 'thread',
@@ -105,11 +107,12 @@ class Railway2ModelStation extends JModelList
 			);
 			$arr             = array(
 				'number' => $item->thread->number,
-				'class' => $class,
+				'color' => $color,
 				'time' => Railway2HelperCodes::timeRasp(($item->departure !== null) ? $item->departure : $item->arrival),
-				'link' => JHtml::link(JRoute::_('index.php?' . http_build_query($query)), $item->thread->title, array('target' => '_blank', 'class' => 'thread-link '.$class)),
+				'link' => JHtml::link(JRoute::_('index.php?' . http_build_query($query)), $item->thread->title, $linkOption),
 				'stops' => $item->stops,
-				'platform' => $item->platform
+				'platform' => $item->platform,
+                'type' => ($item->thread->transport_subtype->code != 'suburban') ? $item->thread->transport_subtype->title : ''
 			);
 			array_push($result, $arr);
 		}

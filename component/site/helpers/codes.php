@@ -12,6 +12,14 @@ class Railway2HelperCodes {
         return $stationName;
     }
 
+    /* Отладка */
+    static function dump($obj)
+    {
+        if (JFactory::getUser()->authorise('core.manage', 'com_railway2'))
+        {
+            echo "<pre>".var_dump($obj)."</pre>";
+        }
+    }
 
 	/* Запрос прав */
 	static function canDo($p)
