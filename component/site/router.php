@@ -20,6 +20,9 @@ class Railway2Router extends JComponentRouterBase
 	    if ($query['view'] == 'help') {
 		    unset($query['view']);
 	    }
+	    if ($query['view'] == 'directions') {
+		    unset($query['view']);
+	    }
         return $segments;
     }
 
@@ -45,6 +48,10 @@ class Railway2Router extends JComponentRouterBase
 	        }
 	        case 'help': {
 		        $vars['view'] = 'help';
+		        break;
+	        }
+	        case 'directions': {
+		        $vars['view'] = 'directions';
 		        break;
 	        }
         }

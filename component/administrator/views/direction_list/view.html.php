@@ -33,6 +33,11 @@ class Railway2ViewDirection_list extends JViewLegacy
 		    JToolbarHelper::addNew('direction_item.add');
             JToolbarHelper::editList('direction_item.edit');
             JToolbarHelper::deleteList('direction_list.delete');
+			if (Railway2Helper::canDo('core.edit.state'))
+			{
+				JToolbarHelper::publish('direction_list.publish', 'JTOOLBAR_PUBLISH', true);
+				JToolbarHelper::unpublish('direction_list.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+			}
 			JToolBarHelper::preferences('com_railway2');
 		}
 	}

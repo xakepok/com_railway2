@@ -10,7 +10,8 @@ class Railway2ModelDirection_list extends JModelList
             $config['filter_fields'] = array(
                 '`id`',
                 '`alias`',
-                '`title`'
+                '`title`',
+	            '`state`'
             );
         }
         parent::__construct($config);

@@ -3,7 +3,7 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.controllerform');
 
 class Railway2ControllerDirection_item extends JControllerForm {
-    public function direction_item() {
+    public function display() {
         parent::display();
     }
 
