@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
                 <?php echo $this->rasp['directions'];?>
             </td>
             <td style="text-align: right;" class="no-border">
-                <input type="date" name="date" id="rasp_station_date" value="<?php echo $this->dat;?>" />
+                <input type="date" name="date" id="rasp_station_date" min="<?php echo date('Y-m-d');?>" max="<?php echo date('Y-m-d', time() + 86400*60);?>" value="<?php echo $this->dat;?>" />
             </td>
         </tr>
     </table>
