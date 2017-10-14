@@ -102,7 +102,6 @@ class Railway2ModelStation extends JModelList
 				'option' => 'com_railway2',
 				'view'   => 'thread',
 				'id'     => $item->thread->uid,
-				'date'   => Railway2HelperCodes::iso8601ToDate($item->departure),
 				'Itemid' => 246
 			);
 			$arr             = array(

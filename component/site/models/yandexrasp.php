@@ -66,7 +66,6 @@ class Railway2ModelYandexrasp extends JModelLegacy
 			{
 				$this->params['uid']          = $this->uid;
 				$this->params['show_systems'] = 'all';
-				$this->params['date']         = Railway2HelperCodes::getDateFromUrl();
 				break;
 			}
 			default:
