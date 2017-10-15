@@ -50,15 +50,5 @@
                 required="true"
                 autocomplete="off"
         />
-        <field
-                name="active"
-                type="list"
-                label="COM_RAILWAY2_ACTIVITY"
-                class="input-xlarge"
-                description="COM_RAILWAY2_ACTIVITY_DESC"
-        >
-            <option value="0">COM_RAILWAY2_NO</option>
-            <option value="1">COM_RAILWAY2_YES</option>
-        </field>
     </fieldset>
 </form>

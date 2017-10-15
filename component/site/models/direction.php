@@ -39,7 +39,7 @@ class Railway2ModelDirection extends JModelList {
             ->from('#__rw2_directions_list')
             ->where("`id` = {$this->dir}");
 	    if (!Railway2HelperCodes::canDo('core.admin')) {
-	    	$query->where('`active` = 1');
+	    	$query->where('`state` > 0');
 	    }
         $db->setQuery($query, 0, 1);
         $result = $db->loadObject();
