@@ -24,16 +24,25 @@ class Railway2ModelHelp extends JModelList {
 
 	    $query = $db->getQuery(true);
 	    $query
-		    ->select('`dir`.`stationID`, `s`.`name`, `n`.`popularName`, `dir`.`directionID` as `did`')
+		    ->select('`dir`.`stationID`, `s`.`name`, `n`.`popularName`, `n`.`displayBothNames`, `dir`.`directionID` as `did`, `l`.`title` as `directionName`')
 		    ->from('#__rw2_directions as `dir`')
 		    ->leftJoin('#__rw2_stations as `s` ON `s`.`id` = `dir`.`stationID`')
 		    ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `dir`.`stationID`')
             ->leftJoin('#__rw2_directions_list as `l` ON `l`.`id` = `dir`.`directionID`')
 		    ->where("`l`.`state` > 0 AND `dir`.`stationID` NOT IN ({$not})")
-	        ->order('`dir`.`directionID`, `dir`.`indexID`');
+	        ->order('`directionName`, `dir`.`indexID`');
 
 	    $db->setQuery($query);
 
-        return $db->loadObjectList();
+        $tmp = $db->loadObjectList();
+        $result = array();
+        foreach ($tmp as $item) {
+            if (!isset($result[$item->directionName])) $result[$item->directionName] = array();
+            $url = JRoute::_("index.php?option=com_railway2&view=station&id=".$item->stationID."&Itemid=236");
+            $name = Railway2HelperCodes::getStationName($item->name, $item->popularName, $item->displayBothNames);
+            $link = JHtml::link($url, $name, array('targer' => '_blank'));
+            $result[$item->directionName][] = $link;
+        }
+        return $result;
     }
 }

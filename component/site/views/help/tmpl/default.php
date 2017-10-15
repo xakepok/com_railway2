@@ -1,27 +1,16 @@
-Нужно время работы касс на следующих станциях:<br>
-<strong>Рижское направление:</strong><br>
-<ul>
-	<?php
-	foreach ($this->items as $item) {
-		$name = (!empty($item->popularName)) ? $item->popularName : $item->name;
-		if ($item->did == '9') echo "<li>{$name}</li>";
-	}?>
-</ul>
-<br>
-<strong>Курское направление:</strong><br>
-<ul>
-	<?php
-	foreach ($this->items as $item) {
-		$name = (!empty($item->popularName)) ? $item->popularName : $item->name;
-		if ($item->did == '6') echo "<li>{$name}</li>";
-	}?>
-</ul>
-<br>
-<strong>Павелецкое направление:</strong><br>
-<ul>
 <?php
-foreach ($this->items as $item) {
-    $name = (!empty($item->popularName)) ? $item->popularName : $item->name;
-    if ($item->did == '8') echo "<li>{$name}</li>";
-}?>
-</ul>
+
+echo "<p>", JText::_('COM_RAILWAY2_HELP_NEED_INFO_DESC'), ":</p>";
+
+foreach ($this->items as $dir => $item) {
+    ?>
+    <p style="font-weight: bold;"><?php echo $dir;?>
+    <ul>
+        <?php foreach ($item as $station) {
+            echo "<li>{$station}</li>";
+        }?>
+    </ul>
+    </p>
+<?php
+}
+?>
