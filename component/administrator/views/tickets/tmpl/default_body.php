@@ -43,6 +43,7 @@ foreach ($this->items as $i => $station) : ?>
                 $text = JText::_('COM_RAILWAY2_STATION_DESC_NO');
             }
             if ($station->time_1 == '00:00:00' && $station->time_2 == '23:59:59') $text = JText::_('COM_RAILWAY2_DESC_EVERYTIME');
+            if ($station->tpd == '1') $text = JText::_('COM_RAILWAY2_TPD');
             ?>
             <?php echo $text; ?>
         </td>

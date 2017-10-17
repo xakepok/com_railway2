@@ -189,3 +189,7 @@ th.thread {
     border: none;
     border-spacing: 0px;
 }
+#everytime_click {
+    text-decoration: underline;
+    cursor: pointer;
+}

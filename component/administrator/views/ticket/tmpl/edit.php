@@ -29,7 +29,11 @@ JFormHelper::loadFieldClass('calendar');
                                 if (($field->name == "jform[time_check]" && empty($field->value)) || $field->name != "jform[time_check]")
                                 ?>
                                 <div class="control-label"><?php echo $field->label; ?></div>
-                                <div class="controls"><?php echo $field->input; ?></div>
+                                <div class="controls"><?php echo $field->input; ?>
+                                    <?php if ($field->name == "jform[time_1]"):?>
+                                    <span id="everytime_click" style="cursor: pointer; text-decoration: underline;"><?php echo JText::_('COM_RAILWAY2_DESC_EVERYTIME');?></span>
+                                    <?php endif;?>
+                                </div>
                                 <br>
                             <?php
                             endforeach; ?>
