@@ -32,7 +32,7 @@ class Railway2ModelThread extends JModelList
 			$yandex[] = $item->station->codes->yandex;
 			$esr[] = Railway2HelperCodes::getValidEsr($item->station->codes->esr);
 		}
-		$codes = Railway2HelperCodes::getIdByEsr($esr, $yandex);
+		$codes = Railway2HelperCodes::getStationByEsr($esr, $yandex);
 		$desc = $this->getDescByRoute($codes);
 		foreach ($tmp->stops as $item)
 		{
@@ -40,10 +40,12 @@ class Railway2ModelThread extends JModelList
 			$dep = (!empty($item->departure)) ? date("H.i", strtotime($item->departure)) : '';
 			$platform = $item->platform;
 			$stationID = $zone = 0;
+			$distance = 0;
 			if (strlen($item->station->codes->esr) > 4)
 			{
 				$stationID = $codes[$item->station->codes->esr]['id'];
 				$zone = $codes[$item->station->codes->esr]['zoneID'];
+				$distance = $codes[$item->station->codes->esr]['distance'];
 			} else{
 				foreach ($codes as $esr => $c)
 				{
@@ -51,6 +53,7 @@ class Railway2ModelThread extends JModelList
 					{
 						$stationID = $c['id'];
 						$zone = $c['zoneID'];
+						$distance = $c['distance'];
 						break;
 					}
 				}
@@ -73,7 +76,8 @@ class Railway2ModelThread extends JModelList
 				'station' => $stationLink,
 				'desc' => $kassa,
 				'zone' => $zone,
-				'class' => $class
+				'class' => $class,
+				'distance' => $distance
 			);
 		}
 		return $res;

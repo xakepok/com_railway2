@@ -107,7 +107,7 @@ class Railway2HelperCodes {
     }
 
     /* Получение ИД станции, километража и зоны  по ЕСР или яндексу */
-    static function getIdByEsr($ids, $yandex = '')
+    static function getStationByEsr($ids, $yandex = '')
     {
     	$res = '';
 	    $db =& JFactory::getDbo();

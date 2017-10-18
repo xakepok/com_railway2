@@ -33,7 +33,7 @@ class Railway2ModelStation extends JModelList
 		$directions = array();
 		foreach ($tmp->directions as $direction)
 		{
-			$link = JRoute::_('index.php?option=com_railway2&view=station&id='.$this->stationID.'&Itemid=236&direction='.urlencode($direction->code));
+			$link = JRoute::_('index.php?option=com_railway2&view=station&id='.$this->stationID.'&Itemid=236&direction='.urlencode($direction->code).'&date='.urlencode(Railway2HelperCodes::getDateFromUrl()));
 			$directions[] = (urldecode($direction->code) != $dir) ? JHtml::link($link, ucfirst($direction->title)) : ucfirst($direction->title);
 		}
 		asort($result['directions']);
