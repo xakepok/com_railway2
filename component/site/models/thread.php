@@ -69,6 +69,7 @@ class Railway2ModelThread extends JModelList
 				$dep = '-';
 			}
 			if ($arr == '-' && $dep == '-') $kassa = '';
+			if ($distance != null) $distance .= ' '.JText::_('COM_RAILWAY2_DISTANCE_KM'); else $distance = '';
 			$res['stops'][] = array(
 				'arr' => $arr,
 				'dep' => $dep,

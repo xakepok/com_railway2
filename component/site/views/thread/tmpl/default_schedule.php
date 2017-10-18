@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
         </td>
 	    <?php if (JFactory::getUser()->authorise('core.manage', 'com_railway2')): ?>
             <td class="rasp-list-item <?php echo $item['class'];?>">
-			    <?php echo $item['distance'], ' ', JText::_('COM_RAILWAY2_DISTANCE_KM'); ?>
+			    <?php echo $item['distance']; ?>
             </td>
 	    <?php endif;?>
     </tr>
