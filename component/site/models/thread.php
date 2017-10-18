@@ -59,20 +59,19 @@ class Railway2ModelThread extends JModelList
 			$stationLink = (!empty($stationID)) ? JHtml::link($link, $item->station->title) : $item->station->title;
 			$kassa = $this->checkDesc($desc[$stationID], $item->departure);
 			$class = (Railway2HelperCodes::isOdd($zone)) ? 'zone-1' : 'zone-2';
-			$k = ($kassa === false) ? "<span class='desc-not-work'>".JText::_('COM_RAILWAY2_DESC_NO_WORK')."</span>" : "<span class='desc-work'>".JText::_('COM_RAILWAY2_DESC_WORK')."</span>";
-			if (empty($desc[$stationID])) $k = JText::_('COM_RAILWAY2_NOINFO');
+			if (empty($desc[$stationID])) $kassa = JText::_('COM_RAILWAY2_NOINFO');
 			if ($arr == $dep)
 			{
 				$arr = '-';
 				$dep = '-';
 			}
-			if ($arr == '-' && $dep == '-') $k = '';
+			if ($arr == '-' && $dep == '-') $kassa = '';
 			$res['stops'][] = array(
 				'arr' => $arr,
 				'dep' => $dep,
 				'platform' => $platform,
 				'station' => $stationLink,
-				'desc' => $k,
+				'desc' => $kassa,
 				'zone' => $zone,
 				'class' => $class
 			);
@@ -84,26 +83,31 @@ class Railway2ModelThread extends JModelList
 	{
 		if ($dat == '') return '';
 		$dayOfWeek = date("w", strtotime($dat));
-		$work = false;
+		$work = $work = "<span class='desc-not-work'>".JText::_('COM_RAILWAY2_DESC_NO_WORK')."</span>";
 		foreach ($desc as $item)
 		{
-			if ($item->turnstiles != null || $item->tpd != '0')
+			if ($item->tpd != '0')
 			{
-				$work = true;
+				$work = "<span class='desc-work'>".JText::_('COM_RAILWAY2_SCHEME_DESC_TPD')."</span>";
+				break;
+			}
+			if ($item->turnstiles != null)
+			{
+				$work = "<span class='desc-work'>".JText::_('COM_RAILWAY2_DESC_WORK')."</span>";
 				break;
 			}
 			$d = substr($item->timemask, $dayOfWeek, 1);
 			if ($d == 1) {
 				if ($item->turnstiles == null && $item->time_1 == null && $item->time_2 == null && $item->tpd == '0')
 				{
-					$work = false;
+					$work = "<span class='desc-not-work'>".JText::_('COM_RAILWAY2_DESC_NO_WORK')."</span>";
 					break;
 				}
 				if ($item->turnstiles == null && $item->time_1 != null && $item->time_2 != null)
 				{
 					if ($item->time_1 == '00:00:00' && $item->time_2 == '23:59:59')
 					{
-						$work = true;
+						$work = "<span class='desc-work'>".JText::_('COM_RAILWAY2_DESC_WORK')."</span>";
 						break;
 					}
 					$t = strtotime($dat);
@@ -111,7 +115,7 @@ class Railway2ModelThread extends JModelList
 					$t2 = strtotime(date("Y-m-d", strtotime($dat)).' '.$item->time_2);
 					if ($t1 < $t && $t2 > $t)
 					{
-						$work = true;
+						$work = "<span class='desc-work'>".JText::_('COM_RAILWAY2_DESC_WORK')."</span>";
 						break;
 					}
 				}
