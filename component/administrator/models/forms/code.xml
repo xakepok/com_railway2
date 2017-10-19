@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addrulepath="/administrator/components/com_railway2/models/rules">
+    <fieldset name="names">
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="stationID"
+                type="stationName"
+                label="COM_RAILWAY2_STATION_NAME_DESC"
+                description="COM_RAILWAY2_STATION_NAME_DESC"
+                required="true"
+                class="input-xlarge"
+        />
+        <field
+                name="esr"
+                type="text"
+                label="COM_RAILWAY2_STATION_CODE_ESR"
+                description="COM_RAILWAY2_STATION_CODE_ESR_DESC"
+                required="true"
+                class="input-xlarge validate-esr"
+                autocomplete="off"
+        />
+        <field
+                name="express"
+                type="text"
+                label="COM_RAILWAY2_STATION_CODE_EXPRESS"
+                description="COM_RAILWAY2_STATION_CODE_EXPRESS_DESC"
+                class="input-xlarge validate-express"
+                autocomplete="off"
+        />
+        <field
+                name="yandex"
+                type="text"
+                label="COM_RAILWAY2_STATION_CODE_YANDEX"
+                description="COM_RAILWAY2_STATION_CODE_YANDEX_DESC"
+                class="input-xlarge validate-yandex"
+                autocomplete="off"
+        />
+    </fieldset>
+</form>

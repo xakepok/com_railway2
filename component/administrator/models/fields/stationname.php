@@ -10,7 +10,7 @@ class JFormFieldStationName extends JFormFieldList  {
     {
         $db = JFactory::getDbo();
         $view = JFactory::getApplication()->input->getString('view');
-        $param =  ($view == 'direction' || $view == 'ticket' || $view == 'synonym' || $view == 'cross') ? 'stationID' : 'id';
+        $param =  ($view == 'direction' || $view == 'ticket' || $view == 'synonym' || $view == 'cross' || $view == 'code') ? 'stationID' : 'id';
         $stationID = JFactory::getApplication()->input->getInt($param, 0);
 
         $query = $db->getQuery(true);
@@ -21,9 +21,9 @@ class JFormFieldStationName extends JFormFieldList  {
             ->leftJoin('#__rw2_station_codes AS `c` ON `c`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_regions AS `r` ON `r`.`id`=`s`.`region`')
 	        ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`')
-            ->where('`c`.`express` != 0 AND `s`.`railway` != 0')
             ->order('`s`.`name`');
-        if ($view != 'direction') $query->select('`l`.`title` as `direction`');
+        if ($view != 'code') $query->where('`c`.`express` != 0 AND `s`.`railway` != 0');
+        if ($view != 'direction' && $view != 'code') $query->select('`l`.`title` as `direction`');
         if ($view == 'direction' && $stationID == 0) $query->where('`r`.`id` IN (173, 208, 150, 200, 210, 161, 205)');
         if ($stationID != 0) $query->where('`s`.`id` = '.$stationID);
         if ($view == 'ticket' || $view == 'cross' || $view == 'synonym') {
@@ -41,7 +41,7 @@ class JFormFieldStationName extends JFormFieldList  {
             	$n = (!empty($name->popularName)) ? $name->popularName : $name->name;
             	$n .= ' ('.$name->region.') ';
             	if ($view == 'ticket' || $view == 'cross') $n .= ', '.$name->direction.' '.mb_strtolower(JText::_('COM_RAILWAY2_DIRECTION'));
-            	$n .= ' '.$name->express;
+            	if ($view != 'code') $n .= ' '.$name->express;
                 $options[] = JHtml::_('select.option', $name->id, $n);
             }
         }
