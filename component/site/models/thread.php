@@ -30,7 +30,7 @@ class Railway2ModelThread extends JModelList
 		foreach ($tmp->stops as $item)
 		{
 			$yandex[] = $item->station->codes->yandex;
-			$esr[] = Railway2HelperCodes::getValidEsr($item->station->codes->esr);
+			$esr[] = Railway2HelperCodes::getValidEsr($item->station->codes->esr, 5);
 		}
 		$codes = Railway2HelperCodes::getStationByEsr($esr, $yandex);
 		$desc = $this->getDescByRoute($codes);
@@ -43,9 +43,9 @@ class Railway2ModelThread extends JModelList
 			$distance = 0;
 			if (strlen($item->station->codes->esr) > 4)
 			{
-				$stationID = $codes[$item->station->codes->esr]['id'];
-				$zone = $codes[$item->station->codes->esr]['zoneID'];
-				$distance = $codes[$item->station->codes->esr]['distance'];
+				$stationID = $codes[Railway2HelperCodes::getValidEsr($item->station->codes->esr, 5)]['id'];
+				$zone = $codes[Railway2HelperCodes::getValidEsr($item->station->codes->esr, 5)]['zoneID'];
+				$distance = $codes[Railway2HelperCodes::getValidEsr($item->station->codes->esr, 5)]['distance'];
 			} else{
 				foreach ($codes as $esr => $c)
 				{

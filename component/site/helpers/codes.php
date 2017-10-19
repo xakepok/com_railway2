@@ -17,7 +17,9 @@ class Railway2HelperCodes {
     {
         if (JFactory::getUser()->authorise('core.manage', 'com_railway2'))
         {
-            echo "<pre>".var_dump($obj)."</pre>";
+            echo "<pre>";
+            var_dump($obj);
+            echo "</pre>";
         }
     }
 
@@ -58,9 +60,10 @@ class Railway2HelperCodes {
     }
 
     /* Получаем валидный код ЕСР */
-    static function getValidEsr($esr)
+    static function getValidEsr($esr, $digit = 6)
     {
-        return (strlen($esr) == 5) ? '0'.$esr : $esr;
+    	if ($digit == 6) return (strlen($esr) == 5) ? '0'.$esr : $esr;
+    	if ($digit == 5) return (strlen($esr) == 6 && substr($esr, 0, 1) == '0') ? substr($esr, 1) : $esr;
     }
 
     /* Получение направления по умолчанию для расписания по станции */
