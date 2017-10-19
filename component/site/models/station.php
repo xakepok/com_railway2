@@ -65,7 +65,7 @@ class Railway2ModelStation extends JModelList
 			->leftJoin('#__rw2_station_types as `type` ON `type`.`id` = `s`.`type`')
 			->leftJoin('#__rw2_directions as `d` ON `d`.`stationID` = `s`.`id`')
 			->leftJoin('#__rw2_directions_list as `dir` ON `dir`.`id` = `d`.`directionID`')
-			->leftJoin('#__rw2_station_codes as `code` on `code`.`id` = `s`.`id`')
+			->leftJoin('#__rw2_station_codes as `code` on `code`.`stationID` = `s`.`id`')
 			->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`')
 			->where('`s`.`id` = ' . $this->stationID);
 		$db->setQuery($query, 0, 1);

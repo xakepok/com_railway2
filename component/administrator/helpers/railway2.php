@@ -2,6 +2,17 @@
 defined('_JEXEC') or die;
 class Railway2Helper
 {
+	/* Отображаем имя станции */
+	static function getStationName($name, $popularName = '', $displayBothNames = '0')
+	{
+		$stationName = $name;
+		if (!empty($popularName)) {
+			$stationName = $popularName;
+			if ($displayBothNames != '0') $stationName .= " ({$name})";
+		}
+		return $stationName;
+	}
+
 	public function addSubmenu($vName)
 	{
 		JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2'), 'index.php?option=com_railway2&view=railway2', $vName == 'railway2');
@@ -22,7 +33,7 @@ class Railway2Helper
     }
 
 	/* Название станции по ИД */
-	static function getStationName($id)
+	static function getStationNameById($id)
     {
         $id = (int) $id;
         if ($id == 0) return false;

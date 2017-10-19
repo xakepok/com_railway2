@@ -13,7 +13,7 @@ foreach ($this->items as $i => $cross) : ?>
             <?php
             $link = JRoute::_('index.php?option=com_railway2&view=cross&layout=edit&id='.$cross->id.'&stationID='.$cross->stationID);
             ?>
-            <a href="<?php echo $link;?>"><?php echo $cross->station; ?></a>
+            <a href="<?php echo $link;?>"><?php echo Railway2Helper::getStationName($cross->station, $cross->popularName, $cross->displayBothNames); ?></a>
         </td>
         <td>
             <?php echo $cross->metro; ?>

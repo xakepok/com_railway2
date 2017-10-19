@@ -26,7 +26,7 @@ class Railway2ModelStations extends JModelList
             ->select('`s`.`id`, `s`.`name`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`')
             ->from('#__rw2_stations as `s`')
             ->where('`code`.`express` != 0 AND `railway` != 0')
-            ->leftJoin('#__rw2_station_codes as `code` ON `code`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_station_codes as `code` ON `code`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_station_names as `name` ON `name`.`id` = `s`.`id`')
             ->leftJoin('#__rw2_station_types as `t` ON `t`.`id` = `s`.`type`')
             ->leftJoin('#__rw2_regions as `reg` ON `reg`.`id` = `s`.`region`')

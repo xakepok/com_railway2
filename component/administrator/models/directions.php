@@ -21,9 +21,10 @@ class Railway2ModelDirections extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`d`.`id` as `id`, `s`.`name` as `station`, `stationID`, `directionID`, `l`.`title` as `direction`, `isControlPoint`, `indexID`, `zoneID`, `startLevel`, `distance`')
+            ->select('`d`.`id` as `id`, `s`.`name` as `station`, `n`.`popularName`, `n`.`displayBothNames`, `d`.`stationID`, `directionID`, `l`.`title` as `direction`, `isControlPoint`, `indexID`, `zoneID`, `startLevel`, `distance`')
             ->from('#__rw2_directions as `d`')
             ->leftJoin('#__rw2_stations as `s` on `s`.`id` = `d`.`stationID`')
+            ->leftJoin('#__rw2_station_names as `n` on `n`.`stationID` = `d`.`stationID`')
             ->leftJoin('#__rw2_directions_list as `l` on `l`.`id` = `d`.`directionID`');
         /* Фильтр */
         $search = $this->getState('filter.search');
@@ -31,7 +32,7 @@ class Railway2ModelDirections extends JModelList
 
         if (!empty($search)) {
             $search = $db->quote('%' . $db->escape($search, true) . '%', false);
-            $query->where('`s`.`name` LIKE ' . $search);
+            $query->where('`s`.`name` LIKE ' . $search.' OR `n`.`popularName` LIKE '.$search);
         }
 
         if (is_numeric($direction)) {

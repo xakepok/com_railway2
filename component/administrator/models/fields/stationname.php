@@ -18,7 +18,7 @@ class JFormFieldStationName extends JFormFieldList  {
             ->select('`s`.`id`, `s`.`name`, `n`.`popularName`, `rw`.`road`, `c`.`express`, `r`.`region`')
             ->from('#__rw2_stations as `s`')
             ->leftJoin('#__rw2_railways AS `rw` ON `rw`.`id` = `s`.`railway`')
-            ->leftJoin('#__rw2_station_codes AS `c` ON `c`.`id` = `s`.`id`')
+            ->leftJoin('#__rw2_station_codes AS `c` ON `c`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_regions AS `r` ON `r`.`id`=`s`.`region`')
 	        ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`')
             ->where('`c`.`express` != 0 AND `s`.`railway` != 0')

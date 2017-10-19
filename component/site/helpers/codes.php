@@ -89,7 +89,7 @@ class Railway2HelperCodes {
         $query
             ->select('`esr`')
             ->from('#__rw2_station_codes')
-	        ->where("`id` = {$id}");
+	        ->where("`stationID` = {$id}");
 	    $db->setQuery($query, 0, 1);
 	    $result = $db->loadResult();
 	    return self::getValidEsr($result);
@@ -103,7 +103,7 @@ class Railway2HelperCodes {
         $query
             ->select('`yandex`')
             ->from('#__rw2_station_codes')
-	        ->where("`id` = {$id}");
+	        ->where("`stationID` = {$id}");
 	    $db->setQuery($query, 0, 1);
 	    $result = $db->loadResult();
 	    return 's'.$result;
@@ -116,9 +116,9 @@ class Railway2HelperCodes {
 	    $db =& JFactory::getDbo();
 	    $query = $db->getQuery(true);
 	    $query
-		    ->select('`c`.`id`, `c`.`esr`, `c`.`yandex`, `dir`.`zoneID`, `dir`.`distance`')
+		    ->select('`c`.`stationID` as `id`, `c`.`esr`, `c`.`yandex`, `dir`.`zoneID`, `dir`.`distance`')
 		    ->from('#__rw2_station_codes as `c`')
-		    ->leftJoin("#__rw2_directions as `dir` ON `dir`.`stationID` = `c`.`id`");
+		    ->leftJoin("#__rw2_directions as `dir` ON `dir`.`stationID` = `c`.`stationID`");
 	    if (is_array($ids) || is_array($yandex))
 	    {
 	    	$yandexNew = array();
@@ -134,7 +134,7 @@ class Railway2HelperCodes {
 	    }
 	    if (is_numeric($ids) || is_numeric($yandex))
 	    {
-	    	$query->where("`id` = {$ids} OR `yandex` = ".substr($yandex, 1));
+	    	$query->where("`esr` = {$ids} OR `yandex` = ".substr($yandex, 1));
 		    $db->setQuery($query, 0, 1);
 		    $res = $db->loadResult();
 	    }

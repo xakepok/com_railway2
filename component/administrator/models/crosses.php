@@ -21,11 +21,12 @@ class Railway2ModelCrosses extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`c`.`id`, `s`.`id` as `stationID`, `s`.`name` as `station`, `m`.`title_ru` as `metro`, `l`.`title_ru` as `line`')
+            ->select('`c`.`id`, `s`.`id` as `stationID`, `s`.`name` as `station`, `n`.`popularName`, `n`.`displayBothNames`, `m`.`title_ru` as `metro`, `l`.`title_ru` as `line`')
             ->from('#__rw2_cross_metro as `c`')
             ->leftJoin('#__rw2_stations as `s` ON `s`.`id` = `c`.`stationID`')
             ->leftJoin('#__rw2_metro_stations as `m` ON `m`.`id` = `c`.`metroID`')
             ->leftJoin('#__rw2_metro_lines as `l` ON `l`.`id` = `m`.`line`')
+	        ->leftJoin('#__rw2_station_names as `n` on `n`.`stationID` = `c`.`stationID`')
         ;
         /* Сортировка */
         $orderCol  = $this->state->get('list.ordering', '`c`.`id`');

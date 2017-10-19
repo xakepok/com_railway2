@@ -9,7 +9,7 @@ class Railway2ViewTicket extends JViewLegacy {
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
-        $this->stationName = Railway2Helper::getStationName($this->item->stationID);
+        $this->stationName = Railway2Helper::getStationNameById($this->item->stationID);
 
         $this->addToolbar();
 

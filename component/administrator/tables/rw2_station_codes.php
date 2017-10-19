@@ -3,9 +3,11 @@ jimport('joomla.database.table');
 
 class TableRw2_station_codes extends JTable {
     var $id = null;
+    var $directionID = null;
     var $esr = null;
     var $express = null;
     var $dup_esr = null;
+    var $yandex = null;
     var $vkid = null;
 
     public function __construct(&$db) {

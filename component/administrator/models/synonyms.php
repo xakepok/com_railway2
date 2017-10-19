@@ -30,7 +30,7 @@ class Railway2ModelSynonyms extends JModelList
             ->from('#__rw2_stations AS `s`')
             ->where('`s`.`railway` != 0 AND `c`.`express` != 0')
             ->innerJoin('#__rw2_station_names AS `n` ON `n`.`stationID` = `s`.`id`')
-            ->innerJoin('#__rw2_station_codes AS `c` ON `c`.`id` = `s`.`id`')
+            ->innerJoin('#__rw2_station_codes AS `c` ON `c`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_directions AS `d` ON `d`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_directions_list AS `dir` ON `dir`.`id` = `d`.`directionID`')
             ->leftJoin('#__rw2_regions AS `r` ON `r`.`id` = `s`.`region`')
