@@ -17,13 +17,13 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION', '`stationName`', $listDirn, $listOrder); ?>
     </th>
     <th>
-        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_DIRECTION', '`l`.`title`', $listName, $listOrder); ?>
+        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_DIRECTION', '`direction`', $listName, $listOrder); ?>
     </th>
     <th>
         <?php echo JText::_('COM_RAILWAY2_CONTROL_POINT'); ?>
     </th>
     <th>
-        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_INDEX', '`d`.`indexID`', $listDirn, $listOrder); ?>
+        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_INDEX', '`indexID`', $listDirn, $listOrder); ?>
     </th>
     <th>
         <?php echo JText::_('COM_RAILWAY2_STATION_ZONE'); ?>

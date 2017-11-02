@@ -8,9 +8,10 @@ class Railway2ModelDirections extends JModelList
         {
             $config['filter_fields'] = array(
                 'id',
-                '`d`.`indexID',
+                '`indexID`',
                 '`stationName`',
-                '`l`.`title`',
+                '`direction`',
+	            '`distance`'
             );
         }
         parent::__construct($config);
