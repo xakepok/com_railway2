@@ -27,6 +27,15 @@ class Railway2Helper
         //JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_railway2', $vName == 'categories');
 	}
 
+	/*
+	 * Выборка имени станции в запросе
+	 * $prefix - префикс таблицы station_names
+	 * */
+	static function getStationNameQuery($prefix = 'n')
+	{
+		return 'IF(`'.$prefix.'`.`displayBothNames` = 1, CONCAT(`s`.`name`, " (", `'.$prefix.'`.`popularName`, ")"), IFNULL(`'.$prefix.'`.`popularName`, `s`.`name`)) as `stationName`';
+	}
+
 	/* Вывод популярного имени станции */
 	static function getPopularName($name, $popularName)
     {

@@ -9,7 +9,7 @@ class Railway2ModelDirections extends JModelList
             $config['filter_fields'] = array(
                 'id',
                 '`d`.`indexID',
-                '`s`.`name`',
+                '`stationName`',
                 '`l`.`title`',
             );
         }
@@ -21,7 +21,8 @@ class Railway2ModelDirections extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`d`.`id` as `id`, `s`.`name` as `station`, `n`.`popularName`, `n`.`displayBothNames`, `d`.`stationID`, `directionID`, `l`.`title` as `direction`, `isControlPoint`, `indexID`, `zoneID`, `startLevel`, `distance`')
+            ->select('`d`.`id` as `id`, `d`.`stationID`, `directionID`, `l`.`title` as `direction`, `isControlPoint`, `indexID`, `zoneID`, `startLevel`, `distance`')
+	        ->select(Railway2Helper::getStationNameQuery())
             ->from('#__rw2_directions as `d`')
             ->leftJoin('#__rw2_stations as `s` on `s`.`id` = `d`.`stationID`')
             ->leftJoin('#__rw2_station_names as `n` on `n`.`stationID` = `d`.`stationID`')
@@ -40,7 +41,7 @@ class Railway2ModelDirections extends JModelList
         }
 
         /* Сортировка */
-        $orderCol  = $this->state->get('list.ordering', '`s`.`name`');
+        $orderCol  = $this->state->get('list.ordering', '`stationName`');
         $orderDirn = $this->state->get('list.direction', 'asc');
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -55,7 +56,7 @@ class Railway2ModelDirections extends JModelList
         $direction = $this->getUserStateFromRequest($this->context . '.filter.direction', 'filter_direction');
         $this->setState('filter.search', $search);
         $this->setState('filter.direction', $direction);
-        parent::populateState('`s`.`name`', 'asc');
+        parent::populateState('`stationName`', 'asc');
     }
 
     protected function getStoreId($id = '')

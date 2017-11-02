@@ -14,8 +14,9 @@ foreach ($this->items as $i => $item) : ?>
 		    <?php echo $item->stationID; ?>
         </td>
         <td>
-            <?php $link = JRoute::_('index.php?option=com_railway2&view=code&layout=edit&id='.$item->id.'&stationID='.$item->stationID); ?>
-            <a href="<?php echo $link;?>"><?php echo Railway2Helper::getStationName($item->name, $item->popularName, $item->displayBothNames); ?></a>
+            <?php $link = JRoute::_('index.php?option=com_railway2&view=code&layout=edit&id='.$item->id.'&stationID='.$item->stationID);
+            echo JHtml::link($link, $item->stationName);
+            ?>
         </td>
         <td>
             <?php echo $item->esr; ?>

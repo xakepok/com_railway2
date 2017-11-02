@@ -11,7 +11,7 @@ class Railway2ModelTickets extends JModelList
                 '`s`.`id`', '`s`.`id`',
                 '`code`.`esr`', '`code`.`esr`',
                 '`code`.`express`', '`code`.`express`',
-                '`s`.`name`', '`s`.`name`',
+                '`stationName`',
                 '`dir`.`title`','`dir`.`title`'
             );
         }
@@ -23,8 +23,9 @@ class Railway2ModelTickets extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `s`.`name`, `name`.`popularName`, `desc`.`timemask`, `desc`.`tpd`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`, `desc`.`time_check`')
-            ->from('#__rw2_stations as `s`')
+            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `desc`.`timemask`, `desc`.`tpd`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`, `desc`.`time_check`')
+            ->select(Railway2Helper::getStationNameQuery('name'))
+	        ->from('#__rw2_stations as `s`')
             ->where('`code`.`express` != 0 AND `railway` != 0')
             ->leftJoin('#__rw2_station_codes as `code` ON `code`.`stationID` = `s`.`id`')
             ->leftJoin('#__rw2_station_names as `name` ON `name`.`stationID` = `s`.`id`')
@@ -66,7 +67,7 @@ class Railway2ModelTickets extends JModelList
         }
 
         /* Сортировка */
-        $orderCol  = $this->state->get('list.ordering', '`s`.`name`');
+        $orderCol  = $this->state->get('list.ordering', '`stationName`');
         $orderDirn = $this->state->get('list.direction', 'asc');
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -82,7 +83,7 @@ class Railway2ModelTickets extends JModelList
         $this->setState('filter.search', $search);
         $this->setState('filter.direction', $direction);
 	    $this->setState('filter.actuality', $actuality);
-        parent::populateState('`s`.`name`, `desc`.`time_1`', 'asc');
+        parent::populateState('`stationName`, `desc`.`time_1`', 'asc');
     }
 
     protected function getStoreId($id = '')
