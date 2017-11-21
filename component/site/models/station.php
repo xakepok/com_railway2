@@ -3,11 +3,12 @@ defined('_JEXEC') or die;
 
 class Railway2ModelStation extends JModelList
 {
-	public $stationID;
+	public $stationID, $directionID;
 
 	public function __construct(array $config = array())
 	{
 		$this->stationID = (int) JFactory::getApplication()->input->get('id', 0);
+		$this->directionID = $this->getDir();
 		parent::__construct($config);
 	}
 
@@ -93,10 +94,33 @@ class Railway2ModelStation extends JModelList
 	private function generateRasp($schedule)
 	{
 		$result = array();
+		$num = array();
+		foreach ($schedule as $item)
+		{
+			$num[] = substr($item->thread->number, 0, 4);
+		}
+		$num = implode(', ', $num);
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$query
+			->select('*')
+			->from('#__rw2_online')
+			->where("`num` IN ({$num}) AND `directionID` = {$this->directionID} AND `dat` = CURRENT_DATE()");
+		$db->setQuery($query);
+		//Railway2HelperCodes::dump($this->directionID);
+		$online = $db->loadAssocListList('num');
+
 		foreach ($schedule as $item)
 		{
             $color = ($item->thread->transport_subtype->code != 'suburban') ? $item->thread->transport_subtype->color : '#276E41';
             $linkOption = array('target' => '_blank', 'class' => 'thread-link');
+            $o = JText::_('COM_RAILWAY2_SYNC_NO_DATA');
+            if (isset($online[$item->thread->number]))
+            {
+	            if ((int) $online[substr($item->thread->number, 0, 4)]['latence'] == 0) $o = JText::_('COM_RAILWAY2_SYNC_BY_GRAPHIC');
+	            if ((int) $online[substr($item->thread->number, 0, 4)]['latence'] > 0) $o = '+'.$online[$item->thread->number]['latence'].JText::_('COM_RAILWAY2_SYNC_BY_MIN');
+            }
 
 			$query           = array(
 				'option' => 'com_railway2',
@@ -111,7 +135,8 @@ class Railway2ModelStation extends JModelList
 				'link' => JHtml::link(JRoute::_('index.php?' . http_build_query($query)), $item->thread->title, $linkOption),
 				'stops' => $item->stops,
 				'platform' => $item->platform,
-                'type' => ($item->thread->transport_subtype->code != 'suburban') ? $item->thread->transport_subtype->title : ''
+                'type' => ($item->thread->transport_subtype->code != 'suburban') ? $item->thread->transport_subtype->title : '',
+				'online' => $o
 			);
 			array_push($result, $arr);
 		}
@@ -165,6 +190,24 @@ class Railway2ModelStation extends JModelList
 		if (!empty($tmp)) array_push($result, $tmp);
 
 		return $result;
+	}
+
+	/* Направление станции */
+	private function getDir() {
+		$dir = JFactory::getApplication()->input->getInt('d', 0);
+		if ($dir == 0)
+		{
+			$db    = JFactory::getDbo();
+			$query = $db->getQuery(true);
+			$query
+				->select('`directionID`')
+				->from('#__rw2_directions')
+				->where("`stationID` = {$this->stationID}");
+			$db->setQuery($query, 0, 1);
+			$dir = $db->loadResult();
+		}
+
+		return $dir;
 	}
 
 	/* Обходинг */

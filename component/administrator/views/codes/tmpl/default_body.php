@@ -27,5 +27,11 @@ foreach ($this->items as $i => $item) : ?>
         <td>
             <?php echo $item->yandex; ?>
         </td>
+        <td>
+            <?php echo $item->road, " (",$item->division, " ", strtolower(JText::_('COM_RAILWAY2_RAILWAY_DIVISION')), ")"; ?>
+        </td>
+        <td>
+            <?php echo $item->region; ?>
+        </td>
     </tr>
 <?php endforeach; ?>

@@ -20,6 +20,9 @@ defined('_JEXEC') or die;
         <th class="rasp-table-th"><?php echo JText::_('COM_RAILWAY2_RASP_TIME'); ?></th>
         <th class="rasp-table-th"><?php echo JText::_('COM_RAILWAY2_RASP_ROUTE'); ?></th>
         <th class="rasp-table-th"><?php echo JText::_('COM_RAILWAY2_RASP_STOPS'); ?></th>
+        <?php if (JFactory::getUser()->authorise('core.manage', 'com_railway2')): ?>
+            <th class="rasp-table-th"><?php echo JText::_('COM_RAILWAY2_ONLINE'); ?></th>
+        <?php endif; ?>
     </tr>
     <?php foreach ($this->rasp['schedule'] as $item) {
         ?>
@@ -42,6 +45,9 @@ defined('_JEXEC') or die;
                         echo "<br><span class=\"platform\">", $item['platform'], "</span>";
                     }?>
             </td>
+	        <?php if (JFactory::getUser()->authorise('core.manage', 'com_railway2')): ?>
+                <td class="rasp-list-item"><span class="station-rasp-font"><?php echo $item['online'];?></span></td>
+	        <?php endif; ?>
         </tr>
         <?php
     }?>

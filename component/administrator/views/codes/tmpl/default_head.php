@@ -25,4 +25,10 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
     <th>
         <?php echo JText::_('COM_RAILWAY2_STATION_CODE_YANDEX'); ?>
     </th>
+    <th>
+	    <?php echo JText::_('COM_RAILWAY2_RAILWAY'); ?>
+    </th>
+    <th>
+	    <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_REGION', 'region', $listName, $listOrder); ?>
+    </th>
 </tr>
