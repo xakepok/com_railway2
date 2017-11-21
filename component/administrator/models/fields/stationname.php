@@ -23,7 +23,7 @@ class JFormFieldStationName extends JFormFieldList  {
             ->leftJoin('#__rw2_regions AS `r` ON `r`.`id`=`s`.`region`')
 	        ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`')
             ->order('`stationName`');
-        if ($view != 'code') $query->where('`c`.`express` != 0 AND `s`.`railway` != 0');
+        if ($view != 'code') $query->where('`s`.`railway` != 0');
         if ($view != 'direction' && $view != 'code') $query->select('`l`.`title` as `direction`');
         if ($view == 'direction' && $stationID == 0) $query->where('`r`.`id` IN (173, 208, 150, 200, 210, 161, 205)');
         if ($stationID != 0) $query->where('`s`.`id` = '.$stationID);
