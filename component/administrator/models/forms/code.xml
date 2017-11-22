@@ -19,7 +19,8 @@
                 label="COM_RAILWAY2_STATION_CODE_ESR"
                 description="COM_RAILWAY2_STATION_CODE_ESR_DESC"
                 required="true"
-                class="input-xlarge validate-esr"
+                class="input-xlarge"
+                validate="esr"
                 autocomplete="off"
         />
         <field
@@ -27,7 +28,8 @@
                 type="text"
                 label="COM_RAILWAY2_STATION_CODE_EXPRESS"
                 description="COM_RAILWAY2_STATION_CODE_EXPRESS_DESC"
-                class="input-xlarge validate-express"
+                class="input-xlarge"
+                validate="express"
                 autocomplete="off"
         />
         <field
@@ -35,8 +37,28 @@
                 type="text"
                 label="COM_RAILWAY2_STATION_CODE_YANDEX"
                 description="COM_RAILWAY2_STATION_CODE_YANDEX_DESC"
-                class="input-xlarge validate-yandex"
+                class="input-xlarge"
                 autocomplete="off"
+        />
+        <field
+                name="lg"
+                type="text"
+                label="COM_RAILWAY2_STATION_CODE_LG"
+                description="COM_RAILWAY2_STATION_CODE_LG_DESC"
+                class="input-xlarge"
+                validate="place"
+                autocomplete="off"
+                required="true"
+        />
+        <field
+                name="lt"
+                type="text"
+                label="COM_RAILWAY2_STATION_CODE_LT"
+                description="COM_RAILWAY2_STATION_CODE_LT_DESC"
+                class="input-xlarge"
+                validate="place"
+                autocomplete="off"
+                required="true"
         />
     </fieldset>
 </form>

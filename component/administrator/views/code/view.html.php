@@ -21,7 +21,8 @@ class Railway2ViewCode extends JViewLegacy {
         $title = JText::_('COM_RAILWAY2_STATION_CODES_NAME');
 
         JToolbarHelper::title($title, 'code');
-        JToolbarHelper::save('code.save');
+	    JToolBarHelper::apply('code.apply', 'JTOOLBAR_APPLY');
+        JToolbarHelper::save('code.save', 'JTOOLBAR_SAVE');
         JToolbarHelper::cancel('code.cancel', 'JTOOLBAR_CLOSE');
     }
 

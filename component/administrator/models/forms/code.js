@@ -14,4 +14,14 @@ jQuery(function() {
             regex=/^[0-9]{7}$/;
             return regex.test(value);
         });
+    document.formvalidator.setHandler('lt',
+        function (value) {
+            regex=/^[\d]{2}\.[\d]+$/;
+            return regex.test(value);
+        });
+    document.formvalidator.setHandler('gt',
+        function (value) {
+            regex=/^[\d]{2}\.[\d]+$/;
+            return regex.test(value);
+        });
 });
