@@ -23,9 +23,6 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_POPULAR_NAME', '`n`.`popularName`', $listName, $listOrder); ?>
     </th>
     <th>
-        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_YANDEX_NAME', '`n`.`yandexName`', $listName, $listOrder); ?>
-    </th>
-    <th>
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_RZD_NAME', '`n`.`rzdName`', $listName, $listOrder); ?>
     </th>
     <th>

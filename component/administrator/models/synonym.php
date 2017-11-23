@@ -32,6 +32,16 @@ class Railway2ModelSynonym extends JModelAdmin {
         return $data;
     }
 
+	protected function prepareTable($table)
+	{
+		$nulls = array('rzdName'); //Поля, которые NULL
+		foreach ($nulls as $field)
+		{
+			if (!strlen($table->$field)) $table->$field = NULL;
+		}
+		parent::prepareTable($table);
+	}
+
     public function getScript()
     {
         return 'administrator/components/' . $this->option . '/models/forms/synonym.js';

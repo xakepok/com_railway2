@@ -11,4 +11,9 @@ class TableRw2_station_names extends JTable {
     public function __construct(&$db) {
         parent::__construct('#__rw2_station_names', 'id', $db);
     }
+
+	public function store($updateNulls = false)
+	{
+		return parent::store(true);
+	}
 }

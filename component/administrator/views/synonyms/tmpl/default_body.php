@@ -23,9 +23,6 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $station->popularName; ?>
         </td>
         <td>
-            <?php echo $station->yandexName; ?>
-        </td>
-        <td>
             <?php echo $station->rzdName; ?>
         </td>
         <td>
