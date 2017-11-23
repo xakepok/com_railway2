@@ -34,7 +34,7 @@ class Railway2ModelCode extends JModelAdmin {
 
 	protected function prepareTable($table)
 	{
-		$nulls = array('lg', 'lt'); //Поля, которые NULL
+		$nulls = array('lg', 'lt', 'rzdName'); //Поля, которые NULL
 		foreach ($nulls as $field)
 		{
 			if (!strlen($table->$field)) $table->$field = NULL;
