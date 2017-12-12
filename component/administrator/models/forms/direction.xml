@@ -21,6 +21,7 @@
                 description="COM_RAILWAY2_DIRECTION_DESCIPTION"
                 class="input-xlarge"
                 labelclass="control-label"
+                default="11"
         />
         <field
                 name="isControlPoint"

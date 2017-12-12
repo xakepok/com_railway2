@@ -7,6 +7,7 @@ class Railway2ViewSync extends JViewLegacy {
 		$model = Railway2ModelSync::getInstance('Sync', 'Railway2Model');
 
 		$this->items = $model->sync();
+		exit('ok');
 		parent::display();
 	}
 }
