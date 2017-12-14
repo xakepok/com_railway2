@@ -207,3 +207,7 @@ th.thread {
 .mgt-filter-field {
     width: 100px;
 }
+.mgt-stat {
+    font-size: 0.8em;
+    font-style: italic;
+}

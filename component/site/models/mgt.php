@@ -9,6 +9,9 @@ class Railway2ModelMgt extends JModelList
 		if ($this->route == '') $this->route = false;
 		$this->vehicle = JFactory::getApplication()->input->getString('vehicle', false);
 		if ($this->vehicle == '') $this->vehicle = false;
+		$this->park = JFactory::getApplication()->input->getString('park', false);
+		if ($this->park == '') $this->park = false;
+		$this->date = Railway2HelperCodes::getDateFromUrl();
 		if (mb_substr($this->vehicle, 0, 1) == '0') $this->vehicle = mb_substr($this->vehicle, 1);
 		parent::__construct($config);
 	}
@@ -17,6 +20,7 @@ class Railway2ModelMgt extends JModelList
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
+		$table = ($this->date == Railway2HelperCodes::getCurrentDate('Y-m-d')) ? '#__mgt_online' : '#__mgt_online_archive';
 
 		if ($this->route === false && $this->vehicle === false)
 		{
@@ -32,13 +36,48 @@ class Railway2ModelMgt extends JModelList
 			$query->select('`vehicle`, `route`, `dat`');
 			$query->where("`vehicle` = {$this->vehicle}");
 		}
+		$query->where("`dat` LIKE '{$this->date}%'");
 
-		$query->from('#__mgt_online');
+		$query->from($table);
 		$query->order('`vehicle` ASC, `dat` DESC');
 		$db->setQuery($query);
 
-		return $db->loadAssocList();
+		$res = $db->loadAssocList();
+		$arr = array();
+
+		foreach ($res as $item)
+		{
+			$vehicle = $item['vehicle'];
+			if (strlen($item['vehicle']) == 4 || mb_substr($item['vehicle'], 0, 1) == '4' || mb_substr($item['vehicle'], 0, 1) == '3' || mb_substr($item['vehicle'], 0, 2) == '10' || mb_substr($item['vehicle'], 0, 2) == '11') $vehicle = '0'.$item['vehicle'];
+			if ($this->park !== false && mb_substr($vehicle, 0, 2) != $this->park) continue;
+			$arr[] = array(
+				'vehicle' => $vehicle,
+				'route' => $item['route']
+			);
+		}
+		return $arr;
 	}
 
-	private $route, $vehicle;
+	/* Статистика */
+	public function getStat()
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query
+			->select('*')
+			->from('#__mgt_last_sync');
+		$db->setQuery($query);
+		$last = $db->loadAssoc();
+		$query = $db->getQuery(true);
+		$query
+			->select("DISTINCT COUNT('*') as `total`")
+			->from('#__mgt_online');
+		$db->setQuery($query);
+		$total = $db->loadResult();
+		$last['total'] = $total;
+
+		return $last;
+	}
+
+	private $park, $route, $vehicle, $date;
 }

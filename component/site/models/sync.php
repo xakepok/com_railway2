@@ -17,17 +17,16 @@ class Railway2ModelSync extends JModelLegacy {
 
 		if (!$this->mgt)
 		{
-			if (!$this->archive)
-			{
-				$result = $this->syncRailway();
+			$result = $this->syncRailway();
+		}
+		else {
+			if (!$this->archive) {
+				$result = $this->syncMGT();
 			}
 			else
 			{
 				$result = $this->archiveMGT();
 			}
-		}
-		else {
-			$result = $this->syncMGT();
 		}
 		return $result;
 	}
@@ -42,19 +41,22 @@ class Railway2ModelSync extends JModelLegacy {
 			->from('#__mgt_last_sync');
 		$db->setQuery($query, 0, 1);
 		$id = $db->loadAssoc();
-		if ($id['lastPark'] == '3' && $id['lastID'] > 1003998) return array('lastPark' => '4', 'lastID' => '1004000');
+		if ($id['lastPark'] == '15' && $id['lastID'] > 1015998) return array('lastPark' => '3', 'lastID' => '1003000');
+		if ($id['lastPark'] == '3' && $id['lastID'] > 1003998) return array('lastPark' => '1', 'lastID' => '1001000');
+		if ($id['lastPark'] == '1' && $id['lastID'] > 1001998) return array('lastPark' => '4', 'lastID' => '1004000');
 		if ($id['lastPark'] == '4' && $id['lastID'] > 1004998) return array('lastPark' => '8', 'lastID' => '1008000');
 		if ($id['lastPark'] == '8' && $id['lastID'] > 1008998) return array('lastPark' => '15', 'lastID' => '1015000');
-		if ($id['lastPark'] == '15' && $id['lastID'] > 1015998) return array('lastPark' => '3', 'lastID' => '1003000');
 		return $id;
 	}
 
 	/* Синхронизация МГТ */
 	private function syncMGT()
 	{
+		if (!$this->checkTime()) return false;
 		jimport('phpQuery-onefile');
 		$res = array();
 		$start = $this->getStartId();
+
 		for ($i = $start['lastID']; $i < $start['lastID']+50; $i++)
 		{
 			$params = array(
@@ -187,10 +189,10 @@ class Railway2ModelSync extends JModelLegacy {
 	private function archiveMGT()
 	{
 		$db = JFactory::getDbo();
-		$query = 'INSERT INTO `#_mgt_online_archive` SELECT * FROM `#__mgt_online`';
+		$query = "call archive_mgt_online()";
 		$db->setQuery($query);
 		$db->query();
-		$query = 'TRUNCATE TABLE `#__mgt_online`';
+		$query = 'call clear_mgt_online()';
 		$db->setQuery($query);
 		$db->query();
 		return true;
@@ -212,5 +214,12 @@ class Railway2ModelSync extends JModelLegacy {
 		$db->setQuery($query);
 		$db->query();
 		return true;
+	}
+
+	/* Проверка времени синхронизации */
+	private function checkTime()
+	{
+		$hour = (int) Railway2HelperCodes::getCurrentDate("G");
+		return ($hour == '0' || $hour == '1' || $hour == '7' || $hour == '8' || $hour == '14' || $hour == '15' || $hour == '16' || $hour == '17' || $hour == '20' || $hour == '21') ? true : false;
 	}
 }
