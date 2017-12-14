@@ -5,14 +5,22 @@ class Railway2ViewMgt extends JViewLegacy
     public $park, $items, $route, $vehicle, $stat;
 
     public function display() {
-        $this->items = $this->get('Items');
-	    $this->route = JFactory::getApplication()->input->getString('route', '');
-	    $this->vehicle = JFactory::getApplication()->input->getString('vehicle', '');
-	    $this->park = JFactory::getApplication()->input->getString('park', '');
-	    $this->stat = $this->get('Stat');
+    	try
+	    {
+		    $this->items = $this->get('Items');
+		    $this->route = JFactory::getApplication()->input->getString('route', '');
+		    $this->vehicle = JFactory::getApplication()->input->getString('vehicle', '');
+		    $this->park = JFactory::getApplication()->input->getString('park', '');
+		    $this->stat = $this->get('Stat');
 
-        $this->prepare();
-        parent::display();
+		    $this->prepare();
+		    parent::display();
+	    }
+	    catch (Exception $e)
+	    {
+		    JFactory::getApplication()->enqueueMessage(JText::_('COM_RAILWAY2_ERROR'), 'error');
+		    JLog::add($e->getMessage(), JLog::ERROR, 'com_railway2');
+	    }
     }
 
     private function prepare() {

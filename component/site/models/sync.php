@@ -42,9 +42,9 @@ class Railway2ModelSync extends JModelLegacy {
 		$db->setQuery($query, 0, 1);
 		$id = $db->loadAssoc();
 		if ($id['lastPark'] == '15' && $id['lastID'] > 1015998) return array('lastPark' => '3', 'lastID' => '1003000');
-		if ($id['lastPark'] == '3' && $id['lastID'] > 1003998) return array('lastPark' => '1', 'lastID' => '1001000');
+		if ($id['lastPark'] == '3' && $id['lastID'] > 1003998) return array('lastPark' => '4', 'lastID' => '1004000');
 		if ($id['lastPark'] == '1' && $id['lastID'] > 1001998) return array('lastPark' => '4', 'lastID' => '1004000');
-		if ($id['lastPark'] == '4' && $id['lastID'] > 1004998) return array('lastPark' => '8', 'lastID' => '1008000');
+		if ($id['lastPark'] == '4' && $id['lastID'] > 1004998) return array('lastPark' => '15', 'lastID' => '1015000');
 		if ($id['lastPark'] == '8' && $id['lastID'] > 1008998) return array('lastPark' => '15', 'lastID' => '1015000');
 		return $id;
 	}
@@ -89,9 +89,10 @@ class Railway2ModelSync extends JModelLegacy {
 				}
 			}
 		}
-		asort($res);
 
-		$this->exportToBaseMGT($res);
+		if (!empty($res)) {
+			$this->exportToBaseMGT($res);
+		}
 		$last = $start['lastID'] + 50;
 		$park = $start['lastPark'];
 
