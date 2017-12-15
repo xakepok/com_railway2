@@ -75,7 +75,7 @@ class Railway2ModelMgt extends JModelList
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query
-			->select('*')
+			->select("`lastID`, `lastPark`, DATE_FORMAT(`lastTime`, '%k:%i:%s') as `lastTime`")
 			->from('#__mgt_last_sync');
 		$db->setQuery($query);
 		$last = $db->loadAssoc();

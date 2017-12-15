@@ -41,18 +41,22 @@ class Railway2ModelSync extends JModelLegacy {
 			->from('#__mgt_last_sync');
 		$db->setQuery($query, 0, 1);
 		$id = $db->loadAssoc();
-		if ($id['lastPark'] == '15' && $id['lastID'] > 1015998) return array('lastPark' => '3', 'lastID' => '1003000');
+		if ($id['lastPark'] == '1' && $id['lastID'] > 1001750) return array('lastPark' => '3', 'lastID' => '1003000');
 		if ($id['lastPark'] == '3' && $id['lastID'] > 1003998) return array('lastPark' => '4', 'lastID' => '1004000');
-		if ($id['lastPark'] == '1' && $id['lastID'] > 1001998) return array('lastPark' => '4', 'lastID' => '1004000');
-		if ($id['lastPark'] == '4' && $id['lastID'] > 1004998) return array('lastPark' => '15', 'lastID' => '1015000');
-		if ($id['lastPark'] == '8' && $id['lastID'] > 1008998) return array('lastPark' => '15', 'lastID' => '1015000');
+		if ($id['lastPark'] == '4' && $id['lastID'] > 1004998) return array('lastPark' => '8', 'lastID' => '1008000');
+		if ($id['lastPark'] == '8' && $id['lastID'] > 1008550) return array('lastPark' => '9', 'lastID' => '1016000');
+		if ($id['lastPark'] == '9' && $id['lastID'] > 1017750) return array('lastPark' => '11', 'lastID' => '1011000');
+		if ($id['lastPark'] == '11' && $id['lastID'] > 1011998) return array('lastPark' => '14', 'lastID' => '1014000');
+		if ($id['lastPark'] == '14' && $id['lastID'] > 1014600) return array('lastPark' => '15', 'lastID' => '1015000');
+		if ($id['lastPark'] == '15' && $id['lastID'] > 1015998) return array('lastPark' => '19', 'lastID' => '1019000');
+		if ($id['lastPark'] == '19' && $id['lastID'] > 1019600) return array('lastPark' => '1', 'lastID' => '1001000');
 		return $id;
 	}
 
 	/* Синхронизация МГТ */
 	private function syncMGT()
 	{
-		if (!$this->checkTime()) return false;
+		if (!$this->checkTime()) return JText::_('COM_RAILWAY2_MGT_STAT_ERROR_OFF');
 		jimport('phpQuery-onefile');
 		$res = array();
 		$start = $this->getStartId();
@@ -163,7 +167,7 @@ class Railway2ModelSync extends JModelLegacy {
 		$result['res'] = $res;
 		if (!empty($res)) $this->exportToBaseRW($dir, $res);
 
-		return $result;
+		return (!empty($res)) ? $result : JText::_('COM_RAILWAY2_MGT_STAT_ERROR_EMPTY');
 	}
 
 	/* Экспортируем записи онлайна МГТ в базу */
@@ -221,6 +225,6 @@ class Railway2ModelSync extends JModelLegacy {
 	private function checkTime()
 	{
 		$hour = (int) Railway2HelperCodes::getCurrentDate("G");
-		return ($hour == '0' || $hour == '1' || $hour == '7' || $hour == '8' || $hour == '14' || $hour == '15' || $hour == '16' || $hour == '17' || $hour == '20' || $hour == '21') ? true : false;
+		return ($hour == '0' || $hour == '1' || $hour == '2' || $hour == '7' || $hour == '8' || $hour == '9' || $hour == '14' || $hour == '15' || $hour == '16' || $hour == '19' || $hour == '20' || $hour == '21') ? true : false;
 	}
 }
