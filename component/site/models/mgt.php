@@ -81,7 +81,7 @@ class Railway2ModelMgt extends JModelList
 		$last = $db->loadAssoc();
 		$query = $db->getQuery(true);
 		$query
-			->select("COUNT('DISTINCT `vehicle`') as `total`")
+			->select("COUNT(DISTINCT `vehicle`) as `total`")
 			->from('#__mgt_online');
 		$db->setQuery($query);
 		$total = $db->loadResult();
