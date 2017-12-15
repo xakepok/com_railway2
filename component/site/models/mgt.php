@@ -28,13 +28,13 @@ class Railway2ModelMgt extends JModelList
 		}
 		if ($this->route !== false && $this->vehicle === false)
 		{
-			$query->select("`vehicle`, `route`, DATE_FORMAT(`dat`, '%H.%i') as `dat`");
+			$query->select("`vehicle`, `route`, DATE_FORMAT(`dat`, '%k.%i') as `dat`");
 			$query->where("`route` = '{$this->route}'");
 		}
 		if ($this->route === false && $this->vehicle !== false)
 		{
-			$query->select('`vehicle`, `route`, `dat`');
-			$query->where("`vehicle` = {$this->vehicle}");
+			$query->select("`vehicle`, `route`, DATE_FORMAT(`dat`, '%k.%i') as `dat`");
+			$query->where("`vehicle` = '{$this->vehicle}'");
 		}
 		$query->where("`dat` LIKE '{$this->date}%'");
 
