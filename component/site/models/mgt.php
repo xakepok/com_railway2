@@ -28,7 +28,7 @@ class Railway2ModelMgt extends JModelList
 		}
 		if ($this->route !== false && $this->vehicle === false)
 		{
-			$query->select('DISTINCT `vehicle`, `route`');
+			$query->select("`vehicle`, `route`, DATE_FORMAT(`dat`, '%H.%i') as `dat`");
 			$query->where("`route` = '{$this->route}'");
 		}
 		if ($this->route === false && $this->vehicle !== false)
@@ -43,6 +43,7 @@ class Railway2ModelMgt extends JModelList
 		$db->setQuery($query);
 
 		$res = $db->loadAssocList();
+
 		$arr = array();
 
 		foreach ($res as $item)
@@ -50,10 +51,20 @@ class Railway2ModelMgt extends JModelList
 			$vehicle = $item['vehicle'];
 			if (strlen($item['vehicle']) == 4 || mb_substr($item['vehicle'], 0, 1) == '4' || mb_substr($item['vehicle'], 0, 1) == '3' || mb_substr($item['vehicle'], 0, 2) == '10' || mb_substr($item['vehicle'], 0, 2) == '11') $vehicle = '0'.$item['vehicle'];
 			if ($this->park !== false && mb_substr($vehicle, 0, 2) != $this->park) continue;
-			$arr[] = array(
-				'vehicle' => $vehicle,
-				'route' => $item['route']
-			);
+			if (!empty($item['dat'])) {
+				$arr[] = array(
+					'vehicle' => $vehicle,
+					'route' => $item['route'],
+					'dat' => $item['dat']
+				);
+			}
+			else
+			{
+				$arr[] = array(
+					'vehicle' => $vehicle,
+					'route' => $item['route'],
+				);
+			}
 		}
 		return $arr;
 	}
@@ -70,7 +81,7 @@ class Railway2ModelMgt extends JModelList
 		$last = $db->loadAssoc();
 		$query = $db->getQuery(true);
 		$query
-			->select("COUNT('DISTINCT vehicle') as `total`")
+			->select("COUNT('DISTINCT `vehicle`') as `total`")
 			->from('#__mgt_online');
 		$db->setQuery($query);
 		$total = $db->loadResult();
