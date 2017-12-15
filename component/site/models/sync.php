@@ -45,10 +45,12 @@ class Railway2ModelSync extends JModelLegacy {
 		if ($id['lastPark'] == '3' && $id['lastID'] > 1003998) return array('lastPark' => '4', 'lastID' => '1004000');
 		if ($id['lastPark'] == '4' && $id['lastID'] > 1004998) return array('lastPark' => '8', 'lastID' => '1008000');
 		if ($id['lastPark'] == '8' && $id['lastID'] > 1008550) return array('lastPark' => '9', 'lastID' => '1016000');
-		if ($id['lastPark'] == '9' && $id['lastID'] > 1017750) return array('lastPark' => '11', 'lastID' => '1011000');
+		if ($id['lastPark'] == '9' && $id['lastID'] > 1016998 && $id['lastID'] < 1017001) return array('lastPark' => '9', 'lastID' => '1017000');
+		if ($id['lastPark'] == '9' && $id['lastID'] > 1017800) return array('lastPark' => '11', 'lastID' => '1011000');
 		if ($id['lastPark'] == '11' && $id['lastID'] > 1011998) return array('lastPark' => '14', 'lastID' => '1014000');
 		if ($id['lastPark'] == '14' && $id['lastID'] > 1014600) return array('lastPark' => '15', 'lastID' => '1015000');
-		if ($id['lastPark'] == '15' && $id['lastID'] > 1015998) return array('lastPark' => '19', 'lastID' => '1019000');
+		if ($id['lastPark'] == '15' && $id['lastID'] > 1015998) return array('lastPark' => '17', 'lastID' => '1017000');
+		if ($id['lastPark'] == '17' && $id['lastID'] > 1017998) return array('lastPark' => '19', 'lastID' => '1019000');
 		if ($id['lastPark'] == '19' && $id['lastID'] > 1019600) return array('lastPark' => '1', 'lastID' => '1001000');
 		return $id;
 	}
@@ -225,6 +227,7 @@ class Railway2ModelSync extends JModelLegacy {
 	private function checkTime()
 	{
 		$hour = (int) Railway2HelperCodes::getCurrentDate("G");
-		return ($hour == '0' || $hour == '1' || $hour == '2' || $hour == '7' || $hour == '8' || $hour == '9' || $hour == '14' || $hour == '15' || $hour == '16' || $hour == '19' || $hour == '20' || $hour == '21') ? true : false;
+		$hours = array(0, 1, 2, 7, 8, 11, 12, 16, 17, 19, 21, 22);
+		return in_array($hour, $hours);
 	}
 }
