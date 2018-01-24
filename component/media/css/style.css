@@ -193,21 +193,23 @@ th.thread {
     text-decoration: underline;
     cursor: pointer;
 }
-.mgt-park {
-    width: 40%;
-    padding: 5px;
-    float: left;
+.hidden-rasp {
+    display: none;
 }
-.mgt-filter {
-    width: 55%;
-    padding: 5px;
-    float: left;
-    margin: 5px;
+.show-rasp {
+    display: block;
 }
-.mgt-filter-field {
-    width: 100px;
-}
-.mgt-stat {
+.search-link {
     font-size: 0.8em;
-    font-style: italic;
+}
+.price {
+    width: 100px;
+    text-align: right;
+    font-size: 0.8em;
+}
+.stops {
+    font-size: 0.65em;
+}
+.thread-title {
+    width: 350px;
 }

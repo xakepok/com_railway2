@@ -1,7 +1,8 @@
 <?php
 defined('_JEXEC') or die;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
-class Railway2ModelStation extends JModelList
+class Railway2ModelStation extends BaseDatabaseModel
 {
 	public $stationID, $directionID;
 

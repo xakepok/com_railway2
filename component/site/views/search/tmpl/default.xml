@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="COM_RAILWAY2_MGT">
+	<layout title="COM_RAILWAY2_RASP_SEARCH">
 		<message>
-			<![CDATA[COM_RAILWAY2_MGT_ONLINE]]>
+			<![CDATA[COM_RAILWAY2_RASP_SEARCH_DESC]]>
 		</message>
 	</layout>
 </metadata>

@@ -1,7 +1,8 @@
 <?php
 defined('_JEXEC') or die;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
-class Railway2ModelYandexrasp extends JModelLegacy
+class Railway2ModelYandexrasp extends BaseDatabaseModel
 {
 	public $offset = 0;
 
@@ -68,6 +69,18 @@ class Railway2ModelYandexrasp extends JModelLegacy
 				$this->params['show_systems'] = 'all';
 				break;
 			}
+			case 'search':
+			{
+				$this->params['from'] = $this->from;
+				$this->params['to'] = $this->to;
+				$this->params['date'] = Railway2HelperCodes::getDateFromUrl();
+				$this->params['transport_types'] = 'suburban';
+				$this->params['show_systems'] = 'all';
+				$this->params['offset'] = $this->offset;
+				$this->params['add_days_mask'] = 'false';
+				$this->params['system'] = 'esr';
+				break;
+			}
 			default:
 			{
 				return false;
@@ -90,6 +103,11 @@ class Railway2ModelYandexrasp extends JModelLegacy
 			case 'thread':
 			{
 				return 'thread';
+				break;
+			}
+			case 'search':
+			{
+				return 'search';
 				break;
 			}
 		}
@@ -116,6 +134,16 @@ class Railway2ModelYandexrasp extends JModelLegacy
 		$this->dir = $dir;
 	}
 
+	public function setFrom($from)
+	{
+		$this->from = $from;
+	}
+
+	public function setTo($to)
+	{
+		$this->to = $to;
+	}
+
 	public function setYandex($code)
 	{
 		$this->yandex = $code;
@@ -126,5 +154,5 @@ class Railway2ModelYandexrasp extends JModelLegacy
 		return $this->esr;
 	}
 
-	private $esr, $uid, $date, $params, $dir, $yandex;
+	private $esr, $uid, $date, $params, $dir, $yandex, $from, $to;
 }
