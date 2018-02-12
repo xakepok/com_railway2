@@ -24,6 +24,11 @@ class Railway2Helper
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_STATION_DESC_TIME'), 'index.php?option=com_railway2&view=tickets', $vName == 'tickets');
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_INSPECTIONS'), 'index.php?option=com_railway2&view=inspections', $vName == 'inspections');
         JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_METRO_CROSSES'), 'index.php?option=com_railway2&view=crosses', $vName == 'crosses');
+		if (JComponentHelper::isEnabled('com_fields'))
+		{
+			JHtmlSidebar::addEntry(JText::_('JGLOBAL_FIELDS'), 'index.php?option=com_fields&context=com_railway2.direction', $vName == 'fields.fields');
+			JHtmlSidebar::addEntry(JText::_('JGLOBAL_FIELD_GROUPS'), 'index.php?option=com_fields&view=groups&context=com_railway2.direction', $vName == 'fields.groups');
+		}
         //JHtmlSidebar::addEntry(JText::_('COM_RAILWAY2_CATEGORIES'), 'index.php?option=com_categories&view=categories&extension=com_railway2', $vName == 'categories');
 	}
 
@@ -96,4 +101,15 @@ class Railway2Helper
         }
         return $str;
     }
+
+	/* Отладка */
+	static function dump($obj)
+	{
+		if (JFactory::getUser()->authorise('core.manage', 'com_railway2'))
+		{
+			echo "<pre>";
+			var_dump($obj);
+			echo "</pre>";
+		}
+	}
 }

@@ -12,7 +12,7 @@ class JFormFieldRegion extends JFormFieldGroupedList  {
         $query = $db->getQuery(true);
         $query
             ->select('id, country, region')
-            ->from('#__regions')
+            ->from('#__rw2_regions')
             ->order('id');
         $db->setQuery($query);
         $regions = $db->loadObjectList('region');

@@ -8,6 +8,13 @@ class Railway2ModelDirection extends JModelAdmin {
         return JTable::getInstance($name, $prefix, $options);
     }
 
+	public static function getFields()
+	{
+		JLoader::register('FieldsHelper', JPATH_ADMINISTRATOR . '/components/com_fields/helpers/fields.php');
+		$fields = FieldsHelper::getFields('com_railway2.direction');
+		return json_decode(json_encode($fields), true);
+	}
+
     public function getForm($data = array(), $loadData = true)
     {
         $form = $this->loadForm(

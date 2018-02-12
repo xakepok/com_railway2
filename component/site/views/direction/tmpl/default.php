@@ -1,6 +1,6 @@
 <?php
 defined('_JEXEC') or die;
-if (Railway2HelperCodes::canDo('core.admin') && $this->info->state < '0') {
+if (Railway2HelperCodes::canDo('core.admin') && $this->info->state < '1') {
     ?>
     <div class="onlyAdmin"><?php echo JText::_('COM_RAILWAY2_ONLY_FOR_ADMIN_DIRECTION');?></div>
     <?php

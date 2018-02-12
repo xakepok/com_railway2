@@ -1,14 +1,17 @@
 <?php
 defined('_JEXEC') or die;
-jimport('joomla.application.component.view');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
 
-class Railway2ViewDirection extends JViewLegacy {
-    protected $item, $form, $script;
+class Railway2ViewDirection extends HtmlView {
+    protected $item, $form, $script, $fields;
 
-    public function display($tmp = null) {
+    public function display($tpl = null) {
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
+        $this->fields = $this->get('Fields');
 
         $this->addToolbar();
         $this->setDocument();
