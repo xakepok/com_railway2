@@ -9,6 +9,8 @@ class TableRw2_directions_list extends JTable {
     var $telegram = null;
     var $color = null;
     var $font = null;
+    var $sync = null;
+    var $filter = null;
     var $state = null;
 
     public function __construct(&$db) {

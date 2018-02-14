@@ -31,7 +31,6 @@ class Railway2ModelSync extends JModelLegacy {
 		$result['dir'] = $dir;
 		$result['date'] = Railway2HelperCodes::getCurrentDate('Y-m-d');
 		$result['controlID'] = $controlPoint->stationID;
-		$result['controlExpress'] = $controlPoint->express;
 		$result['URL'] = $url;
 
 		$d = phpQuery::newDocumentHtml(file_get_contents($url));
@@ -76,26 +75,83 @@ class Railway2ModelSync extends JModelLegacy {
 		}
 
 		$result['res'] = $res;
-		if (!empty($res)) $this->exportToBaseRW($dir, $res);
+		if (!empty($res))
+		{
+			$this->exportToBaseRW($dir, $res);
+			$result['status'] = true;
+			$result['message'] = JText::_('COM_RAILWAY2_SYNC_OK');
+		}
+		else
+		{
+			$result['status'] = false;
+			$result['message'] = JText::_('COM_RAILWAY2_MGT_STAT_ERROR_EMPTY');
+		}
 
-		return (!empty($res)) ? $result : JText::_('COM_RAILWAY2_MGT_STAT_ERROR_EMPTY');
+		return json_encode($result);
 	}
 
 	private function exportToBaseRW($dir, $data)
 	{
-		$db = JFactory::getDbo();
-		$query = 'INSERT INTO `#__rw2_online` (`dat`, `directionID`, `num`, `station`, `latence`) VALUES ';
+		$db = $this->getDbo();
+
+		$table = $db->quoteName("#__rw2_online");
+		$query = "INSERT INTO {$table} (`dat`, `directionID`, `num`, `fromID`, `toID`, `station`, `latence`) VALUES ";
 		$values = array();
+		$stationIDs = $this->getStationIdByRzdName($data);
+
 		foreach ($data as $num => $item) {
-			$station = $item['station'];
 			$latence = $item['status'];
-			$values[] = "(CURRENT_DATE(), '{$dir}', '{$num}', '{$station}', '{$latence}')";
+			$st = explode(' - ', $item['route']);
+			$from = Railway2HelperOnline::validStationName($st[0]);
+			$to = Railway2HelperOnline::validStationName($st[1]);
+			$station = Railway2HelperOnline::validStationName($item['station']);
+			$fromID = $stationIDs[$from]['id'];
+			$toID = $stationIDs[$to]['id'];
+			$station = $stationIDs[$station]['id'];
+			$values[] = "(CURRENT_DATE(), '{$dir}', '{$num}', '{$fromID}', '{$toID}', '{$station}', '{$latence}')";
 		}
 		$query .= implode(',', $values);
 		$query .= " ON DUPLICATE KEY UPDATE `station`=VALUES(`station`), `latence`=VALUES(`latence`), `stamp` = CURRENT_TIMESTAMP()";
 
-		$db->setQuery($query);
-		$db->query();
+		$db->setQuery($query)->execute();
 		return true;
+	}
+
+	private function getStationIdByRzdName($data)
+	{
+		$db = $this->getDbo();
+		$stations = array();
+		$st_list = array();
+		foreach ($data as $num => $item) {
+			$station = $db->quote(Railway2HelperOnline::validStationName($item['station']));
+			$st = explode(' - ', $item['route']);
+			$from = $db->quote(Railway2HelperOnline::validStationName($st[0]));
+			$to = $db->quote(Railway2HelperOnline::validStationName($st[1]));
+			$st_list[] = $station;
+			$st_list[] = $from;
+			$st_list[] = $to;
+		}
+		$st_list = array_unique($st_list);
+		foreach ($st_list as $item)
+		{
+			$stations[] = "`n`.`rzdName` LIKE {$item} OR `s`.`name` LIKE {$item}";
+		}
+		$where = "((".implode( ' OR ', $stations).")";
+		$where .= " AND (`s`.`region` IN (173, 208, 150, 200, 210, 161, 205)))";
+		$query = $db->getQuery(true);
+		$query
+			->select("DISTINCT `s`.`id` as `id`, IF(`n`.`rzdName`='',`s`.`name`,`n`.`rzdName`) as `name`")
+			->from("#__rw2_stations as `s`")
+			->leftJoin("#__rw2_station_names as `n` ON `n`.`stationID` = `s`.`id`")
+			->where($where);
+		$res = $db->setQuery($query)->loadAssocList('name');
+		$result = array();
+		foreach ($res as $name => $item)
+		{
+			$name = Railway2HelperOnline::validStationName($name);
+			$result[$name] = array("id" => $item['id'], "name" => $name);
+		}
+
+		return $result;
 	}
 }

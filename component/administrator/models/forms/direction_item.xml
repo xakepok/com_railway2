@@ -24,14 +24,23 @@
                 autocomplete="off"
         />
         <field
-                name="telegram"
+                name="sync"
                 type="list"
-                label="COM_RAILWAY2_TELEGRAM"
+                label="COM_RAILWAY2_SYNC"
                 class="input-xlarge"
-                description="COM_RAILWAY2_TELEGRAM_AVALIBLE"
+                description="COM_RAILWAY2_SYNC_AVALIBLE"
                 >
-                <option value="0">COM_RAILWAY2_TELEGRAM_NOAVALIBLE</option>
-                <option value="1">COM_RAILWAY2_TELEGRAM_AVALIBLE</option>
+                <option value="0">COM_RAILWAY2_NOT_AVALIBLE</option>
+                <option value="1">COM_RAILWAY2_AVALIBLE</option>
+        </field>
+        <field
+                name="filter"
+                type="list"
+                class="input-xlarge"
+                label="COM_RAILWAY2_DIRECTION_IN_FILTER"
+                >
+                <option value="0">COM_RAILWAY2_NOT_AVALIBLE</option>
+                <option value="1">COM_RAILWAY2_AVALIBLE</option>
         </field>
         <field
                 name="color"

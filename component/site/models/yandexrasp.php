@@ -69,6 +69,7 @@ class Railway2ModelYandexrasp extends BaseDatabaseModel
 				$this->params['show_systems'] = 'all';
 				break;
 			}
+			case 'online':
 			case 'search':
 			{
 				$this->params['from'] = $this->from;
@@ -105,6 +106,7 @@ class Railway2ModelYandexrasp extends BaseDatabaseModel
 				return 'thread';
 				break;
 			}
+			case 'online':
 			case 'search':
 			{
 				return 'search';
