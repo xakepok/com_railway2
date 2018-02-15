@@ -31,6 +31,9 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $station->direction; ?>
         </td>
         <td>
+            <?php echo $station->indexID; ?>
+        </td>
+        <td>
             <?php
             $text = "";
             if ($station->turnstiles != null) {

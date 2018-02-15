@@ -29,6 +29,9 @@ $listDirn    = $this->escape($this->state->get('list.direction'));
         <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_DIRECTION', '`dir`.`title`', $listName, $listOrder); ?>
     </th>
     <th>
+        <?php echo JHtml::_('grid.sort', 'COM_RAILWAY2_STATION_INDEX', '`indexID`', $listName, $listOrder); ?>
+    </th>
+    <th>
         <?php echo JText::_('COM_RAILWAY2_STATION_DESC_TIME'); ?>
     </th>
     <th>

@@ -12,7 +12,8 @@ class Railway2ModelTickets extends JModelList
                 '`code`.`esr`', '`code`.`esr`',
                 '`code`.`express`', '`code`.`express`',
                 '`stationName`',
-                '`dir`.`title`','`dir`.`title`'
+                '`dir`.`title`','`dir`.`title`',
+                'indexID'
             );
         }
         parent::__construct($config);
@@ -23,7 +24,7 @@ class Railway2ModelTickets extends JModelList
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
-            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `desc`.`timemask`, `desc`.`tpd`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`, `desc`.`time_check`')
+            ->select('`desc`.`id` as `id`, `s`.`id` as `sid`, `desc`.`timemask`, `desc`.`tpd`, `desc`.`turnstiles`, `desc`.`time_1`, `desc`.`time_2`, `code`.`esr`, `code`.`express`, `t`.`title` as `type`, `reg`.`region` as `region`, `rw`.`road`, `rw`.`division`, `dir`.`title` as `direction`, `desc`.`time_check`, `d`.`indexID`')
             ->select(Railway2Helper::getStationNameQuery('name'))
 	        ->from('#__rw2_stations as `s`')
             ->where('`code`.`express` != 0 AND `railway` != 0')
