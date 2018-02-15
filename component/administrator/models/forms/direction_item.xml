@@ -43,6 +43,16 @@
                 <option value="1">COM_RAILWAY2_AVALIBLE</option>
         </field>
         <field
+                name="parity"
+                type="list"
+                class="input x-large"
+                label="COM_RAILWAY2_DIRECTION_PARITY"
+                description="COM_RAILWAY2_DIRECTION_PARITY_DESC"
+                >
+                <option value="0">COM_RAILWAY2_DIRECTION_PARITY_TO_MOSCOW</option>
+                <option value="1">COM_RAILWAY2_DIRECTION_PARITY_FROM_MOSCOW</option>
+        </field>
+        <field
                 name="color"
                 type="color"
                 label="COM_RAILWAY2_COLOR"
