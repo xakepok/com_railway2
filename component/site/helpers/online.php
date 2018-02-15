@@ -61,9 +61,7 @@ class Railway2HelperOnline {
 				->leftJoin("#__rw2_directions_list as `d` ON `d`.`id` = `o`.`directionID`")
 				->where("`d`.`sync` = 1 AND `o`.`dat` = CURRENT_DATE() AND `d`.`state` > 0 AND `o`.`stamp` = (SELECT MIN(`stamp`) FROM `#__rw2_online`)")
 			;
-			$db->setQuery($query);
-			$tmpDir = $db->loadResult();
-			if ($tmpDir == null) $dir = $directions[array_rand($directions)]->id; else $dir = $tmpDir;
+            $dir = $db->setQuery($query, 0, 1)->loadResult();
 		}
 
 		return $dir;
@@ -77,7 +75,7 @@ class Railway2HelperOnline {
 		$query
 			->select('id')
 			->from('#__rw2_directions_list')
-			->where('sync = 1')
+			->where('`sync` = 1 AND `state` > 0')
 			->order('id');
 		$db->setQuery($query);
 		return $db->loadObjectList();

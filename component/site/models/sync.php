@@ -114,7 +114,7 @@ class Railway2ModelSync extends JModelLegacy {
 			$values[] = "(CURRENT_DATE(), '{$dir}', '{$num}', '{$fromID}', '{$toID}', '{$arr}', '{$parity}', '{$station}', '{$latence}')";
 		}
 		$query .= implode(',', $values);
-		$query .= " ON DUPLICATE KEY UPDATE `station`=VALUES(`station`), `arr`=VALUES(`arr`), `parity`=VALUES(`parity`), `latence`=VALUES(`latence`)";
+		$query .= " ON DUPLICATE KEY UPDATE `station`=VALUES(`station`), `arr`=VALUES(`arr`), `parity`=VALUES(`parity`), `latence`=VALUES(`latence`), `stamp` = CURRENT_TIMESTAMP() ";
 
 		$db->setQuery($query)->execute();
 		return true;
