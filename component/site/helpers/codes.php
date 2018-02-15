@@ -1,6 +1,51 @@
 <?php
 defined('_JEXEC') or die;
 class Railway2HelperCodes {
+	/* На Москву или к Москве */
+	static function getParity($num, $par, $directionID)
+	{
+		$num = (int) $num;
+		$p = (int) $par;
+		$parity = 0;
+		if ($p == '0' && !self::isOdd($num)) $parity = 0;
+		if ($p == '1' && self::isOdd($num)) $parity = 0;
+		if ($p == '0' && self::isOdd($num)) $parity = 1;
+		if ($p == '1' && !self::isOdd($num)) $parity = 1;
+		if ($directionID == '1') //Транзитки Белорусского направления
+		{
+			if ($num > 6000 && $num < 6054)
+			{
+				$parity = 0;
+			}
+			if ($num > 6053 && $num < 6100)
+			{
+				$parity = 1;
+			}
+		}
+		if ($directionID == '4') //Калужские рейсы
+		{
+			if ($num > 6100 && $num < 6121)
+			{
+				$parity = 0;
+			}
+		}
+		if ($directionID == '6') //Трензитки Курского направления
+		{
+			if (($num > 6000 && $num < 6054) || ($num > 6300 && $num < 6351) || ($num > 6401 && $num < 6453))
+			{
+				$parity = 1;
+			}
+		}
+		if ($directionID == '9') //Трензитки Рижского направления
+		{
+			if (($num > 6351 && $num < 6395) || ($num > 6454 && $num < 6500) || ($num > 6659 && $num < 6667) || ($num == 6182) || ($num == 6112) || ($num == 7166) || ($num == 7004) || ($num == 7168) || ($num == 6186) || ($num == 6190) || ($num == 7008) || ($num == 7170) || ($num == 6222))
+			{
+				$parity = 1;
+			}
+		}
+		return $parity;
+	}
+
 	/* Получаем директории */
 	static function getDirections() {
 		$db =& JFactory::getDbo();

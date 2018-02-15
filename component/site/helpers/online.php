@@ -34,7 +34,7 @@ class Railway2HelperOnline {
 			->from('#__rw2_directions as `d`')
 			->leftJoin('#__rw2_station_codes as `c` ON `c`.`stationID` = `d`.`stationID`')
 			->where("`isControlPoint` = 1 AND `directionID` = {$dir}");
-		$db->setQuery($query, 1);
+		$db->setQuery($query, 0,1);
 		$result = $db->loadObject();
 		return $result;
 	}

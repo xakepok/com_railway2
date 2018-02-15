@@ -54,7 +54,7 @@ class Railway2Controller extends JControllerLegacy {
 				}
 				else
 				{
-					jexit(JText::_('COM_RAILWAY2_ONLINE_ERROR'));
+					jexit(JText::_('COM_RAILWAY2_ONLINE_ERROR').Railway2HelperCodes::dump($result));
 				}
 			}
 		}

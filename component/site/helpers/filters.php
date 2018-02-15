@@ -21,6 +21,14 @@ abstract class Railway2HtmlFilters
 		return $options;
 	}
 
+	private function getParity()
+	{
+		$options = array();
+		$options[] = JHtml::_('select.option', '0', JText::_('COM_RAILWAY2_ONLINE_PARITY_0'));
+		$options[] = JHtml::_('select.option', '1', JText::_('COM_RAILWAY2_ONLINE_PARITY_1'));
+		return $options;
+	}
+
 	/* Фильтр по направлениям */
 	public static function direction($selected)
 	{
@@ -38,5 +46,14 @@ abstract class Railway2HtmlFilters
 		$options = array_merge($options, self::getActuality());
 		$attribs = 'class="inputbox" onchange="this.form.submit()"';
 		return JHtml::_('select.genericlist', $options, 'filter_actuality', $attribs, 'value', 'text', $selected, null, true);
+	}
+
+	/* Фильтр по акутальности */
+	public static function parity($selected) {
+		$options = array();
+		$options[] = JHtml::_('select.option', '', 'COM_RAILWAY2_FILTER_SELECT_PARITY');
+		$options = array_merge($options, self::getParity());
+		$attribs = 'class="inputbox" onchange="this.form.submit()"';
+		return JHtml::_('select.genericlist', $options, 'filter_parity', $attribs, 'value', 'text', $selected, null, true);
 	}
 }
