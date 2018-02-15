@@ -34,10 +34,11 @@ class Railway2ModelOnline extends ListModel {
 		$where = $db->quoteName("dat")." = CURRENT_DATE()";
 
 		$query
-			->select("`o`.`dat` as `date`, `o`.`parity`, `o`.`id` as `onlineID`, `o`.`num`, `o`.`directionID`, `d`.`title` as `direction`, CONCAT(`from`.`popularName`,' - ',`to`.`popularName`) as `route`, `st`.`popularName` as `station`")
+			->select("DISTINCT `o`.`dat` as `date`, `o`.`parity`, `dir`.`indexID`, `o`.`id` as `onlineID`, `o`.`num`, `o`.`directionID`, `d`.`title` as `direction`, CONCAT(`from`.`popularName`,' - ',`to`.`popularName`) as `route`, `st`.`popularName` as `station`")
 			->select("IF(`o`.`latence`>0,CONCAT('+',`o`.`latence`,' ".JText::_('COM_RAILWAY2_SYNC_BY_MIN')." ".JText::_('COM_RAILWAY2_ONLINE_BY_STATION')." "."',`st`.`popularName`),'".JText::_('COM_RAILWAY2_SYNC_BY_GRAPHIC')."') as `online`")
 			->from($db->quoteName("#__rw2_online")." as ".$db->quoteName("o"))
 			->leftJoin("#__rw2_directions_list as `d` ON `d`.`id` = `o`.`directionID`")
+			->leftJoin("#__rw2_directions as `dir` ON `dir`.`stationID` = `o`.`station`")
 			->leftJoin("#__rw2_station_names as `from` ON `from`.`stationID` = `o`.`fromID`")
 			->leftJoin("#__rw2_station_names as `to` ON `to`.`stationID` = `o`.`toID`")
 			->leftJoin("#__rw2_station_names as `st` ON `st`.`stationID` = `o`.`station`")
@@ -59,6 +60,8 @@ class Railway2ModelOnline extends ListModel {
 			$id = $db->quote($this->id);
 			$query->where("`o`.`id` = {$id}");
 		}
+
+		$query->order("`arr` DESC");
 
 		return $query;
 	}

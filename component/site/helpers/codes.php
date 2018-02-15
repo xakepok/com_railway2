@@ -54,7 +54,7 @@ class Railway2HelperCodes {
 			->select('id, title')
 			->from('#__rw2_directions_list')
 			->order('title')
-			->where('`active` = 1 AND `filter`=1');
+			->where('`state` >0 AND `filter`=1');
 		$db->setQuery($query);
 		return $db->loadObjectList();
 	}

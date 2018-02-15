@@ -96,7 +96,7 @@ class Railway2ModelSync extends JModelLegacy {
 		$info = $this->getDirectionInfo($dir);
 
 		$table = $db->quoteName("#__rw2_online");
-		$query = "INSERT INTO {$table} (`dat`, `directionID`, `num`, `fromID`, `toID`, `parity`, `station`, `latence`) VALUES ";
+		$query = "INSERT INTO {$table} (`dat`, `directionID`, `num`, `fromID`, `toID`, `arr`, `parity`, `station`, `latence`) VALUES ";
 		$values = array();
 		$stationIDs = $this->getStationIdByRzdName($data);
 
@@ -107,13 +107,14 @@ class Railway2ModelSync extends JModelLegacy {
 			$to = Railway2HelperOnline::validStationName($st[1]);
 			$station = Railway2HelperOnline::validStationName($item['station']);
 			$fromID = $stationIDs[$from]['id'];
+			$arr = $item['arr'].":00";
 			$toID = $stationIDs[$to]['id'];
 			$station = $stationIDs[$station]['id'];
 			$parity = Railway2HelperCodes::getParity($num, $info->parity, $dir);
-			$values[] = "(CURRENT_DATE(), '{$dir}', '{$num}', '{$fromID}', '{$toID}', '{$parity}', '{$station}', '{$latence}')";
+			$values[] = "(CURRENT_DATE(), '{$dir}', '{$num}', '{$fromID}', '{$toID}', '{$arr}', '{$parity}', '{$station}', '{$latence}')";
 		}
 		$query .= implode(',', $values);
-		$query .= " ON DUPLICATE KEY UPDATE `station`=VALUES(`station`), `parity`=VALUES(`parity`), `latence`=VALUES(`latence`), `stamp` = CURRENT_TIMESTAMP()";
+		$query .= " ON DUPLICATE KEY UPDATE `station`=VALUES(`station`), `arr`=VALUES(`arr`), `parity`=VALUES(`parity`), `latence`=VALUES(`latence`)";
 
 		$db->setQuery($query)->execute();
 		return true;
