@@ -68,7 +68,7 @@ class Railway2ModelTickets extends JModelList
         }
 
         /* Сортировка */
-        $orderCol  = $this->state->get('list.ordering', '`stationName`');
+        $orderCol  = $this->state->get('list.ordering', '`indexID`');
         $orderDirn = $this->state->get('list.direction', 'asc');
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
@@ -84,7 +84,7 @@ class Railway2ModelTickets extends JModelList
         $this->setState('filter.search', $search);
         $this->setState('filter.direction', $direction);
 	    $this->setState('filter.actuality', $actuality);
-        parent::populateState('`stationName`, `desc`.`time_1`', 'asc');
+        parent::populateState('`indexID`', 'asc');
     }
 
     protected function getStoreId($id = '')

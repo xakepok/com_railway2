@@ -13,7 +13,7 @@ foreach ($this->items as $i => $station) : ?>
             <?php echo $station->sid; ?>
         </td>
         <td>
-            <?php $link = "http://elektrichking.ru/railway2/station/{$station->sid}/?from=wiki"; ?>
+            <?php $link = "http://elektrichking.ru/station/{$station->sid}/?from=wiki"; ?>
             <a href="<?php echo $link;?>" target="_blank"><?php echo JText::_('COM_RAILWAY2_STATION_LINK_FOR_MANUAL');?></a>
         </td>
         <td>
