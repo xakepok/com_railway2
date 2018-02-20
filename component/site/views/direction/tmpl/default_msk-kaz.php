@@ -56,10 +56,10 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="zone-1" valign="top" rowspan="6">
+            <td class="zone-1" valign="top" rowspan="7">
 		        <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="zone-1" rowspan="6"></td>
+            <td class="zone-1" rowspan="7"></td>
             <td class="direction-level-main zone-1" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
@@ -91,6 +91,19 @@ $zone = 0;
 			    foreach ($this->items as $item)
 			    {
 				    if ($item['stationID'] == '4814') {
+                        echo $item['stationLink'],' ', $item['desc'];
+					    break;
+				    }
+			    }
+			    ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="direction-level-main zone-1" colspan="5">
+			    <?php
+			    foreach ($this->items as $item)
+			    {
+				    if ($item['stationID'] == '4815') {
                         echo $item['stationLink'],' ', $item['desc'];
 					    break;
 				    }
