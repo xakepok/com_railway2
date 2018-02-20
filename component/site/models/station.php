@@ -101,27 +101,29 @@ class Railway2ModelStation extends BaseDatabaseModel
 			$num[] = substr($item->thread->number, 0, 4);
 		}
 		$num = implode(', ', $num);
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
+		if (!empty($num))
+        {
+            $db = JFactory::getDbo();
+            $query = $db->getQuery(true);
 
-		$query
-			->select('*')
-			->from('#__rw2_online')
-			->where("`num` IN ({$num}) AND `directionID` = {$this->directionID} AND `dat` = CURRENT_DATE()");
-		$db->setQuery($query);
-		//Railway2HelperCodes::dump($this->directionID);
-		$online = $db->loadAssocListList('num');
+            $query
+                ->select('`o`.`num` as `num`, `o`.`latence`, `o`.`station`, `n`.`popularName` as `station`')
+                ->from('#__rw2_online as `o`')
+                ->leftJoin('#__rw2_station_names as `n` ON `n`.`stationID` = `o`.`station`')
+                ->where("`o`.`num` IN ({$num}) AND `o`.`directionID` = {$this->directionID} AND `o`.`dat` = CURRENT_DATE()");
+            $online = $db->setQuery($query)->loadAssocList('num');
+        }
+        else
+        {
+            $online = false;
+        }
 
-		foreach ($schedule as $item)
+        foreach ($schedule as $item)
 		{
             $color = ($item->thread->transport_subtype->code != 'suburban') ? $item->thread->transport_subtype->color : '#276E41';
             $linkOption = array('target' => '_blank', 'class' => 'thread-link');
-            $o = JText::_('COM_RAILWAY2_SYNC_NO_DATA');
-            if (isset($online[$item->thread->number]))
-            {
-	            if ((int) $online[substr($item->thread->number, 0, 4)]['latence'] == 0) $o = JText::_('COM_RAILWAY2_SYNC_BY_GRAPHIC');
-	            if ((int) $online[substr($item->thread->number, 0, 4)]['latence'] > 0) $o = '+'.$online[$item->thread->number]['latence'].JText::_('COM_RAILWAY2_SYNC_BY_MIN');
-            }
+            $num = explode("/", $item->thread->number);
+            $num = $num[0];
 
 			$query           = array(
 				'option' => 'com_railway2',
@@ -129,6 +131,16 @@ class Railway2ModelStation extends BaseDatabaseModel
 				'id'     => $item->thread->uid,
 				'Itemid' => 246
 			);
+            $o = JText::_('COM_RAILWAY2_SYNC_NO_DATA');
+            if (isset($online[$num]))
+            {
+                $o = JText::_('COM_RAILWAY2_SYNC_BY_GRAPHIC');
+                if ((int) $online[$num]['latence'] > 0)
+                {
+                    $o = "+".$online[$num]['latence']." ".JText::_('COM_RAILWAY2_SYNC_BY_MIN')." ".JText::_('COM_RAILWAY2_ONLINE_BY_STATION')." ";
+                    $o .= $online[$num]['station'];
+                }
+            }
 			$arr             = array(
 				'number' => $item->thread->number,
 				'color' => $color,

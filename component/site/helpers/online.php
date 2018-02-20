@@ -43,15 +43,14 @@ class Railway2HelperOnline {
 	static function getDirection()
 	{
 		$dir = 0;
-		$directions = self::getAllDirections();
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$query
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
 			->select("`id`")
 			->from("#__rw2_directions_list")
 			->where("`sync` = 1 AND `state` > 0 AND `id` NOT IN (SELECT DISTINCT `directionID` FROM `#__rw2_online` WHERE `dat` = CURRENT_DATE())")
 			->order('`id`');
-		$dir = $db->setQuery($query, 0, 1)->loadResult();
+        $dir = $db->setQuery($query, 0, 1)->loadResult();
 		if ($dir == '0' || empty($dir) || $dir == null)
 		{
 			$query = $db->getQuery(true);
@@ -59,11 +58,9 @@ class Railway2HelperOnline {
 				->select('`o`.`directionID`')
 				->from("#__rw2_online as `o`")
 				->leftJoin("#__rw2_directions_list as `d` ON `d`.`id` = `o`.`directionID`")
-				->where("`d`.`sync` = 1 AND `o`.`dat` = CURRENT_DATE() AND `d`.`state` > 0 AND `o`.`stamp` = (SELECT MIN(`stamp`) FROM `#__rw2_online`)")
+				->where("`d`.`sync` = 1 AND `o`.`dat` = CURRENT_DATE() AND `d`.`state` > 0 AND `o`.`stamp` = (SELECT MIN(`stamp`) FROM `#__rw2_online` WHERE `dat` = CURRENT_DATE())")
 			;
-			$db->setQuery($query);
-			$tmpDir = $db->loadResult();
-			if ($tmpDir == null) $dir = $directions[array_rand($directions)]->id; else $dir = $tmpDir;
+            $dir = $db->setQuery($query, 0, 1)->loadResult();
 		}
 
 		return $dir;
@@ -77,7 +74,7 @@ class Railway2HelperOnline {
 		$query
 			->select('id')
 			->from('#__rw2_directions_list')
-			->where('sync = 1')
+			->where('`sync` = 1 AND `state` > 0')
 			->order('id');
 		$db->setQuery($query);
 		return $db->loadObjectList();
