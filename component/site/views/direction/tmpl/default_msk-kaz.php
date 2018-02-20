@@ -7,7 +7,7 @@ $zone = 0;
 </div>
 <br>
 <div class="center dir-scheme" align="center">
-    <table class="direction-table" align="center">
+    <table class="direction-table" align="center" width="100%">
         <tr>
             <td class="zone-1 zone-hint">
                 <?php echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
@@ -939,6 +939,106 @@ $zone = 0;
 			    ?>
             </td>
             <td class="direction-level-main zone-2"></td>
+        </tr>
+        <tr>
+            <td class="zone-1" valign="top" rowspan="3">
+			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
+            </td>
+            <td class="zone-1" rowspan="3"></td>
+            <td class="direction-level-main zone-1">
+			    <?php
+			    foreach ($this->items as $item)
+			    {
+				    if ($item['stationID'] == '5950') {
+					    echo $item['stationLink'],' ', $item['desc'];
+					    break;
+				    }
+			    }
+			    ?>
+            </td>
+            <td class="zone-1 direction-level-main" rowspan="2" colspan="2"></td>
+            <td class="direction-level-main zone-1">
+	            <?php
+	            foreach ($this->items as $item)
+	            {
+		            if ($item['stationID'] == '5935') {
+			            echo $item['stationLink'],' ', $item['desc'];
+			            break;
+		            }
+	            }
+	            ?>
+            </td>
+            <td class="direction-level-main zone-1">
+	            <?php
+	            foreach ($this->items as $item)
+	            {
+		            if ($item['stationID'] == '5909') {
+			            echo $item['stationLink'],' ', $item['desc'];
+			            break;
+		            }
+	            }
+	            ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="direction-level-main zone-1">
+			    <?php
+			    foreach ($this->items as $item)
+			    {
+				    if ($item['stationID'] == '5951') {
+					    echo $item['stationLink'],' ', $item['desc'];
+					    break;
+				    }
+			    }
+			    ?>
+            </td>
+            <td class="direction-level-main zone-1">
+	            <?php
+	            foreach ($this->items as $item)
+	            {
+		            if ($item['stationID'] == '5936') {
+			            echo $item['stationLink'],' ', $item['desc'];
+			            break;
+		            }
+	            }
+	            ?>
+            </td>
+            <td class="direction-level-main zone-1" rowspan="2">
+	            <?php
+	            foreach ($this->items as $item)
+	            {
+		            if ($item['stationID'] == '5910') {
+			            echo $item['stationLink'],' ', $item['desc'];
+			            break;
+		            }
+	            }
+	            ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="direction-level-main zone-1">
+			    <?php
+			    foreach ($this->items as $item)
+			    {
+				    if ($item['stationID'] == '5952') {
+					    echo $item['stationLink'],' ', $item['desc'];
+					    break;
+				    }
+			    }
+			    ?>
+            </td>
+            <td class="direction-level-main zone-1 direction-level" colspan="2"></td>
+            <td class="direction-level-main zone-1">
+	            <?php
+	            foreach ($this->items as $item)
+	            {
+		            if ($item['stationID'] == '5941') {
+			            echo $item['stationLink'],' ', $item['desc'];
+			            break;
+		            }
+	            }
+	            ?>
+            </td>
         </tr>
     </table>
 </div>
