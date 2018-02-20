@@ -29,7 +29,6 @@
                 label="COM_RAILWAY2_STATION_CODE_EXPRESS"
                 description="COM_RAILWAY2_STATION_CODE_EXPRESS_DESC"
                 class="input-xlarge"
-                validate="express"
                 autocomplete="off"
         />
         <field
