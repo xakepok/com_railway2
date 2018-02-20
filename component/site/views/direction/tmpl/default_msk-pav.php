@@ -184,7 +184,7 @@ $zone = 0;
 			    <?php
 			    foreach ($this->items as $item)
 			    {
-				    if ($item['stationID'] == '5934') {
+				    if ($item['stationID'] == '4787') {
 					    echo "32 км.";
 					    break;
 				    }
