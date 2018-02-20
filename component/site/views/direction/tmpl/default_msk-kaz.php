@@ -12,7 +12,8 @@ $zone = 0;
             <td class="zone-1 zone-hint">
                 <?php echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-1" colspan="2">
+            <td class="zone-1"></td>
+            <td class="direction-level-main zone-1" colspan="5">
                 <?php
                 foreach ($this->items as $item)
                 {
@@ -28,7 +29,8 @@ $zone = 0;
             <td class="zone-2" valign="top" rowspan="2">
 		        <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-2" colspan="2">
+            <td class="zone-2" rowspan="2"></td>
+            <td class="direction-level-main zone-2" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -41,7 +43,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2" colspan="2">
+            <td class="direction-level-main zone-2" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -57,7 +59,8 @@ $zone = 0;
             <td class="zone-1" valign="top" rowspan="6">
 		        <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-1" colspan="2">
+            <td class="zone-1" rowspan="6"></td>
+            <td class="direction-level-main zone-1" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -70,7 +73,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1" colspan="2">
+            <td class="direction-level-main zone-1" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -83,7 +86,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1" colspan="2">
+            <td class="direction-level-main zone-1" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -96,7 +99,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1" colspan="2">
+            <td class="direction-level-main zone-1" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -109,7 +112,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1" colspan="2">
+            <td class="direction-level-main zone-1" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -122,7 +125,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1" colspan="2">
+            <td class="direction-level-main zone-1" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -138,7 +141,8 @@ $zone = 0;
             <td class="zone-2" valign="top" rowspan="4">
 			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-2" colspan="2">
+            <td class="zone-2" rowspan="4"></td>
+            <td class="direction-level-main zone-2" colspan="5">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -151,7 +155,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2 direction-level">
+            <td class="direction-level-main zone-2 direction-level" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -165,7 +169,7 @@ $zone = 0;
             <td class="zone-2"></td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -189,7 +193,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -205,7 +209,8 @@ $zone = 0;
             <td class="zone-1" valign="top" rowspan="5">
 			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-1">
+            <td class="zone-1" rowspan="5"></td>
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -229,7 +234,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -253,7 +258,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -277,7 +282,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -301,7 +306,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -317,7 +322,8 @@ $zone = 0;
             <td class="zone-2" valign="top" rowspan="5">
 			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-2">
+            <td class="zone-2" rowspan="5"></td>
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -341,7 +347,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -365,7 +371,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -378,7 +384,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -402,7 +408,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -418,7 +424,8 @@ $zone = 0;
             <td class="zone-1" valign="top" rowspan="4">
 			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-1" rowspan="2">
+            <td class="zone-1" rowspan="4"></td>
+            <td class="direction-level-main zone-1" rowspan="2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -455,7 +462,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -479,7 +486,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -506,7 +513,8 @@ $zone = 0;
             <td class="zone-2" valign="top" rowspan="4">
 			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-2">
+            <td class="zone-2" rowspan="4"></td>
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -530,7 +538,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -554,7 +562,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -578,7 +586,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -594,7 +602,8 @@ $zone = 0;
             <td class="zone-1" valign="top" rowspan="3">
 			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-1">
+            <td class="zone-1" rowspan="3"></td>
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -618,7 +627,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -642,7 +651,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-1">
+            <td class="direction-level-main zone-1" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
@@ -658,11 +667,12 @@ $zone = 0;
             <td class="zone-2" valign="top" rowspan="2">
 			    <?php $zone++; echo "<span class='hint-zone'>{$zone} ".mb_strtolower(JText::_('COM_RAILWAY2_STATION_ZONE'))."</span>"; ?>
             </td>
-            <td class="direction-level-main zone-2">
+            <td class="zone-2" rowspan="2"></td>
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
-				    if ($item['stationID'] == '4883') {
+				    if ($item['stationID'] == '4884') {
 					    echo $item['stationLink'],' ', $item['desc'];
 					    break;
 				    }
@@ -682,7 +692,7 @@ $zone = 0;
             </td>
         </tr>
         <tr>
-            <td class="direction-level-main zone-2">
+            <td class="direction-level-main zone-2" colspan="4">
 			    <?php
 			    foreach ($this->items as $item)
 			    {
