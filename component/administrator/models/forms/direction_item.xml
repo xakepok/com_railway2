@@ -24,6 +24,16 @@
                 autocomplete="off"
         />
         <field
+                name="showMenu"
+                type="list"
+                label="COM_RAILWAY2_DIRECTION_SHOW_MENU"
+                class="input-xlarge"
+                description="COM_RAILWAY2_DIRECTION_SHOW_MENU"
+        >
+            <option value="0">COM_RAILWAY2_NOT_AVALIBLE</option>
+            <option value="1">COM_RAILWAY2_AVALIBLE</option>
+        </field>
+        <field
                 name="sync"
                 type="list"
                 label="COM_RAILWAY2_SYNC"

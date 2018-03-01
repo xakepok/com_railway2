@@ -10,7 +10,7 @@ class Railway2ModelDirections extends JModelList {
         $query
             ->select('`id`, `title`')
             ->from('#__rw2_directions_list')
-            ->where("`state` > 0")
+            ->where("`state` > 0 AND `showMenu` > 0")
             ->order('title');
         $db->setQuery($query);
         $res = $db->loadObjectList();

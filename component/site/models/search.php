@@ -22,12 +22,23 @@ class Railway2ModelSearch extends ListModel
 	/* Получение всех активных станций */
 	static function getStations()
     {
+        $stations = array();
         $db =& JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
             ->select('*')
             ->from('#__rw2_stations_active');
-        return $db->setQuery($query)->loadAssocList();
+        $res = $db->setQuery($query)->loadAssocList();
+        foreach ($res as $item)
+        {
+            $stations[] = array(
+                'stationID' => $item['id'],
+                'directionID' => $item['directionID'],
+                'stationName' => $item['name'],
+                'directionName' => $item['direction']
+            );
+        }
+        return $stations;
     }
 
 	/* Расписание по станции */

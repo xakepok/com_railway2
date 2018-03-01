@@ -9,6 +9,6 @@ class Railway2ControllerRailway2 extends JControllerLegacy
         $model = ListModel::getInstance('Search', 'Railway2Model', array());
         $stations = $model::getStations();
         $stations = json_encode($stations);
-        jexit(json_encode($stations));
+        jexit($stations);
     }
 }
