@@ -5,15 +5,18 @@ use Joomla\CMS\MVC\View\HtmlView;
 class Railway2ViewSearch extends HtmlView {
 	public $items, $title;
 
-	public function display() {
+    public function display($tpl = null) {
 		try
 		{
+            $input = JFactory::getApplication()->input;
+            $this->format = $input->getString('format', 'html');
+
 			$this->items   = $this->get('Items');
 			$this->title = JText::_('COM_RAILWAY2_RASP_ELEKTRIC_TRAINS')." ".$this->items['from']." - ".$this->items['to']." ".$this->items['date'];
 
 			$this->prepare();
 
-			parent::display();
+			parent::display($tpl);
 		}
 		catch (Exception $e)
 		{
@@ -28,4 +31,6 @@ class Railway2ViewSearch extends HtmlView {
 		$doc = JFactory::getDocument();
 		$doc->setTitle($this->title);
 	}
+
+	private $format;
 }

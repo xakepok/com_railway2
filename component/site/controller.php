@@ -7,6 +7,13 @@ class Railway2Controller extends JControllerLegacy {
 
 	public function display() {
 		$input = JFactory::getApplication()->input;
+
+		if (!empty($input->getString('apikey')))
+        {
+            $apikey = $input->getString('apikey');
+            if ($apikey != '1') exit('bad');
+        }
+
 		if ($input->getString('view', null) == 'online')
 		{
 			$id = $input->getInt('id', 0);
