@@ -14,8 +14,8 @@ class Railway2ModelSearch extends ListModel
     public function __construct(array $config = array())
 	{
 		$input = JFactory::getApplication()->input;
-		$this->from = (int) $input->getInt('from', 0);
-		$this->to = (int) $input->getInt('to', 0);
+		$this->from = (int) $input->getInt('fromID', 0);
+		$this->to = (int) $input->getInt('toID', 0);
 		parent::__construct($config);
 	}
 
