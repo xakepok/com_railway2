@@ -44,6 +44,7 @@ class Railway2ModelSearch extends ListModel
 	/* Расписание по станции */
 	public function getItems()
 	{
+	    if ($this->from == 0 || $this->to == 0) JFactory::getApplication()->redirect('/404/');
 		$result = array();
 		$arr = array();
 		$return = array();
