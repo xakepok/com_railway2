@@ -19,10 +19,13 @@ class Railway2ModelSearch extends ListModel
 		parent::__construct($config);
 	}
 
-	/* Получение всех активных станций */
+	/* Получение всех активных станций
+	 * Используется при получении списка станций в расписании
+	*/
 	static function getStations()
     {
         $stations = array();
+        $ids = array();
         $db =& JFactory::getDbo();
         $query = $db->getQuery(true);
         $query
@@ -31,12 +34,19 @@ class Railway2ModelSearch extends ListModel
         $res = $db->setQuery($query)->loadAssocList();
         foreach ($res as $item)
         {
-            $stations[] = array(
-                'stationID' => $item['id'],
-                'directionID' => $item['directionID'],
-                'stationName' => $item['name'],
-                'directionName' => $item['direction']
-            );
+            if (!in_array($item['id'], $ids))
+            {
+                $name = $item['name'];
+                $direction = sprintf(' (%s '.strtolower(JText::_('COM_RAILWAY2_DIRECTION')).')', $item['direction']);
+                if (mb_stripos($name, 'вокзал') === false && mb_stripos($item['direction'], 'линия') === false) $name .= $direction;
+                $stations[] = array(
+                    'stationID' => $item['id'],
+                    'directionID' => $item['directionID'],
+                    'stationName' => $name,
+                    'directionName' => $direction
+                );
+                array_push($ids, $item['id']);
+            }
         }
         return $stations;
     }
