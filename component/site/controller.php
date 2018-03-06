@@ -56,7 +56,7 @@ class Railway2Controller extends JControllerLegacy {
 
 				if ($threadID !== false)
 				{
-					$url = JRoute::_('index.php?option=com_railway2&view=thread&id='.$threadID."&Itemid=246");
+					$url = JRoute::_('index.php?option=com_railway2&view=thread&id='.$threadID."&Itemid=246&online={$id}");
 					JFactory::getApplication()->redirect($url);
 				}
 				else
