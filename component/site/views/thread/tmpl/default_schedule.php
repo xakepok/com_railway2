@@ -10,6 +10,9 @@ defined('_JEXEC') or die;
         <?php if (JFactory::getUser()->authorise('core.manage', 'com_railway2')): ?>
             <th class="thread"><?php echo JText::_('COM_RAILWAY2_DISTANCE');?></th>
         <?php endif;?>
+        <?php if (JFactory::getApplication()->input->getInt('online', false)): ?>
+            <th class="thread"><?php echo JText::_('COM_RAILWAY2_ONLINE');?></th>
+        <?php endif;?>
     </tr>
     <?php foreach ($this->items['stops'] as $item): ?>
     <tr>
@@ -25,9 +28,12 @@ defined('_JEXEC') or die;
         <td class="rasp-list-item <?php echo $item['class'];?>">
             <?php echo $item['desc']; ?>
         </td>
-	    <?php if (JFactory::getUser()->authorise('core.manage', 'com_railway2')): ?>
+        <?php if (JFactory::getUser()->authorise('core.manage', 'com_railway2')): ?>
+            <th class="thread"><?php echo $item['distance'];?></th>
+        <?php endif;?>
+        <?php if (JFactory::getApplication()->input->getInt('online', false)): ?>
             <td class="rasp-list-item <?php echo $item['class'];?>">
-			    <?php echo $item['distance']; ?>
+			    <?php if (!empty($item['online'])) echo $item['online']; ?>
             </td>
 	    <?php endif;?>
     </tr>

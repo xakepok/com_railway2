@@ -24,6 +24,24 @@ class Railway2HelperOnline {
 		return 'http://pass.rzd.ru/tablo/public/ru?'.http_build_query($query);
 	}
 
+	/* Получение онлайна по ИД для нитки */
+	static function getOnlineById()
+    {
+        $id = JFactory::getApplication()->input->getInt('online', false);
+        if (!$id) return false;
+        $db =& JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select(array($db->quoteName('station'), $db->quoteName('latence')))
+            ->from($db->quoteName('#__rw2_online'))
+            ->where($db->quoteName('id')." = ".$db->quote($id));
+        $result = $db->setQuery($query, 0, 1)->loadAssoc();
+        if (empty($result)) return false;
+        $latence = ((int) $result['latence'] > 0) ? sprintf("+ %d ".JText::_('COM_RAILWAY2_SYNC_BY_MIN'), $result['latence']) : JText::_('COM_RAILWAY2_SYNC_BY_GRAPHIC');
+        $result['text'] = $latence;
+        return $result;
+    }
+
 	/* Получаем контрольную точку */
 	static function getControlPoint($dir)
 	{
