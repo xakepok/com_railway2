@@ -38,6 +38,16 @@
 			<option value="uk_UA">COM_RAILWAY2_YANDEX_API_RASP_LANG_UK</option>
 			<option value="tr_TR">COM_RAILWAY2_YANDEX_API_RASP_LANG_TR</option>
 		</field>
+		<field
+			name="debug"
+			type="list"
+			label="COM_RAILWAY2_DEBUG"
+			description="COM_RAILWAY2_DEBUG_DESC"
+			component="com_railway2"
+			section="component">
+			<option value="0">COM_RAILWAY2_NO</option>
+			<option value="1">COM_RAILWAY2_YES</option>
+		</field>
 	</fieldset>
 	<fieldset name="page_station" label="COM_RAILWAY2_STATION" description="COM_RAILWAY2_SETTINGS_PAGE_STATION">
 		<field

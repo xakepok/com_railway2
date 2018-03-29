@@ -37,6 +37,8 @@ class Railway2ModelYandexrasp extends BaseDatabaseModel
 		$this->params['lang']   = $options->get('yandex-rasp-api-lang');
 		$url                    = $apiUrl . '/' . $this->getMethod() . '/?' . $this->getQuery();
 
+		$debug = $options->get('debug');
+		if ((bool) $debug) Railway2HelperCodes::dump($url);
 		return $url;
 	}
 

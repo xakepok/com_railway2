@@ -22,14 +22,14 @@ class Railway2ModelStation extends BaseDatabaseModel
 			return false;
 		}
 		$modelRasp = JModelLegacy::getInstance('Yandexrasp', 'Railway2Model');
-		$modelRasp->setESR(Railway2HelperCodes::getEsrById($this->stationID));
+        $modelRasp->setYandex(Railway2HelperCodes::getYandexById($this->stationID));
 		$dir = Railway2HelperCodes::getDefaultDir($this->stationID);
 		$modelRasp->setDirection($dir);
 		$modelRasp->page      = 1;
 		$tmp                  = $modelRasp->query();
 		if (empty($tmp))
 		{
-			$modelRasp->setYandex(Railway2HelperCodes::getYandexById($this->stationID));
+            $modelRasp->setESR(Railway2HelperCodes::getEsrById($this->stationID));
 			$tmp                  = $modelRasp->query();
 		}
 		$directions = array();
