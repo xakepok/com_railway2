@@ -29,7 +29,7 @@ defined('_JEXEC') or die;
             <?php echo $item['desc']; ?>
         </td>
         <?php if (JFactory::getUser()->authorise('core.manage', 'com_railway2')): ?>
-            <th class="thread"><?php echo $item['distance'];?></th>
+            <td class="rasp-list-item thread-time <?php echo $item['class'];?>"><?php echo $item['distance'];?></td>
         <?php endif;?>
         <?php if (JFactory::getApplication()->input->getInt('online', false)): ?>
             <td class="rasp-list-item <?php echo $item['class'];?>">
