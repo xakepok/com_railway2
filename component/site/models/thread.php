@@ -34,6 +34,8 @@ class Railway2ModelThread extends JModelList
 		}
 		$codes = Railway2HelperCodes::getStationByEsr($esr, $yandex);
 		$desc = $this->getDescByRoute($codes);
+		$online = Railway2HelperOnline::getOnlineById();
+		Railway2HelperCodes::dump($online);
 		foreach ($tmp->stops as $item)
 		{
 			$arr = (!empty($item->arrival)) ? date("H.i", strtotime($item->arrival)) : '';
@@ -60,6 +62,7 @@ class Railway2ModelThread extends JModelList
 			}
 			$link = JRoute::_("index.php?option=com_railway2&view=station&id={$stationID}&Itemid=236");
 			$stationLink = (!empty($stationID)) ? JHtml::link($link, $item->station->title) : $item->station->title;
+			if (!empty($platform)) $stationLink .= " <span style='color: white; font-size: 0.7em; font-style: italic;'>({$platform})</span>";
 			$kassa = $this->checkDesc($desc[$stationID], $item->departure);
 			$class = (Railway2HelperCodes::isOdd($zone)) ? 'zone-1' : 'zone-2';
 			if (empty($desc[$stationID])) $kassa = JText::_('COM_RAILWAY2_NOINFO');
@@ -70,16 +73,21 @@ class Railway2ModelThread extends JModelList
 			}
 			if ($arr == '-' && $dep == '-') $kassa = '';
 			if ($distance != null) $distance .= ' '.JText::_('COM_RAILWAY2_DISTANCE_KM'); else $distance = '';
-			$res['stops'][] = array(
-				'arr' => $arr,
-				'dep' => $dep,
-				'platform' => $platform,
-				'station' => $stationLink,
-				'desc' => $kassa,
-				'zone' => $zone,
-				'class' => $class,
-				'distance' => $distance
-			);
+			$stops = array(
+                'arr' => $arr,
+                'dep' => $dep,
+                'platform' => $platform,
+                'station' => $stationLink,
+                'desc' => $kassa,
+                'zone' => $zone,
+                'class' => $class,
+                'distance' => $distance
+            );
+			if ($online !== false && $online['station'] == $stationID)
+            {
+                $stops['online'] = $online['text'];
+            }
+			$res['stops'][] = $stops;
 		}
 		return $res;
 	}

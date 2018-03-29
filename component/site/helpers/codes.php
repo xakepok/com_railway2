@@ -73,7 +73,8 @@ class Railway2HelperCodes {
     /* Отладка */
     static function dump($obj)
     {
-        if (JFactory::getUser()->authorise('core.manage', 'com_railway2'))
+        $options = JComponentHelper::getParams('com_railway2');
+        if (JFactory::getUser()->authorise('core.manage', 'com_railway2') && (bool) $options->get('debug'))
         {
             echo "<pre>";
             var_dump($obj);
