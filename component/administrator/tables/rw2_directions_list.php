@@ -12,6 +12,7 @@ class TableRw2_directions_list extends JTable {
     var $sync = null;
     var $filter = null;
     var $state = null;
+    var $showMenu = null;
 
     public function __construct(&$db) {
         parent::__construct('#__rw2_directions_list', 'id', $db);

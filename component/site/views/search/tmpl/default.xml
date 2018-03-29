@@ -5,4 +5,17 @@
 			<![CDATA[COM_RAILWAY2_RASP_SEARCH_DESC]]>
 		</message>
 	</layout>
+	<fields name="request">
+		<fieldset name="request">
+			<field
+				name="format"
+				type="list"
+				label="COM_RAILWAY2_FORMAT"
+				description="COM_RAILWAY2_FORMAT_DESC"
+				default="html">
+				<option value="html">COM_RAILWAY2_FORMAT_HTML</option>
+				<option value="json">COM_RAILWAY2_FORMAT_JSON</option>
+			</field>
+		</fieldset>
+	</fields>
 </metadata>
