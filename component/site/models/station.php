@@ -74,6 +74,7 @@ class Railway2ModelStation extends BaseDatabaseModel
 		$result = $db->loadObject();
 		if (!isset($result->esr)) return false;
 		$detour = $this->getDetour();
+		$food = $this->getFood();
 
 		$res             = array();
 		$res['id']       = $this->stationID;
@@ -87,9 +88,62 @@ class Railway2ModelStation extends BaseDatabaseModel
 			$res['detour']  = $detour['wayout'];
 			$res['updated'] = $detour['updated'];
 		}
+		$res['food'] = $food;
 
 		return $res;
 	}
+
+	private function getFood()
+    {
+        JLoader::register('FieldsHelper', JPATH_ADMINISTRATOR . '/components/com_fields/helpers/fields.php');
+        $jcFields = FieldsHelper::getFields('com_railway2.direction', $this->stationID, true);
+        //Railway2HelperCodes::dump($jcFields);
+        $customFieldIds = array_map(create_function('$o', 'return $o->id;'), $jcFields); //get custom field Ids by custom field names
+        $model = JModelLegacy::getInstance('Field', 'FieldsModel', array('ignore_request' => true)); //load fields model
+        $customFieldTitles = array_map(create_function('$o', 'return $o->name;'), $jcFields); //Fetch names for custom fields
+        $customFieldValues = $model->getFieldValues($customFieldIds, $this->getSvyazId()); //Fetch values for custom field Ids
+        $reviews = array();
+        $logos = array();
+        foreach ($customFieldValues as $id => $value)
+        {
+            if (!empty($value))
+            {
+                if (gettype($value) != 'array')
+                {
+                    if (stripos($value, 'http') === false)
+                    {
+                        $logos[] = JHtml::image("media/com_railway2/images/logos/{$value}.png", $value);
+                    }
+                    else
+                    {
+                        $reviews[] = JHtml::link($value, JText::_('COM_RAILWAY2_REVIEW_DONER'), array('target' => '_blank'));
+                    }
+                }
+                else
+                {
+                    foreach ($value as $item)
+                    {
+                        $logos[] = JHtml::image("media/com_railway2/images/logos/{$item}.png", $item);
+                    }
+                }
+            }
+        }
+        $sum = count($logos) + count($reviews);
+        $result['logos'] = implode(' ', $logos);
+        $result['reviews'] = implode(', ', $reviews);
+        return ($sum > 0) ? $result : false;
+    }
+
+    private function getSvyazId()
+    {
+        $db = $this->getDbo();
+        $query = $db->getQuery(true);
+        $query
+            ->select($db->quoteName('id'))
+            ->from($db->quoteName('#__rw2_directions'))
+            ->where($db->quoteName('stationID')." = ".$db->quote($this->stationID));
+        return $db->setQuery($query, 0, 1)->loadResult();
+    }
 
 	/* Генерация массива для распейсания по станции */
 	private function generateRasp($schedule)
@@ -117,6 +171,8 @@ class Railway2ModelStation extends BaseDatabaseModel
         {
             $online = false;
         }
+        $modelCocons = JModelLegacy::getInstance('Cocons', 'Railway2Model');
+        $cocons = $modelCocons->getCocons();
 
         foreach ($schedule as $item)
 		{
@@ -141,9 +197,31 @@ class Railway2ModelStation extends BaseDatabaseModel
                     $o .= $online[$num]['station'];
                 }
             }
+            $isCocon = '';
+            foreach ($cocons as $cocon)
+            {
+                if ($modelCocons->checkCocon($cocon->thread, $item->thread->uid))
+                {
+                    $isCocon = JText::_('COM_RAILWAY2_COCONS_MAYBE');
+                    if (JFactory::getUser()->authorise('core.add', 'com_railway2'))
+                    {
+                        $isCocon .="&nbsp;".$this->createCoconDelLink($item->thread->uid);
+                    }
+                    break;
+                }
+                else
+                {
+                    if (JFactory::getUser()->authorise('core.add', 'com_railway2'))
+                    {
+                        $isCocon = $this->createCoconLink($item->thread->uid);
+                    }
+                }
+            }
+            if (empty($isCocon) && JFactory::getUser()->authorise('core.add', 'com_railway2')) $isCocon = $this->createCoconLink($item->thread->uid);
 			$arr             = array(
 				'number' => $item->thread->number,
 				'color' => $color,
+				'cocon' => $isCocon,
 				'time' => Railway2HelperCodes::timeRasp(($item->departure !== null) ? $item->departure : $item->arrival),
 				'link' => JHtml::link(JRoute::_('index.php?' . http_build_query($query)), $item->thread->title, $linkOption),
 				'stops' => $item->stops,
@@ -205,7 +283,23 @@ class Railway2ModelStation extends BaseDatabaseModel
 		return $result;
 	}
 
-	/* Направление станции */
+    /* Ссылка на добавление коконов */
+    private function createCoconLink($thread)
+    {
+        $back = base64_encode(JRoute::_("index.php?option=com_railway2&view=station&id={$this->stationID}&dir={$this->directionID}&Itemid=236"));
+        $url = "/index.php?option=com_railway2&task=railway2.cocon&thread={$thread}&back={$back}";
+        return JHtml::link($url, JText::_('COM_RAILWAY2_COCONS'));
+    }
+
+    /* Ссылка на удаление коконов */
+    private function createCoconDelLink($thread)
+    {
+        $back = base64_encode(JRoute::_("index.php?option=com_railway2&view=station&id={$this->stationID}&dir={$this->directionID}&Itemid=236"));
+        $url = "/index.php?option=com_railway2&task=railway2.cocon&thread={$thread}&del=1&back={$back}";
+        return JHtml::link($url, "[X]", array('style'=>'color:red;'));
+    }
+
+    /* Направление станции */
 	private function getDir() {
 		$dir = JFactory::getApplication()->input->getInt('d', 0);
 		if ($dir == 0)

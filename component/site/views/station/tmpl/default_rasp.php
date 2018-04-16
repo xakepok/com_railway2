@@ -23,6 +23,7 @@ defined('_JEXEC') or die;
         <?php if ($this->dat == Railway2HelperCodes::getCurrentDate("Y-m-d")): ?>
             <th class="rasp-table-th"><?php echo JText::_('COM_RAILWAY2_ONLINE'); ?></th>
         <?php endif; ?>
+        <th class="rasp-table-th"><?php echo JText::_('COM_RAILWAY2_COCONS'); ?></th>
     </tr>
     <?php foreach ($this->rasp['schedule'] as $item) {
         ?>
@@ -48,6 +49,9 @@ defined('_JEXEC') or die;
             <?php if ($this->dat == Railway2HelperCodes::getCurrentDate("Y-m-d")): ?>
                 <td class="rasp-list-item"><span class="station-rasp-font"><?php echo $item['online'];?></span></td>
 	        <?php endif; ?>
+            <td class="rasp-list-item">
+                <?php echo $item['cocon'];?>
+            </td>
         </tr>
         <?php
     }?>

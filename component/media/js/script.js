@@ -1,3 +1,4 @@
+'use strict';
 jQuery.noConflict();
 jQuery(document).ready(function() {
     console.log('Loaded');
@@ -10,7 +11,7 @@ jQuery(document).ready(function() {
             href += '&direction=' + search['direction'];
         }
         location.href = currentURL + href;
-    })
+    });
 });
 jQuery(document).ready(function () {
     jQuery(".raspSearchField").keyup(function() {

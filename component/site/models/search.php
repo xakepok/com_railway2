@@ -80,6 +80,9 @@ class Railway2ModelSearch extends ListModel
 			$result['schedule'] = array_merge($result['schedule'], $tmp->segments);
 		}
 
+        $modelCocons = JModelLegacy::getInstance('Cocons', 'Railway2Model');
+        $cocons = $modelCocons->getCocons();
+
 		foreach ($result['schedule'] as $thread)
 		{
 			$number = $thread->thread->number;
@@ -100,6 +103,13 @@ class Railway2ModelSearch extends ListModel
 			if (!empty($thread->tickets_info->places[0]->price->cents)) $price .= ".".$thread->tickets_info->places[0]->price->cents;
 			$price .= " ".JText::_('COM_RAILWAY2_RUB').".";
 			$tickets = (!empty($thread->tickets_info)) ? $price : "";
+            $isCocon = '';
+            Railway2HelperCodes::dump($cocons);
+            foreach ($cocons as $cocon) {
+                if ($modelCocons->checkCocon($cocon->thread, $thread->thread->uid)) {
+                    $isCocon = JText::_('COM_RAILWAY2_COCONS_MAYBE');
+                }
+            }
 			$arr[] = array(
 				'number' => $number,
 				'type' => $type,
@@ -110,7 +120,8 @@ class Railway2ModelSearch extends ListModel
 				'link' => $link,
 				'platform' => $platform,
 				'tickets' => $tickets,
-				'display' => $display
+				'display' => $display,
+                'cocon' => $isCocon
 			);
 		}
 

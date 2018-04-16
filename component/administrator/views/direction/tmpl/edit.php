@@ -17,6 +17,7 @@ JHtml::_('formbehavior.chosen', 'select');
         <div class="span12 form-horizontal">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#general" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_DIRECTIONS_DESCRIPTION');?></a></li>
+                <li><a href="#food" data-toggle="tab"><?php echo JText::_('COM_RAILWAY2_FOOD');?></a></li>
             </ul>
 
             <div class="tab-content">
@@ -24,6 +25,17 @@ JHtml::_('formbehavior.chosen', 'select');
                     <fieldset class="adminform">
                         <div class="control-group form-inline">
                             <?php foreach ($this->form->getFieldset('names') as $field) : ?>
+                                <div class="control-label"><?php echo $field->label; ?></div>
+                                <div class="controls"><?php echo $field->input; ?></div>
+                                <br>
+                            <?php endforeach; ?>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="tab-pane" id="food">
+                    <fieldset class="adminform">
+                        <div class="control-group form-inline">
+                            <?php foreach ($this->form->getFieldset('fields-2') as $field) : ?>
                                 <div class="control-label"><?php echo $field->label; ?></div>
                                 <div class="controls"><?php echo $field->input; ?></div>
                                 <br>

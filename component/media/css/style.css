@@ -56,6 +56,7 @@
 .rasp-list-item {
     border: none;
     border-bottom: 1px solid black;
+    font-size: 0.8em;
 }
 .direction-table {
     border: none;
@@ -212,4 +213,8 @@ th.thread {
 }
 .thread-title {
     width: 350px;
+}
+.underline {
+    text-decoration: underline;
+    cursor: pointer;
 }
