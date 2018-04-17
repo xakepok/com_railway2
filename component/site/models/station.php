@@ -4,11 +4,13 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 class Railway2ModelStation extends BaseDatabaseModel
 {
-	public $stationID, $directionID;
+	public $stationID, $directionID, $directionName, $dat;
 
 	public function __construct(array $config = array())
 	{
 		$this->stationID = (int) JFactory::getApplication()->input->get('id', 0);
+		$this->directionName = JFactory::getApplication()->input->getString('direction', false);
+		$this->dat = JFactory::getApplication()->input->getString('date', false);
 		$this->directionID = $this->getDir();
 		parent::__construct($config);
 	}
@@ -286,7 +288,21 @@ class Railway2ModelStation extends BaseDatabaseModel
     /* Ссылка на добавление коконов */
     private function createCoconLink($thread)
     {
-        $back = base64_encode(JRoute::_("index.php?option=com_railway2&view=station&id={$this->stationID}&dir={$this->directionID}&Itemid=236"));
+        $params = array();
+        $params['option'] = 'com_railway2';
+        $params['view'] = 'station';
+        $params['id'] = $this->stationID;
+        $params['dir'] = $this->directionID;
+        $params['Itemid'] = 236;
+        if ($this->directionName !== false)
+        {
+            $params['direction'] = $this->directionName;
+        }
+        if ($this->dat !== false)
+        {
+            $params['dat'] = $this->dat;
+        }
+        $back = base64_encode(JRoute::_("index.php?".http_build_query($params)));
         $url = "/index.php?option=com_railway2&task=railway2.cocon&thread={$thread}&back={$back}";
         return JHtml::link($url, JText::_('COM_RAILWAY2_COCONS'));
     }
@@ -294,7 +310,21 @@ class Railway2ModelStation extends BaseDatabaseModel
     /* Ссылка на удаление коконов */
     private function createCoconDelLink($thread)
     {
-        $back = base64_encode(JRoute::_("index.php?option=com_railway2&view=station&id={$this->stationID}&dir={$this->directionID}&Itemid=236"));
+        $params = array();
+        $params['option'] = 'com_railway2';
+        $params['view'] = 'station';
+        $params['id'] = $this->stationID;
+        $params['dir'] = $this->directionID;
+        $params['Itemid'] = 236;
+        if ($this->directionName !== false)
+        {
+            $params['direction'] = $this->directionName;
+        }
+        if ($this->dat !== false)
+        {
+            $params['dat'] = $this->dat;
+        }
+        $back = base64_encode(JRoute::_("index.php?".http_build_query($params)));
         $url = "/index.php?option=com_railway2&task=railway2.cocon&thread={$thread}&del=1&back={$back}";
         return JHtml::link($url, "[X]", array('style'=>'color:red;'));
     }
