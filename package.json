@@ -1,0 +1,10 @@
+{
+  "name": "com_railway2",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "webpack": "^4.6.0"
+  }
+}

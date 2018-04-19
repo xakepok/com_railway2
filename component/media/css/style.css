@@ -37,7 +37,7 @@
     color: white;
 }
 .station-rasp-font {
-    font-size: 0.8em;
+    font-size: 0.95em;
     cursor: default;
 }
 .express {
@@ -169,7 +169,7 @@
     font-style: italic;
 }
 .thread-link {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 th.thread {
     font-size: 0.9em;
