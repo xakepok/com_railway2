@@ -4,7 +4,7 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 class Railway2ModelStation extends BaseDatabaseModel
 {
-	public $stationID, $directionID, $directionName, $dat;
+	public $stationID, $directionID, $directionName, $dat, $head;
 
 	public static function getInstance($type='Station', $prefix = 'Railway2Model', $config = array())
     {
@@ -19,6 +19,12 @@ class Railway2ModelStation extends BaseDatabaseModel
 		$this->directionID = $this->getDir();
 		parent::__construct($config);
 	}
+
+	public function getHead()
+    {
+        $this->head = JFactory::getApplication()->input->getBool('head', false);
+        return (!$this->head) ? false : JComponentHelper::getParams('com_railway2')->get('page_station_head_text', '');
+    }
 
 	/* Расписание по станции */
 	public function getRasp()

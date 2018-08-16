@@ -16,7 +16,7 @@
 	<!-- Runs on install -->
 	<install>
 		<sql>
-			<file driver="mysql" charset="utf8">sql/install/mysql/mysql.sql</file>
+			<file driver="mysql" charset="utf8">sql/1.0.sql</file>
 		</sql>
 	</install>
 

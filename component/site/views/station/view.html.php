@@ -2,7 +2,7 @@
 defined('_JEXEC') or die;
 class Railway2ViewStation extends JViewLegacy
 {
-    public $info, $error, $rasp, $dat, $tableTitle;
+    public $info, $error, $rasp, $dat, $tableTitle, $head;
 
     public function display() {
         $this->error = false;
@@ -10,6 +10,7 @@ class Railway2ViewStation extends JViewLegacy
         $this->dat = Railway2HelperCodes::getDateFromUrl();
         $this->tableTitle = ($this->dat == date("Y-m-d")) ? mb_strtolower(JText::_('COM_RAILWAY2_DAYS_TODAY')) : date("d.m.Y", strtotime($this->dat));
         $this->tableTitle = JText::_('COM_RAILWAY2_RASP_ON').' '.$this->tableTitle;
+        $this->head = $this->get('Head');
 
         if (!$this->info) $this->error = JText::_('COM_RAILWAY2_ERROR_BAD_STATION');
         if ($this->error === false) {

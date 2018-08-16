@@ -3,6 +3,7 @@ defined('_JEXEC') or die;
 if ($this->error !== false) echo $this->loadTemplate('error'); else {
 ?>
 <p style="<?php echo $this->info['style'];?>" class="direction-info-title"><?php echo $this->info['fullName']; ?></p>
+<?php if ($this->head !== false) echo $this->loadTemplate('head'); ?>
 <p><?php if (isset($this->info['detour']) && !empty($this->info['detour'])) echo $this->loadTemplate('detour');?></p>
 <p><?php if ($this->info['food'] !== false) echo $this->loadTemplate('food');?></p>
 <p><?php if (count($this->rasp) > 0) echo $this->loadTemplate('rasp');?></p>

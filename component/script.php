@@ -33,7 +33,9 @@ class Com_Railway2InstallerScript
 	 *
 	 * @return  boolean  True on success
 	 */
-	public function preflight($route, JAdapterInstance $adapter) {}
+	public function preflight($route, JAdapterInstance $adapter) {
+
+    }
 
 	/**
 	 * Called after any type of action

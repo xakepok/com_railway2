@@ -61,16 +61,6 @@
 			<option value="1">COM_RAILWAY2_SETTINGS_SHOW</option>
 		</field>
 		<field
-				name="page_station_show_cross_metro"
-				type="radio"
-				label="COM_RAILWAY2_SETTINGS_CROSS_METRO"
-				description="COM_RAILWAY2_SETTINGS_SHOW_CROSS_METRO"
-				section="component"
-				component="com_railway2">
-			<option value="0">COM_RAILWAY2_SETTINGS_HIDE</option>
-			<option value="1">COM_RAILWAY2_SETTINGS_SHOW</option>
-		</field>
-		<field
 				name="page_station_show_rasp"
 				type="radio"
 				label="COM_RAILWAY2_SETTINGS_RASP"
@@ -90,8 +80,35 @@
 			<option value="0">COM_RAILWAY2_SETTINGS_HIDE</option>
 			<option value="1">COM_RAILWAY2_SETTINGS_SHOW</option>
 		</field>
+        <field
+                name="page_station_head"
+                type="radio"
+                label="COM_RAILWAY2_SMASH_HEAD"
+                description="COM_RAILWAY2_SMASH_HEAD_DESC"
+                section="component"
+                component="com_railway2">
+            <option value="0">COM_RAILWAY2_NO</option>
+            <option value="1">COM_RAILWAY2_YES</option>
+        </field>
+		<field
+				name="page_station_head_text"
+				type="text"
+				label="COM_RAILWAY2_SMASH_HEAD_TEXT"
+				description="COM_RAILWAY2_SMASH_HEAD_TEXT_DESC"
+				section="component"
+				component="com_railway2" />
 	</fieldset>
 	<fieldset name="rzd" label="COM_RAILWAY2_RZD" description="COM_RAILWAY2_RZD_SITE">
+		<field
+			name="rzd-sync"
+			type="radio"
+			section="component"
+			component="com_railway2"
+			label="COM_RAILWAY2_SYNC"
+			description="COM_RAILWAY2_SYNC_DESC">
+			<option value="0">COM_RAILWAY2_SYNC_DISABLED</option>
+			<option value="1">COM_RAILWAY2_SYNC_ENABLED</option>
+		</field>
 		<field
 			name="rzd-rasp-station"
 			type="text"

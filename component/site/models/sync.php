@@ -22,6 +22,13 @@ class Railway2ModelSync extends JModelLegacy {
 	/* Синхронизация железки */
 	private function syncRailway()
 	{
+	    $config = JComponentHelper::getParams('com_railway2');
+	    if (! (bool) $config->get('rzd-sync', false))
+        {
+            $result['status'] = false;
+            $result['message'] = JText::_('COM_RAILWAY2_SYNC_DISABLED');
+            return json_encode($result);
+        }
 		jimport('phpQuery-onefile');
 
 		$dir = Railway2HelperOnline::getDirection();
