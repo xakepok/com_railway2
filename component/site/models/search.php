@@ -93,6 +93,9 @@ class Railway2ModelSearch extends ListModel
 			$link = JHtml::link($url, $thread->thread->title, $attribs);
 			$arrival = date("H.i", strtotime($thread->arrival));
 			$dep = date("H.i", strtotime($thread->departure));
+			$vputi1 = new DateTime($dep);
+			$vputi2 = new DateTime($arrival);
+			$diff = $vputi1->diff($vputi2)->format(("%H ч. %i мин."));
 			$stops = $thread->stops;
 			$type = $thread->thread->transport_subtype->title;
 			$express = $thread->thread->express_type;
@@ -116,6 +119,7 @@ class Railway2ModelSearch extends ListModel
 				'express' => $express,
 				'dep' => $dep,
 				'arr' => $arrival,
+				'diff' => $diff,
 				'stops' => $stops,
 				'link' => $link,
 				'platform' => $platform,
